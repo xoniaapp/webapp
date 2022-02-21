@@ -1,19 +1,36 @@
-# app  
+# xoniaapp@app
 The official codebase for Xonia, both frontend and backend merged!  
   
-# Stack:  
-## Code:  
-### Backend:  
+## Stack
+
+---
+
+### Frontend
+ - React  
+ - Zustand
+ - Axios
+
+### Backend
  - MongoDB  
  - Redis  
- - Node.js + Nest.js  
+ - Node.js
+ - Express.js
+ - TypeORM
+ - Nest.js  
  - TypeScript
  - Nest/Socket  
- - AWS S3 Buckets (for CDN)
-  
-### Frontend:  
- - React  
- - Zustand  
-  
-### Used in both ends:  
- - Yup  
+ - AWS S3 Buckets
+ - Socket.io
+
+
+---
+
+### Authors
+- [Aelpxy](https://github.com/aelpxy)
+- [Laitch GlaDos](https://github.com/laith-glados)
+
+---
+
+
+### LICENSE
+![LICENSE](https://www.gnu.org/graphics/agplv3-155x51.png)
