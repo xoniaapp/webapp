@@ -1,7 +1,7 @@
 {
   "name": "xoniaapp",
   "version": "1.0.0",
-  "description": "The xoniaapp codebase",
+  "description": "The Xonia App codebase",
   "main": "index.js",
   "scripts": {
     "dev:client": "cd ./client && npm run dev",
