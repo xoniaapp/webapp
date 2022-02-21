@@ -19,7 +19,7 @@ The official codebase for Xonia, both frontend and backend merged!
  - Nest.js  
  - TypeScript
  - Nest/Socket  
- - AWS S3 Buckets
+ - AWS S3 SDK
  - Socket.io
 
 
