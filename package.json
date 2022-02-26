@@ -1,0 +1,19 @@
+{
+  "name": "xoniaapp",
+  "version": "1.0.0",
+  "description": "Codebase of Xonia",
+  "scripts": {
+    "build:frontend": "cd frontend && npm run build",
+    "build:backend": "cd backend && npm run build"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/xoniaapp/app.git"
+  },
+  "author": "Aelpxy",
+  "license": "AGPL-3.0-or-later",
+  "bugs": {
+    "url": "https://github.com/xoniaapp/app/issues"
+  },
+  "homepage": "https://github.com/xoniaapp/app#readme"
+}
