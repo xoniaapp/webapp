@@ -15,4 +15,10 @@ ReactDOM.render(
   document.getElementById('root')
 );
 
+console.log("%c" + "Hold Up!", "color: red; -webkit-text-stroke: 2px black; font-size: 72px; font-weight: bold;");
+console.log("%c" + "Pasting anything in here could give attackers access to your account!", "color: blue; -webkit-text-stroke: 2px black; font-size: 20px; font-weight: bold;");
+console.log("%c" + "Hold Up!", "color: red; -webkit-text-stroke: 2px black; font-size: 72px; font-weight: bold;");
+console.log("%c" + "Pasting anything in here could give attackers access to your account!", "color: blue; -webkit-text-stroke: 2px black; font-size: 20px; font-weight: bold;");
+console.log("%c" + "Hold Up!", "color: red; -webkit-text-stroke: 2px black; font-size: 72px; font-weight: bold;");
+
 reportWebVitals();
