@@ -42,16 +42,15 @@ async function bootstrap() {
   const options = new DocumentBuilder()
     .setTitle('Docs')
     .setDescription('Xonia REST API')
-    .setLicense('AGPL v3', 'https://github.com/xoniaapp/app/LICENSE')
-    .setVersion('2.3.0')
+    .setLicense('AGPL v3', 'https://github.com/xoniaapp/app/blob/main/LICENSE')
+    .setVersion('2.7.0')
     .addCookieAuth("xa" )
     .build();
 
   const document = SwaggerModule.createDocument(app, options);
   SwaggerModule.setup('/', app, document);
   await app.listen(process.env.PORT || 8080);
-  // logout it
-  await console.log(`Server started on http://localhost:${process.env.PORT}`);
+  await console.log(`🚀 Fired Up on PORT:${process.env.PORT} 🚀`);
 }
 
 bootstrap();
