@@ -9,6 +9,7 @@ The official codebase for Xonia, both frontend and backend merged!
  - React  
  - Zustand
  - Axios
+ - ChakraUI
 
 ### Backend
  - MongoDB  
@@ -18,9 +19,12 @@ The official codebase for Xonia, both frontend and backend merged!
  - TypeORM
  - Nest.js  
  - TypeScript
- - Nest/Socket  
+ - Nest  
  - AWS S3 SDK
  - Socket.io
+ - Yup
+ - Argon2
+ - Sharp.js
 
 
 ---
