@@ -9,7 +9,7 @@ export const getSocket = () =>
 let socket: SocketIOClient.Socket | null = null;
 export const getSameSocket = () => {
   if (!socket) {
-    console.log("%cConnected to Websocket","color:green; font-size:15px")
+    console.log("%cConnected to Websocket","color:red; font-size:18px")
     socket = socketIOClient(`${process.env.REACT_APP_API!}/ws`, {
       transports: ['websocket'],
       upgrade: false,
