@@ -50,7 +50,7 @@ async function bootstrap() {
   const document = SwaggerModule.createDocument(app, options);
   SwaggerModule.setup('/', app, document);
   await app.listen(process.env.PORT || 8080);
-  await console.log(`🚀 Fired Up on PORT:${process.env.PORT} 🚀`);
+  await console.log(`🚀 | XONIA SERVER FIRED UP ON PORT:${process.env.PORT} | 🚀`);
 }
 
 bootstrap();
