@@ -86,7 +86,7 @@ export const FileUploadButton: React.FC = () => {
               <ModalCloseButton />
               <ModalBody>
                 <Text mb="2">{errors}</Text>
-                <Text>Max file size is 8.00 MB</Text>
+                <Text>Maximum upload is is 80.00 MB</Text>
               </ModalBody>
             </ModalContent>
           </Modal>
