@@ -1,7 +1,9 @@
 {
   "name": "xoniapp-web",
-  "version": "0.1.0",
+  "version": "1.0.0",
+  "author": "Aelpxy",
   "private": true,
+  "license": "AGPL-3.0-or-later",
   "dependencies": {
     "@chakra-ui/react": "^1.6.3",
     "@emotion/react": "^11.4.0",

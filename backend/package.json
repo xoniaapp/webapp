@@ -1,10 +1,9 @@
 {
   "name": "xoniaapp-server",
-  "version": "0.0.1",
-  "description": "",
-  "author": "",
+  "version": "1.0.0",
+  "author": "Aelpxy",
   "private": true,
-  "license": "UNLICENSED",
+  "license": "AGPL-3.0-or-later",
   "scripts": {
     "prebuild": "rimraf dist",
     "build": "nest build",

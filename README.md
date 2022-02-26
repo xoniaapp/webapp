@@ -29,9 +29,9 @@ The official codebase for Xonia, both frontend and backend merged!
 
 ---
 
-### Authors
-- [Aelpxy](https://github.com/aelpxy)
-- [Laitch GlaDos](https://github.com/laith-glados)
+### Team
+- [Aelpxy](https://github.com/aelpxy) - Frontend, Backend
+- [Laitch GlaDos](https://github.com/laith-glados) - Mobile App
 
 ---
 
