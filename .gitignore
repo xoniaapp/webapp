@@ -1,6 +1,8 @@
 # Useless
 package-lock.json
 
+/build
+
 # Logs
 logs
 *.log
@@ -74,7 +76,7 @@ typings/
 # dotenv environment variables file
 .env
 .env.test
-
+.env.production
 # parcel-bundler cache (https://parceljs.org/)
 .cache
 
@@ -105,3 +107,5 @@ dist
 
 # TernJS port file
 .tern-port
+
+/dist
