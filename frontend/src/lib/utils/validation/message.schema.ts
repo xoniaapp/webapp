@@ -30,7 +30,7 @@ export const FileSchema = yup.object().shape({
     .mixed()
     .nullable()
     .test('fileSize', 'The file is too large', (value) => {
-      return value?.size < 80000000;
+      return value?.size < 100000000;
     })
     .test('type', 'Try again!', (value) => {
       return value && SUPPORTED_FORMATS.includes(value.type);
