@@ -1,9 +1,8 @@
 # xoniaapp@app
+
 The official codebase for Xonia, both frontend and backend merged!  
   
-## Stack
-
----
+## Stack 🔮
 
 ### Frontend
  - React  
@@ -37,4 +36,6 @@ The official codebase for Xonia, both frontend and backend merged!
 
 
 ### LICENSE
-![LICENSE](https://www.gnu.org/graphics/agplv3-155x51.png)
+<a href="https://github.com/xoniaapp/app/blob/main/LICENSE">
+  <img src="https://img.shields.io/github/license/xoniaapp/app">
+</a>
