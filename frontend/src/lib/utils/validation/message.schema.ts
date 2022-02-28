@@ -14,7 +14,15 @@ const SUPPORTED_FORMATS = [
   'application/json',
   'application/x-tar',
   'application/gzip',
-  'text/plain',
+  'application/json',
+  'application/ld+json',
+  'application/pdf',
+  'application/vnd.rar',
+  'application/x-tar',
+  'application/x-7z-compressed',
+  'application/x-bzip',
+  'application/x-bzip2',
+  'application/octet-stream',
 ];
 
 export const FileSchema = yup.object().shape({
