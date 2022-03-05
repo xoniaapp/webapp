@@ -12,6 +12,7 @@ const SUPPORTED_FORMATS = [
   'video/mpeg',
   'video/mp4',
   'application/json',
+  "application/zip"
   'application/x-tar',
   'application/gzip',
   'application/json',
