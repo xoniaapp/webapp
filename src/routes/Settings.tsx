@@ -204,7 +204,7 @@ export const Settings = (): JSX.Element | null => {
             </Button>
           </Flex>
           <p>
-            main@2.6.0
+            main@2.8.0
           </p>
         </Box>
       </Box>

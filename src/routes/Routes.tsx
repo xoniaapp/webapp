@@ -14,7 +14,7 @@ export const Routes: React.FC = () => (
   <BrowserRouter>
     <Switch>
       <Route exact path="/">
-        <Home />
+        <Login />
       </Route>
       <Route path="/login">
         <Login />
