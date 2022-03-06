@@ -10,7 +10,7 @@ interface MessageProps {
 
 export const MessageContent: React.FC<MessageProps> = ({ message: { attachment, text, createdAt, updatedAt } }) => {
   if (attachment) {
-    const { filetype, url } = attachment;
+    const { filetype, url, filename } = attachment;
     if (filetype.startsWith("image/")) {
       return (
         <Box boxSize="sm" my="2" h="full">
@@ -18,7 +18,7 @@ export const MessageContent: React.FC<MessageProps> = ({ message: { attachment, 
         </Box>
       );
     }
-    if (filetype.startsWith("audio/")) {
+   else if (filetype.startsWith("audio/")) {
       return (
         <Box my="2">
           {/* eslint-disable-next-line jsx-a11y/media-has-caption */}
@@ -27,6 +27,17 @@ export const MessageContent: React.FC<MessageProps> = ({ message: { attachment, 
           </audio>
         </Box>
       );
+    }
+   else if (filetype.startsWith("application/")) {
+      return (
+        <Box>
+          <a
+          href={url}
+          >
+          {filename}
+          </a>
+        </Box>
+      )
     }
   }
   return (
