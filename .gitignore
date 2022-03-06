@@ -54,6 +54,7 @@ typings/
 
 # Optional npm cache directory
 .npm
+.gitpod.yml
 
 # Optional eslint cache
 .eslintcache
