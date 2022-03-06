@@ -5,7 +5,9 @@ interface NotificationIconProps {
   count: number;
 }
 
-export const NotificationIcon: React.FC<NotificationIconProps> = ({ count }) => (
+export const NotificationIcon: React.FC<NotificationIconProps> = ({
+  count,
+}) => (
   <Flex
     borderRadius="50%"
     bg="menuRed"
@@ -27,7 +29,15 @@ export const NotificationIcon: React.FC<NotificationIconProps> = ({ count }) => 
 );
 
 export const PingIcon: React.FC<NotificationIconProps> = ({ count }) => (
-  <Flex borderRadius="50%" bg="menuRed" w="1.2em" h="1.2em" justify="center" align="center" ml={2}>
+  <Flex
+    borderRadius="50%"
+    bg="menuRed"
+    w="1.2em"
+    h="1.2em"
+    justify="center"
+    align="center"
+    ml={2}
+  >
     <Text fontSize="11px" fontWeight="bold" color="white">
       {count}
     </Text>

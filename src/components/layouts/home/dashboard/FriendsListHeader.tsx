@@ -1,5 +1,13 @@
 import React from "react";
-import { Button, Flex, GridItem, Icon, LightMode, Text, useDisclosure } from "@chakra-ui/react";
+import {
+  Button,
+  Flex,
+  GridItem,
+  Icon,
+  LightMode,
+  Text,
+  useDisclosure,
+} from "@chakra-ui/react";
 import { FiUsers } from "react-icons/fi";
 import { AddFriendModal } from "../../../modals/AddFriendModal";
 import { homeStore } from "../../../../lib/stores/homeStore";
@@ -12,7 +20,14 @@ export const FriendsListHeader: React.FC = () => {
   const requests = homeStore((state) => state.requestCount);
 
   return (
-    <GridItem gridColumn={3} gridRow="1" bg="brandGray.light" padding="10px" zIndex="2" boxShadow="md">
+    <GridItem
+      gridColumn={3}
+      gridRow="1"
+      bg="brandGray.light"
+      padding="10px"
+      zIndex="2"
+      boxShadow="md"
+    >
       <Flex align="center" justify="space-between">
         <Flex align="center" ml={2} fontSize="14px">
           <Icon as={FiUsers} fontSize="20px" />

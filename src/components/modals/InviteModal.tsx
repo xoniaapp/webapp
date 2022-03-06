@@ -24,7 +24,10 @@ interface InviteModalProps {
   onClose: () => void;
 }
 
-export const InviteModal: React.FC<InviteModalProps> = ({ isOpen, onClose }) => {
+export const InviteModal: React.FC<InviteModalProps> = ({
+  isOpen,
+  onClose,
+}) => {
   const { guildId } = useParams<RouterProps>();
   const [inviteLink, setInviteLink] = useState("");
   const { hasCopied, onCopy } = useClipboard(inviteLink);
@@ -51,7 +54,9 @@ export const InviteModal: React.FC<InviteModalProps> = ({ isOpen, onClose }) => 
         </ModalHeader>
         <ModalCloseButton _focus={{ outline: "none" }} />
         <ModalBody>
-          <Text mb="4">Share this link with others to grant access to this server</Text>
+          <Text mb="4">
+            Share this link with others to grant access to this server
+          </Text>
 
           <Checkbox onChange={(e) => setPermanent(e.target.checked)} mb={4}>
             Never reset

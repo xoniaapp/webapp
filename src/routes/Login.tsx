@@ -1,4 +1,12 @@
-import { Box, Button, Flex, Heading, Image, Link, Text } from "@chakra-ui/react";
+import {
+  Box,
+  Button,
+  Flex,
+  Heading,
+  Image,
+  Link,
+  Text,
+} from "@chakra-ui/react";
 import { Form, Formik } from "formik";
 import React from "react";
 import { Link as RLink, useHistory } from "react-router-dom";
@@ -16,7 +24,10 @@ export const Login = (): JSX.Element => {
     <Flex minHeight="100vh" width="full" align="center" justifyContent="center">
       <Box px={4} width="full" maxWidth="500px" textAlign="center">
         <Flex mb="4" justify="center">
-          <Image src="https://cdn.services.xoniaapp.com/assets/logo.png" w="80px" />
+          <Image
+            src="https://cdn.services.xoniaapp.com/assets/logo.png"
+            w="80px"
+          />
         </Flex>
         <Box p={4} borderRadius={4} background="brandGray.light">
           <Box textAlign="center">
@@ -49,12 +60,27 @@ export const Login = (): JSX.Element => {
             >
               {({ isSubmitting }) => (
                 <Form>
-                  <InputField label="Email" name="email" autoComplete="email" type="email" />
+                  <InputField
+                    label="Email"
+                    name="email"
+                    autoComplete="email"
+                    type="email"
+                  />
 
-                  <InputField label="password" name="password" autoComplete="password" type="password" />
+                  <InputField
+                    label="password"
+                    name="password"
+                    autoComplete="password"
+                    type="password"
+                  />
 
                   <Box mt={4}>
-                    <Link as={RLink} to="/forgot-password" textColor="highlight.standard" _focus={{ outline: "none" }}>
+                    <Link
+                      as={RLink}
+                      to="/forgot-password"
+                      textColor="highlight.standard"
+                      _focus={{ outline: "none" }}
+                    >
                       Forgot Password?
                     </Link>
                   </Box>
@@ -74,7 +100,12 @@ export const Login = (): JSX.Element => {
                   </Button>
                   <Text mt="4">
                     Don&apos;t have an account yet?{" "}
-                    <Link as={RLink} to="/register" textColor="highlight.standard" _focus={{ outline: "none" }}>
+                    <Link
+                      as={RLink}
+                      to="/register"
+                      textColor="highlight.standard"
+                      _focus={{ outline: "none" }}
+                    >
                       Sign Up
                     </Link>
                   </Text>

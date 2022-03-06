@@ -8,8 +8,15 @@ interface StyledMenuItemProps {
   handleClick: () => void;
 }
 
-export const StyledMenuItem: React.FC<StyledMenuItemProps> = ({ label, icon, handleClick }) => (
-  <MenuItem _hover={{ bg: "highlight.standard", borderRadius: "2px" }} onClick={handleClick}>
+export const StyledMenuItem: React.FC<StyledMenuItemProps> = ({
+  label,
+  icon,
+  handleClick,
+}) => (
+  <MenuItem
+    _hover={{ bg: "highlight.standard", borderRadius: "2px" }}
+    onClick={handleClick}
+  >
     <Flex align="center" justify="space-between" w="full">
       <Text>{label}</Text>
       <Icon as={icon} />
@@ -17,8 +24,15 @@ export const StyledMenuItem: React.FC<StyledMenuItemProps> = ({ label, icon, han
   </MenuItem>
 );
 
-export const StyledRedMenuItem: React.FC<StyledMenuItemProps> = ({ label, icon, handleClick }) => (
-  <MenuItem _hover={{ bg: "menuRed", color: "#fff", borderRadius: "2px" }} onClick={handleClick}>
+export const StyledRedMenuItem: React.FC<StyledMenuItemProps> = ({
+  label,
+  icon,
+  handleClick,
+}) => (
+  <MenuItem
+    _hover={{ bg: "menuRed", color: "#fff", borderRadius: "2px" }}
+    onClick={handleClick}
+  >
     <Flex align="center" justify="space-between" w="full">
       <Text>{label}</Text>
       <Icon as={icon} />

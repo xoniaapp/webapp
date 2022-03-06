@@ -37,7 +37,7 @@ export const MessageInput: React.FC = () => {
         action: "stopTyping",
         room: channelId,
         message: current?.username,
-      })
+      }),
     );
 
     try {
@@ -72,8 +72,19 @@ export const MessageInput: React.FC = () => {
   };
 
   return (
-    <GridItem gridColumn={3} gridRow={3} px="20px" pb={isTyping.length > 0 ? "0" : "26px"} bg="brandGray.light">
-      <InputGroup size="md" bg="messageInput" alignItems="center" borderRadius="8px">
+    <GridItem
+      gridColumn={3}
+      gridRow={3}
+      px="20px"
+      pb={isTyping.length > 0 ? "0" : "26px"}
+      bg="brandGray.light"
+    >
+      <InputGroup
+        size="md"
+        bg="messageInput"
+        alignItems="center"
+        borderRadius="8px"
+      >
         {/* Start */}
         {/* End */}
         <Textarea
@@ -100,7 +111,7 @@ export const MessageInput: React.FC = () => {
                   action: "startTyping",
                   room: channelId,
                   message: current?.username,
-                })
+                }),
               );
               setCurrentlyTyping(true);
             } else if (value.length === 0) {
@@ -109,7 +120,7 @@ export const MessageInput: React.FC = () => {
                   action: "stopTyping",
                   room: channelId,
                   message: current?.username,
-                })
+                }),
               );
               setCurrentlyTyping(false);
             }

@@ -21,7 +21,11 @@ interface IProps {
   onClose: () => void;
 }
 
-export const RemoveFriendModal: React.FC<IProps> = ({ member, isOpen, onClose }) => {
+export const RemoveFriendModal: React.FC<IProps> = ({
+  member,
+  isOpen,
+  onClose,
+}) => {
   const cache = useQueryClient();
 
   return (
@@ -34,12 +38,19 @@ export const RemoveFriendModal: React.FC<IProps> = ({ member, isOpen, onClose })
         </ModalHeader>
         <ModalBody>
           <Text mb="4">
-            Are you sure you want to permanently remove <b>{member?.username}</b> from your friends?
+            Are you sure you want to permanently remove{" "}
+            <b>{member?.username}</b> from your friends?
           </Text>
         </ModalBody>
 
         <ModalFooter bg="brandGray.dark">
-          <Button onClick={onClose} mr={6} variant="link" fontSize="14px" _focus={{ outline: "none" }}>
+          <Button
+            onClick={onClose}
+            mr={6}
+            variant="link"
+            fontSize="14px"
+            _focus={{ outline: "none" }}
+          >
             Cancel
           </Button>
           <LightMode>
@@ -51,7 +62,9 @@ export const RemoveFriendModal: React.FC<IProps> = ({ member, isOpen, onClose })
                 try {
                   const { data } = await removeFriend(member.id);
                   if (data) {
-                    cache.setQueryData<Friend[]>(fKey, (d) => d!.filter((f) => f.id !== member.id));
+                    cache.setQueryData<Friend[]>(fKey, (d) =>
+                      d!.filter((f) => f.id !== member.id),
+                    );
                   }
                 } catch (err) {}
               }}

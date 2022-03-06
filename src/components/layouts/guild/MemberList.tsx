@@ -15,7 +15,9 @@ export const MemberList: React.FC = () => {
   const { guildId } = useParams<RouterProps>();
   const key = mKey(guildId);
 
-  const { data } = useQuery(key, () => getGuildMembers(guildId).then((response) => response.data));
+  const { data } = useQuery(key, () =>
+    getGuildMembers(guildId).then((response) => response.data),
+  );
 
   const online: Member[] = [];
   const offline: Member[] = [];

@@ -6,7 +6,10 @@ import { useParams } from "react-router-dom";
 import { Message } from "../../../items/message/Message";
 import { StartMessages } from "../../../sections/StartMessages";
 import { getMessages } from "../../../../lib/api/handler/messages";
-import { checkNewDay, getTimeDifference } from "../../../../lib/utils/dateUtils";
+import {
+  checkNewDay,
+  getTimeDifference,
+} from "../../../../lib/utils/dateUtils";
 import { guildScrollbarCss } from "../css/GuildScrollerCSS";
 import { useMessageSocket } from "../../../../lib/api/ws/useMessageSocket";
 import { DateDivider } from "../../../sections/DateDivider";
@@ -19,7 +22,9 @@ export const ChatScreen: React.FC = () => {
   const [hasMore, setHasMore] = useState(true);
   const qKey = `messages-${channelId}`;
 
-  const { data, isLoading, fetchNextPage } = useInfiniteQuery<MessageResponse[]>(
+  const { data, isLoading, fetchNextPage } = useInfiniteQuery<
+    MessageResponse[]
+  >(
     qKey,
     async ({ pageParam = null }) => {
       const { data: messageData } = await getMessages(channelId, pageParam);
@@ -29,8 +34,11 @@ export const ChatScreen: React.FC = () => {
     {
       staleTime: 0,
       cacheTime: 0,
-      getNextPageParam: (lastPage) => (hasMore && lastPage.length ? lastPage[lastPage.length - 1].createdAt : ""),
-    }
+      getNextPageParam: (lastPage) =>
+        hasMore && lastPage.length
+          ? lastPage[lastPage.length - 1].createdAt
+          : "",
+    },
   );
 
   useMessageSocket(channelId, qKey);
@@ -45,7 +53,10 @@ export const ChatScreen: React.FC = () => {
     );
   }
 
-  const checkIfWithinTime = (message1: MessageResponse, message2: MessageResponse): boolean => {
+  const checkIfWithinTime = (
+    message1: MessageResponse,
+    message2: MessageResponse,
+  ): boolean => {
     if (message1.user.id !== message2.user.id) return false;
     if (message1.createdAt === message2.createdAt) return false;
     return getTimeDifference(message1.createdAt, message2.createdAt) <= 5;
@@ -78,10 +89,17 @@ export const ChatScreen: React.FC = () => {
       >
         {messages.map((m, i) => (
           <React.Fragment key={m.id}>
-            <Message message={m} isCompact={checkIfWithinTime(m, messages[Math.min(i + 1, messages.length - 1)])} />
-            {checkNewDay(m.createdAt, messages[Math.min(i + 1, messages.length - 1)].createdAt) && (
-              <DateDivider date={m.createdAt} />
-            )}
+            <Message
+              message={m}
+              isCompact={checkIfWithinTime(
+                m,
+                messages[Math.min(i + 1, messages.length - 1)],
+              )}
+            />
+            {checkNewDay(
+              m.createdAt,
+              messages[Math.min(i + 1, messages.length - 1)].createdAt,
+            ) && <DateDivider date={m.createdAt} />}
           </React.Fragment>
         ))}
       </Box>

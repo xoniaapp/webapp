@@ -74,9 +74,19 @@ export const ChangePasswordModal: React.FC<IProps> = ({ isOpen, onClose }) => {
               <ModalCloseButton _focus={{ outline: "none" }} />
               <ModalBody pb={6}>
                 <Text>Enter your current password and a new password</Text>
-                <InputField label="current password" name="currentPassword" autoComplete="password" type="password" />
+                <InputField
+                  label="current password"
+                  name="currentPassword"
+                  autoComplete="password"
+                  type="password"
+                />
 
-                <InputField label="new password" name="newPassword" autoComplete="password" type="password" />
+                <InputField
+                  label="new password"
+                  name="newPassword"
+                  autoComplete="password"
+                  type="password"
+                />
 
                 <InputField
                   label="confirm new password"
@@ -87,7 +97,13 @@ export const ChangePasswordModal: React.FC<IProps> = ({ isOpen, onClose }) => {
               </ModalBody>
 
               <ModalFooter bg="brandGray.dark">
-                <Button onClick={onClose} fontSize="14px" mr={6} variant="link" _focus={{ outline: "none" }}>
+                <Button
+                  onClick={onClose}
+                  fontSize="14px"
+                  mr={6}
+                  variant="link"
+                  _focus={{ outline: "none" }}
+                >
                   Cancel
                 </Button>
                 <Button

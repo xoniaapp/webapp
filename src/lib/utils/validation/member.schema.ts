@@ -5,5 +5,8 @@ export const MemberSchema = yup.object().shape({
   color: yup
     .string()
     .nullable()
-    .matches(/^#[0-9a-f]{3}(?:[0-9a-f]{3})?$/i, "The color must be a valid hex color"),
+    .matches(
+      /^#[0-9a-f]{3}(?:[0-9a-f]{3})?$/i,
+      "The color must be a valid hex color",
+    ),
 });

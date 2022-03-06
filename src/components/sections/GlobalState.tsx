@@ -6,7 +6,9 @@ import { homeStore } from "../../lib/stores/homeStore";
 import { nKey } from "../../lib/utils/querykeys";
 import { DMChannel, DMNotification } from "../../lib/models/dm";
 
-type WSMessage = { action: "new_dm_notification"; data: DMChannel } | { action: "send_request" };
+type WSMessage =
+  | { action: "new_dm_notification"; data: DMChannel }
+  | { action: "send_request" };
 
 export const GlobalState: React.FC = ({ children }) => {
   const current = userStore((state) => state.current);
@@ -27,7 +29,7 @@ export const GlobalState: React.FC = ({ children }) => {
         JSON.stringify({
           action: "joinUser",
           room: current?.id,
-        })
+        }),
       );
 
       socket.addEventListener("message", (event) => {

@@ -24,7 +24,12 @@ interface IProps {
   onClose: () => void;
 }
 
-export const ModActionModal: React.FC<IProps> = ({ member, isOpen, onClose, isBan }) => {
+export const ModActionModal: React.FC<IProps> = ({
+  member,
+  isOpen,
+  onClose,
+  isBan,
+}) => {
   const cache = useQueryClient();
   const action = isBan ? "Ban " : "Kick ";
   const { guildId } = useParams<RouterProps>();
@@ -34,18 +39,31 @@ export const ModActionModal: React.FC<IProps> = ({ member, isOpen, onClose, isBa
       <ModalOverlay />
 
       <ModalContent bg="brandGray.light">
-        <ModalHeader textTransform="uppercase" fontWeight="bold" fontSize="14px" mb={0} pb={0}>
+        <ModalHeader
+          textTransform="uppercase"
+          fontWeight="bold"
+          fontSize="14px"
+          mb={0}
+          pb={0}
+        >
           {action}&apos;{member.username}&apos;
         </ModalHeader>
         <ModalBody>
           <Text mb="4">
-            Are you sure you want to {action.toLocaleLowerCase()} @{member.username}?
+            Are you sure you want to {action.toLocaleLowerCase()} @
+            {member.username}?
             {!isBan && " They will be able to rejoin again with a new invite."}
           </Text>
         </ModalBody>
 
         <ModalFooter bg="brandGray.dark">
-          <Button onClick={onClose} mr={6} variant="link" fontSize="14px" _focus={{ outline: "none" }}>
+          <Button
+            onClick={onClose}
+            mr={6}
+            variant="link"
+            fontSize="14px"
+            _focus={{ outline: "none" }}
+          >
             Cancel
           </Button>
           <LightMode>
@@ -55,10 +73,13 @@ export const ModActionModal: React.FC<IProps> = ({ member, isOpen, onClose, isBa
               onClick={async () => {
                 onClose();
                 try {
-                  const { data } = isBan ? await banMember(guildId, member.id) : await kickMember(guildId, member.id);
+                  const { data } = isBan
+                    ? await banMember(guildId, member.id)
+                    : await kickMember(guildId, member.id);
                   if (data) {
                     cache.setQueryData<Member[]>(mKey(guildId), (d) => {
-                      if (d !== undefined) return d!.filter((f) => f.id !== member.id);
+                      if (d !== undefined)
+                        return d!.filter((f) => f.id !== member.id);
                       return d!;
                     });
                   }

@@ -20,7 +20,7 @@ export function useRequestSocket(): void {
       JSON.stringify({
         action: "joinUser",
         room: current?.id,
-      })
+      }),
     );
 
     socket.addEventListener("message", (event) => {
@@ -28,7 +28,9 @@ export function useRequestSocket(): void {
       switch (response.action) {
         case "add_request": {
           cache.setQueryData<FriendRequest[]>(rKey, (data) =>
-            [...data!, response.data].sort((a, b) => a.username.localeCompare(b.username))
+            [...data!, response.data].sort((a, b) =>
+              a.username.localeCompare(b.username),
+            ),
           );
           break;
         }
@@ -43,7 +45,7 @@ export function useRequestSocket(): void {
         JSON.stringify({
           action: "leaveRoom",
           room: current?.id,
-        })
+        }),
       );
       socket.close();
     };

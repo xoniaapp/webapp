@@ -1,4 +1,12 @@
-import { Avatar, AvatarBadge, Flex, IconButton, ListItem, Text, useDisclosure } from "@chakra-ui/react";
+import {
+  Avatar,
+  AvatarBadge,
+  Flex,
+  IconButton,
+  ListItem,
+  Text,
+  useDisclosure,
+} from "@chakra-ui/react";
 import React from "react";
 import { FaEllipsisV } from "react-icons/fa";
 import { useHistory } from "react-router-dom";
@@ -43,9 +51,17 @@ export const FriendsListItem: React.FC<FriendsListItemProp> = ({ friend }) => {
       }}
     >
       <Flex align="center" justify="space-between">
-        <Flex align="center" w="full" onClick={getDMChannel} _hover={{ cursor: "pointer" }}>
+        <Flex
+          align="center"
+          w="full"
+          onClick={getDMChannel}
+          _hover={{ cursor: "pointer" }}
+        >
           <Avatar size="sm" src={friend.image}>
-            <AvatarBadge boxSize="1.25em" bg={friend.isOnline ? "green.500" : "gray.500"} />
+            <AvatarBadge
+              boxSize="1.25em"
+              bg={friend.isOnline ? "green.500" : "gray.500"}
+            />
           </Avatar>
           <Text ml="2">{friend.username}</Text>
         </Flex>

@@ -3,7 +3,11 @@ import { Avatar, Flex } from "@chakra-ui/react";
 import { Link, useLocation } from "react-router-dom";
 import { useQueryClient } from "react-query";
 import { StyledTooltip } from "../sections/StyledTooltip";
-import { ActiveGuildPill, HoverGuildPill, NotificationIndicator } from "../common/GuildPills";
+import {
+  ActiveGuildPill,
+  HoverGuildPill,
+  NotificationIndicator,
+} from "../common/GuildPills";
 import { gKey } from "../../lib/utils/querykeys";
 import { Guild } from "../../lib/models/guild";
 

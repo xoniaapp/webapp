@@ -41,10 +41,16 @@ interface Item {
   image: string;
 }
 
-export const CreateChannelModal: React.FC<IProps> = ({ guildId, isOpen, onClose }) => {
+export const CreateChannelModal: React.FC<IProps> = ({
+  guildId,
+  isOpen,
+  onClose,
+}) => {
   const key = mKey(guildId);
   const history = useHistory();
-  const { data } = useQuery(key, () => getGuildMembers(guildId).then((response) => response.data));
+  const { data } = useQuery(key, () =>
+    getGuildMembers(guildId).then((response) => response.data),
+  );
   const [showError, toggleError] = useState(false);
 
   const members: Item[] = [];
@@ -55,7 +61,7 @@ export const CreateChannelModal: React.FC<IProps> = ({ guildId, isOpen, onClose 
       label: m.username,
       value: m.id,
       image: m.image,
-    })
+    }),
   );
 
   const handleCreateItem = (item: Item): void => {
@@ -118,7 +124,12 @@ export const CreateChannelModal: React.FC<IProps> = ({ guildId, isOpen, onClose 
               <ModalBody>
                 <InputField label="channel name" name="name" />
 
-                <FormControl display="flex" alignItems="center" justifyContent="space-between" mt="4">
+                <FormControl
+                  display="flex"
+                  alignItems="center"
+                  justifyContent="space-between"
+                  mt="4"
+                >
                   <FormLabel htmlFor="email-alerts" mb="0">
                     <Flex align="center">
                       <AiOutlineLock />
@@ -132,7 +143,8 @@ export const CreateChannelModal: React.FC<IProps> = ({ guildId, isOpen, onClose 
                   />
                 </FormControl>
                 <Text mt="4" fontSize="14px" textColor="brandGray.accent">
-                  By making a channel private, only selected members will be able to view this channel
+                  By making a channel private, only selected members will be
+                  able to view this channel
                 </Text>
                 {!values.isPublic && (
                   <Box mt="2" pb={0}>
@@ -143,7 +155,9 @@ export const CreateChannelModal: React.FC<IProps> = ({ guildId, isOpen, onClose 
                       items={members}
                       selectedItems={selectedItems}
                       itemRenderer={ListItem}
-                      onSelectedItemsChange={(changes) => handleSelectedItemsChange(changes.selectedItems)}
+                      onSelectedItemsChange={(changes) =>
+                        handleSelectedItemsChange(changes.selectedItems)
+                      }
                     />
                   </Box>
                 )}
@@ -156,7 +170,13 @@ export const CreateChannelModal: React.FC<IProps> = ({ guildId, isOpen, onClose 
               </ModalBody>
 
               <ModalFooter bg="brandGray.dark">
-                <Button onClick={onClose} fontSize="14px" mr={6} variant="link" _focus={{ outline: "none" }}>
+                <Button
+                  onClick={onClose}
+                  fontSize="14px"
+                  mr={6}
+                  variant="link"
+                  _focus={{ outline: "none" }}
+                >
                   Cancel
                 </Button>
                 <Button

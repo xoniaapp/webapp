@@ -9,7 +9,12 @@ interface StyledTooltipProps {
   disabled?: boolean;
 }
 
-export const StyledTooltip: React.FC<StyledTooltipProps> = ({ label, position, disabled = false, children }) => (
+export const StyledTooltip: React.FC<StyledTooltipProps> = ({
+  label,
+  position,
+  disabled = false,
+  children,
+}) => (
   <Tooltip
     hasArrow
     label={label}

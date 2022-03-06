@@ -14,13 +14,23 @@ import { getChannels } from "../../../lib/api/handler/channel";
 import { RouterProps } from "../../../lib/models/routerProps";
 
 export const Channels: React.FC = () => {
-  const { isOpen: inviteIsOpen, onOpen: inviteOpen, onClose: inviteClose } = useDisclosure();
-  const { isOpen: channelIsOpen, onOpen: channelOpen, onClose: channelClose } = useDisclosure();
+  const {
+    isOpen: inviteIsOpen,
+    onOpen: inviteOpen,
+    onClose: inviteClose,
+  } = useDisclosure();
+  const {
+    isOpen: channelIsOpen,
+    onOpen: channelOpen,
+    onClose: channelClose,
+  } = useDisclosure();
 
   const { guildId } = useParams<RouterProps>();
   const key = cKey(guildId);
 
-  const { data } = useQuery(key, () => getChannels(guildId).then((response) => response.data));
+  const { data } = useQuery(key, () =>
+    getChannels(guildId).then((response) => response.data),
+  );
 
   useChannelSocket(guildId, key);
 
@@ -35,8 +45,16 @@ export const Channels: React.FC = () => {
         _hover={{ overflowY: "auto" }}
         css={channelScrollbarCss}
       >
-        {inviteIsOpen && <InviteModal isOpen={inviteIsOpen} onClose={inviteClose} />}
-        {channelIsOpen && <CreateChannelModal guildId={guildId} onClose={channelClose} isOpen={channelIsOpen} />}
+        {inviteIsOpen && (
+          <InviteModal isOpen={inviteIsOpen} onClose={inviteClose} />
+        )}
+        {channelIsOpen && (
+          <CreateChannelModal
+            guildId={guildId}
+            onClose={channelClose}
+            isOpen={channelIsOpen}
+          />
+        )}
         <UnorderedList listStyleType="none" ml="0" mt="4">
           {data?.map((c) => (
             <ChannelListItem channel={c} guildId={guildId} key={`${c.id}`} />

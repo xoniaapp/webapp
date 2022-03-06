@@ -28,7 +28,11 @@ import { InputField } from "../common/InputField";
 import { toErrorMap } from "../../lib/utils/toErrorMap";
 import { useGetCurrentGuild } from "../../lib/utils/hooks/useGetCurrentGuild";
 import { GuildSchema } from "../../lib/utils/validation/guild.schema";
-import { deleteGuild, editGuild, invalidateInviteLinks } from "../../lib/api/handler/guilds";
+import {
+  deleteGuild,
+  editGuild,
+  invalidateInviteLinks,
+} from "../../lib/api/handler/guilds";
 import { CropImageModal } from "./CropImageModal";
 import { channelScrollbarCss } from "../layouts/guild/css/ChannelScrollerCSS";
 import { getBanList, unbanMember } from "../../lib/api/handler/members";
@@ -46,7 +50,11 @@ enum SettingsScreen {
   BANLIST,
 }
 
-export const GuildSettingsModal: React.FC<IProps> = ({ guildId, isOpen, onClose }) => {
+export const GuildSettingsModal: React.FC<IProps> = ({
+  guildId,
+  isOpen,
+  onClose,
+}) => {
   const guild = useGetCurrentGuild(guildId);
 
   const [screen, setScreen] = useState(SettingsScreen.START);
@@ -59,7 +67,11 @@ export const GuildSettingsModal: React.FC<IProps> = ({ guildId, isOpen, onClose 
     onClose();
   };
 
-  const { isOpen: cropperIsOpen, onOpen: cropperOnOpen, onClose: cropperOnClose } = useDisclosure();
+  const {
+    isOpen: cropperIsOpen,
+    onOpen: cropperOnOpen,
+    onClose: cropperOnClose,
+  } = useDisclosure();
 
   const inputFile: any = useRef(null);
   const [imageUrl, setImageUrl] = useState<string | null>(guild?.icon || "");
@@ -164,7 +176,9 @@ export const GuildSettingsModal: React.FC<IProps> = ({ guildId, isOpen, onClose 
                       hidden
                       onChange={async (e) => {
                         if (!e.currentTarget.files) return;
-                        setCropImage(URL.createObjectURL(e.currentTarget.files[0]));
+                        setCropImage(
+                          URL.createObjectURL(e.currentTarget.files[0]),
+                        );
                         cropperOnOpen();
                       }}
                     />
@@ -187,7 +201,11 @@ export const GuildSettingsModal: React.FC<IProps> = ({ guildId, isOpen, onClose 
                     >
                       Invalidate Links
                     </Button>
-                    <Button onClick={() => setScreen(SettingsScreen.BANLIST)} fontSize="14px" rightIcon={<ImHammer2 />}>
+                    <Button
+                      onClick={() => setScreen(SettingsScreen.BANLIST)}
+                      fontSize="14px"
+                      rightIcon={<ImHammer2 />}
+                    >
                       Bans
                     </Button>
                   </Flex>
@@ -213,7 +231,12 @@ export const GuildSettingsModal: React.FC<IProps> = ({ guildId, isOpen, onClose 
                 </ModalBody>
 
                 <ModalFooter bg="brandGray.dark">
-                  <Button onClick={onClose} mr={6} variant="link" fontSize="14px">
+                  <Button
+                    onClick={onClose}
+                    mr={6}
+                    variant="link"
+                    fontSize="14px"
+                  >
                     Cancel
                   </Button>
                   <Button
@@ -243,9 +266,16 @@ export const GuildSettingsModal: React.FC<IProps> = ({ guildId, isOpen, onClose 
         </ModalContent>
       )}
       {screen === SettingsScreen.CONFIRM && (
-        <DeleteGuildModal goBack={goBack} submitClose={submitClose} name={guild.name} guildId={guildId} />
+        <DeleteGuildModal
+          goBack={goBack}
+          submitClose={submitClose}
+          name={guild.name}
+          guildId={guildId}
+        />
       )}
-      {screen === SettingsScreen.BANLIST && <BanListModal goBack={goBack} guildId={guildId} />}
+      {screen === SettingsScreen.BANLIST && (
+        <BanListModal goBack={goBack} guildId={guildId} />
+      )}
     </Modal>
   );
 };
@@ -257,7 +287,12 @@ interface IScreenProps {
   guildId: string;
 }
 
-const DeleteGuildModal: React.FC<IScreenProps> = ({ goBack, submitClose, name, guildId }) => {
+const DeleteGuildModal: React.FC<IScreenProps> = ({
+  goBack,
+  submitClose,
+  name,
+  guildId,
+}) => {
   const [showError, toggleShow] = useState(false);
 
   const handleDelete = async (): Promise<void> => {
@@ -291,11 +326,21 @@ const DeleteGuildModal: React.FC<IScreenProps> = ({ goBack, submitClose, name, g
       </ModalBody>
 
       <ModalFooter bg="brandGray.dark">
-        <Button mr={6} variant="link" onClick={goBack} fontSize="14px" _focus={{ outline: "none" }}>
+        <Button
+          mr={6}
+          variant="link"
+          onClick={goBack}
+          fontSize="14px"
+          _focus={{ outline: "none" }}
+        >
           Cancel
         </Button>
         <LightMode>
-          <Button colorScheme="red" fontSize="14px" onClick={() => handleDelete()}>
+          <Button
+            colorScheme="red"
+            fontSize="14px"
+            onClick={() => handleDelete()}
+          >
             Delete Server
           </Button>
         </LightMode>
@@ -311,7 +356,9 @@ interface IBanScreenProps {
 
 const BanListModal: React.FC<IBanScreenProps> = ({ goBack, guildId }) => {
   const key = `bans-${guildId}`;
-  const { data } = useQuery(key, () => getBanList(guildId).then((response) => response.data));
+  const { data } = useQuery(key, () =>
+    getBanList(guildId).then((response) => response.data),
+  );
   const cache = useQueryClient();
 
   const unbanUser = async (id: string): Promise<void> => {
@@ -360,7 +407,13 @@ const BanListModal: React.FC<IBanScreenProps> = ({ goBack, guildId }) => {
       </ModalBody>
 
       <ModalFooter bg="brandGray.dark">
-        <Button mr={6} variant="link" onClick={goBack} fontSize="14px" _focus={{ outline: "none" }}>
+        <Button
+          mr={6}
+          variant="link"
+          onClick={goBack}
+          fontSize="14px"
+          _focus={{ outline: "none" }}
+        >
           Back
         </Button>
       </ModalFooter>

@@ -3,7 +3,11 @@ import { Avatar, Flex } from "@chakra-ui/react";
 import { Link, useLocation } from "react-router-dom";
 import { useQueryClient } from "react-query";
 import { StyledTooltip } from "../sections/StyledTooltip";
-import { ActiveGuildPill, HoverGuildPill, NotificationIndicator } from "../common/GuildPills";
+import {
+  ActiveGuildPill,
+  HoverGuildPill,
+  NotificationIndicator,
+} from "../common/GuildPills";
 import { NotificationIcon } from "../common/NotificationIcon";
 import { dmKey, nKey } from "../../lib/utils/querykeys";
 import { DMChannel, DMNotification } from "../../lib/models/dm";
@@ -12,7 +16,9 @@ interface NotificationListItemProps {
   notification: DMNotification;
 }
 
-export const NotificationListItem: React.FC<NotificationListItemProps> = ({ notification }) => {
+export const NotificationListItem: React.FC<NotificationListItemProps> = ({
+  notification,
+}) => {
   const location = useLocation();
   const isActive = location.pathname.includes(notification.id);
   const [isHover, setHover] = useState(false);
@@ -20,7 +26,9 @@ export const NotificationListItem: React.FC<NotificationListItemProps> = ({ noti
 
   useEffect(() => {
     if (isActive) {
-      cache.setQueryData<DMNotification[]>(nKey, (d) => d!.filter((c) => c.id !== notification.id));
+      cache.setQueryData<DMNotification[]>(nKey, (d) =>
+        d!.filter((c) => c.id !== notification.id),
+      );
     }
   });
 

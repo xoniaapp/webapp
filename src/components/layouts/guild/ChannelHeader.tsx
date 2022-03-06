@@ -14,7 +14,14 @@ export const ChannelHeader: React.FC = () => {
   const channel = useGetCurrentChannel(channelId, cKey(guildId));
 
   return (
-    <GridItem gridColumn={3} gridRow="1" bg="brandGray.light" padding="10px" zIndex="2" boxShadow="md">
+    <GridItem
+      gridColumn={3}
+      gridRow="1"
+      bg="brandGray.light"
+      padding="10px"
+      zIndex="2"
+      boxShadow="md"
+    >
       <Flex align="center" justify="space-between">
         <Flex align="center">
           <FaHashtag />

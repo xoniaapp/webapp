@@ -24,7 +24,12 @@ interface IProps {
   onClose: () => void;
 }
 
-export const CropImageModal: React.FC<IProps> = ({ isOpen, onClose, applyCrop, initialImage }) => {
+export const CropImageModal: React.FC<IProps> = ({
+  isOpen,
+  onClose,
+  applyCrop,
+  initialImage,
+}) => {
   const [crop, setCrop] = useState({
     x: 0,
     y: 0,
@@ -44,7 +49,12 @@ export const CropImageModal: React.FC<IProps> = ({ isOpen, onClose, applyCrop, i
   }, [croppedAreaPixels, initialImage, applyCrop]);
 
   return (
-    <Modal isOpen={isOpen} onClose={onClose} isCentered closeOnOverlayClick={false}>
+    <Modal
+      isOpen={isOpen}
+      onClose={onClose}
+      isCentered
+      closeOnOverlayClick={false}
+    >
       <ModalOverlay />
 
       <ModalContent bg="brandGray.light">

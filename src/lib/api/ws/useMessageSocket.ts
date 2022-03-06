@@ -7,7 +7,10 @@ import { Message } from "../../models/message";
 
 type WSMessage =
   | { action: "new_message" | "edit_message"; data: Message }
-  | { action: "addToTyping" | "removeFromTyping" | "delete_message"; data: string };
+  | {
+      action: "addToTyping" | "removeFromTyping" | "delete_message";
+      data: string;
+    };
 
 export function useMessageSocket(channelId: string, key: string): void {
   const current = userStore((state) => state.current);
@@ -22,7 +25,7 @@ export function useMessageSocket(channelId: string, key: string): void {
       JSON.stringify({
         action: "joinChannel",
         room: channelId,
-      })
+      }),
     );
 
     socket.addEventListener("message", (event) => {
@@ -63,7 +66,10 @@ export function useMessageSocket(channelId: string, key: string): void {
             data.pages.forEach((p, i) => {
               if (p.findIndex((m) => m.id === messageId) !== -1) index = i;
             });
-            if (index !== -1) data.pages[index] = data.pages[index].filter((m) => m.id !== messageId);
+            if (index !== -1)
+              data.pages[index] = data.pages[index].filter(
+                (m) => m.id !== messageId,
+              );
             return data;
           });
           break;
@@ -91,7 +97,7 @@ export function useMessageSocket(channelId: string, key: string): void {
         JSON.stringify({
           action: "leaveRoom",
           room: channelId,
-        })
+        }),
       );
 
       socket.close();

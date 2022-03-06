@@ -16,7 +16,10 @@ interface ChannelListItemProps {
   guildId: string;
 }
 
-export const ChannelListItem: React.FC<ChannelListItemProps> = ({ channel, guildId }) => {
+export const ChannelListItem: React.FC<ChannelListItemProps> = ({
+  channel,
+  guildId,
+}) => {
   const currentPath = `/channels/${guildId}/${channel.id}`;
   const location = useLocation();
   const isActive = location.pathname === currentPath;
@@ -47,7 +50,9 @@ export const ChannelListItem: React.FC<ChannelListItemProps> = ({ channel, guild
       <ListItem
         p="5px"
         m="0 10px"
-        color={isActive || channel.hasNotification ? "#fff" : "brandGray.accent"}
+        color={
+          isActive || channel.hasNotification ? "#fff" : "brandGray.accent"
+        }
         _hover={{
           bg: "brandGray.light",
           borderRadius: "5px",
@@ -63,7 +68,10 @@ export const ChannelListItem: React.FC<ChannelListItemProps> = ({ channel, guild
         {channel.hasNotification && <ChannelNotificationIndicator />}
         <Flex align="center" justify="space-between">
           <Flex align="center">
-            <Icon as={channel.isPublic ? FaHashtag : FaUserLock} color="brandGray.accent" />
+            <Icon
+              as={channel.isPublic ? FaHashtag : FaUserLock}
+              color="brandGray.accent"
+            />
             <Text ml="2">{channel.name}</Text>
           </Flex>
           {current?.id === guild?.ownerId && (showSettings || isOpen) && (
@@ -80,7 +88,12 @@ export const ChannelListItem: React.FC<ChannelListItemProps> = ({ channel, guild
                 }}
               />
               {isOpen && (
-                <ChannelSettingsModal guildId={guildId} channelId={channel.id} isOpen={isOpen} onClose={onClose} />
+                <ChannelSettingsModal
+                  guildId={guildId}
+                  channelId={channel.id}
+                  isOpen={isOpen}
+                  onClose={onClose}
+                />
               )}
             </>
           )}

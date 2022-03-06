@@ -47,8 +47,12 @@ export const AddGuildModal: React.FC<IProps> = ({ isOpen, onClose }) => {
     <Modal isOpen={isOpen} onClose={submitClose} isCentered size="sm">
       <ModalOverlay />
 
-      {screen === AddGuildScreen.INVITE && <JoinServerModal goBack={goBack} submitClose={submitClose} />}
-      {screen === AddGuildScreen.CREATE && <CreateServerModal goBack={goBack} submitClose={submitClose} />}
+      {screen === AddGuildScreen.INVITE && (
+        <JoinServerModal goBack={goBack} submitClose={submitClose} />
+      )}
+      {screen === AddGuildScreen.CREATE && (
+        <CreateServerModal goBack={goBack} submitClose={submitClose} />
+      )}
       {screen === AddGuildScreen.START && (
         <ModalContent bg="brandGray.light">
           <ModalHeader textAlign="center" fontWeight="bold">
@@ -57,7 +61,9 @@ export const AddGuildModal: React.FC<IProps> = ({ isOpen, onClose }) => {
           <ModalCloseButton _focus={{ outline: "none" }} />
           <ModalBody pb={6}>
             <VStack spacing="5">
-              <Text textAlign="center">Create a Server to Hangout & Chill!</Text>
+              <Text textAlign="center">
+                Create a Server to Hangout & Chill!
+              </Text>
 
               <Button
                 background="highlight.standard"
@@ -144,7 +150,13 @@ const JoinServerModal: React.FC<IScreenProps> = ({ goBack, submitClose }) => {
               </Text>
               <InputField label="invite link" name="link" />
 
-              <Text mt="4" fontSize="12px" fontWeight="semibold" textColor="brandGray.accent" textTransform="uppercase">
+              <Text
+                mt="4"
+                fontSize="12px"
+                fontWeight="semibold"
+                textColor="brandGray.accent"
+                textTransform="uppercase"
+              >
                 invite links should look like
               </Text>
 
@@ -157,7 +169,13 @@ const JoinServerModal: React.FC<IScreenProps> = ({ goBack, submitClose }) => {
             </ModalBody>
 
             <ModalFooter bg="brandGray.dark">
-              <Button mr={6} variant="link" onClick={goBack} fontSize="14px" _focus={{ outline: "none" }}>
+              <Button
+                mr={6}
+                variant="link"
+                onClick={goBack}
+                fontSize="14px"
+                _focus={{ outline: "none" }}
+              >
                 Back
               </Button>
               <Button
@@ -222,7 +240,13 @@ const CreateServerModal: React.FC<IScreenProps> = ({ goBack, submitClose }) => {
             </ModalBody>
 
             <ModalFooter bg="brandGray.dark">
-              <Button mr={6} fontSize="14px" variant="link" onClick={goBack} _focus={{ outline: "none" }}>
+              <Button
+                mr={6}
+                fontSize="14px"
+                variant="link"
+                onClick={goBack}
+                _focus={{ outline: "none" }}
+              >
                 Back
               </Button>
               <Button

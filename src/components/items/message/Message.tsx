@@ -22,7 +22,10 @@ interface MessageProps {
   isCompact?: boolean;
 }
 
-export const Message: React.FC<MessageProps> = ({ message, isCompact = false }) => {
+export const Message: React.FC<MessageProps> = ({
+  message,
+  isCompact = false,
+}) => {
   const [showSettings, setShowSettings] = useState(false);
   const current = userStore((state) => state.current);
   const isAuthor = current?.id === message.user.id;
@@ -31,8 +34,16 @@ export const Message: React.FC<MessageProps> = ({ message, isCompact = false }) 
   const isOwner = guild !== undefined && guild.ownerId === current?.id;
   const showMenu = isAuthor || isOwner || message.attachment?.url;
 
-  const { isOpen: isDeleteOpen, onOpen: onDeleteOpen, onClose: onDeleteClose } = useDisclosure();
-  const { isOpen: isEditOpen, onOpen: onEditOpen, onClose: onEditClose } = useDisclosure();
+  const {
+    isOpen: isDeleteOpen,
+    onOpen: onDeleteOpen,
+    onClose: onDeleteClose,
+  } = useDisclosure();
+  const {
+    isOpen: isEditOpen,
+    onOpen: onEditOpen,
+    onClose: onEditClose,
+  } = useDisclosure();
   const id = `${message.user.id}-${Math.random().toString(36).substr(2, 5)}`;
 
   const { show } = useContextMenu({
@@ -61,7 +72,12 @@ export const Message: React.FC<MessageProps> = ({ message, isCompact = false }) 
           {isCompact ? (
             <>
               <Box ml="3" minW="44px" textAlign="center">
-                <Text fontSize="10px" color="brandGray.accent" mt="1" hidden={!showSettings}>
+                <Text
+                  fontSize="10px"
+                  color="brandGray.accent"
+                  mt="1"
+                  hidden={!showSettings}
+                >
                   {getShortenedTime(message.createdAt)}
                 </Text>
               </Box>
@@ -70,7 +86,12 @@ export const Message: React.FC<MessageProps> = ({ message, isCompact = false }) 
                 <MessageContent message={message} />
               </Box>
               {showSettings && showMenu ? (
-                <Box onClick={show} mr="2" _hover={{ cursor: "pointer" }} h="5px">
+                <Box
+                  onClick={show}
+                  mr="2"
+                  _hover={{ cursor: "pointer" }}
+                  h="5px"
+                >
                   <FaEllipsisH />
                 </Box>
               ) : (
@@ -123,7 +144,8 @@ export const Message: React.FC<MessageProps> = ({ message, isCompact = false }) 
               <Item
                 className="menu-item"
                 onClick={() => {
-                  if (message.attachment?.url) openInNewTab(message.attachment.url);
+                  if (message.attachment?.url)
+                    openInNewTab(message.attachment.url);
                 }}
               >
                 <Flex align="center" justify="space-between" w="full">
@@ -150,11 +172,25 @@ export const Message: React.FC<MessageProps> = ({ message, isCompact = false }) 
               </Item>
             )}
           </Menu>
-          {isDeleteOpen && <DeleteMessageModal message={message} isOpen={isDeleteOpen} onClose={onDeleteClose} />}
-          {isEditOpen && <EditMessageModal message={message} isOpen={isEditOpen} onClose={onEditClose} />}
+          {isDeleteOpen && (
+            <DeleteMessageModal
+              message={message}
+              isOpen={isDeleteOpen}
+              onClose={onDeleteClose}
+            />
+          )}
+          {isEditOpen && (
+            <EditMessageModal
+              message={message}
+              isOpen={isEditOpen}
+              onClose={onEditClose}
+            />
+          )}
         </>
       )}
-      {!isAuthor && <MemberContextMenu member={message.user} isOwner={isOwner} id={id} />}
+      {!isAuthor && (
+        <MemberContextMenu member={message.user} isOwner={isOwner} id={id} />
+      )}
     </>
   );
 };

@@ -27,7 +27,10 @@ interface AddFriendModalProps {
   onClose: () => void;
 }
 
-export const AddFriendModal: React.FC<AddFriendModalProps> = ({ isOpen, onClose }) => {
+export const AddFriendModal: React.FC<AddFriendModalProps> = ({
+  isOpen,
+  onClose,
+}) => {
   const current = userStore((state) => state.current);
   const cache = useQueryClient();
   const { hasCopied, onCopy } = useClipboard(current?.id || "");
@@ -98,7 +101,13 @@ export const AddFriendModal: React.FC<AddFriendModalProps> = ({ isOpen, onClose 
                 <InputField label="Enter a user ID" name="id" />
               </ModalBody>
               <ModalFooter bg="brandGray.dark" mt="2">
-                <Button mr={6} variant="link" onClick={onClose} fontSize="14px" _focus={{ outline: "none" }}>
+                <Button
+                  mr={6}
+                  variant="link"
+                  onClick={onClose}
+                  fontSize="14px"
+                  _focus={{ outline: "none" }}
+                >
                   Cancel
                 </Button>
                 <Button

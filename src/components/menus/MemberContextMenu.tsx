@@ -14,10 +14,18 @@ interface MemberContextMenuProps {
   id: string;
 }
 
-export const MemberContextMenu: React.FC<MemberContextMenuProps> = ({ member, isOwner, id }) => {
+export const MemberContextMenu: React.FC<MemberContextMenuProps> = ({
+  member,
+  isOwner,
+  id,
+}) => {
   const history = useHistory();
   const { isOpen, onOpen, onClose } = useDisclosure();
-  const { isOpen: modIsOpen, onOpen: modOnOpen, onClose: modOnClose } = useDisclosure();
+  const {
+    isOpen: modIsOpen,
+    onOpen: modOnOpen,
+    onClose: modOnClose,
+  } = useDisclosure();
   const [isBan, setIsBan] = useState(false);
 
   const getOrCreateDM = async (): Promise<void> => {
@@ -83,7 +91,14 @@ export const MemberContextMenu: React.FC<MemberContextMenuProps> = ({ member, is
         )}
       </Menu>
       {isOpen && <RemoveFriendModal member={member} isOpen onClose={onClose} />}
-      {modIsOpen && <ModActionModal member={member} isOpen={modIsOpen} isBan={isBan} onClose={modOnClose} />}
+      {modIsOpen && (
+        <ModActionModal
+          member={member}
+          isOpen={modIsOpen}
+          isBan={isBan}
+          onClose={modOnClose}
+        />
+      )}
     </>
   );
 };

@@ -9,9 +9,13 @@ import { homeStore } from "../../../../lib/stores/homeStore";
 import { useRequestSocket } from "../../../../lib/api/ws/useRequestSocket";
 
 export const PendingList: React.FC = () => {
-  const { data } = useQuery(rKey, () => getPendingRequests().then((response) => response.data), {
-    staleTime: 0,
-  });
+  const { data } = useQuery(
+    rKey,
+    () => getPendingRequests().then((response) => response.data),
+    {
+      staleTime: 0,
+    },
+  );
 
   useRequestSocket();
 
@@ -26,7 +30,9 @@ export const PendingList: React.FC = () => {
   if (data.length === 0) {
     return (
       <Flex justify="center" align="center" w="full">
-        <Text textColor="brandGray.accent">There are no pending friend requests</Text>
+        <Text textColor="brandGray.accent">
+          There are no pending friend requests
+        </Text>
       </Flex>
     );
   }

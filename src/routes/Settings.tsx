@@ -30,9 +30,15 @@ export const Settings = (): JSX.Element | null => {
   const history = useHistory();
   const toast = useToast();
   const { isOpen, onOpen, onClose } = useDisclosure();
-  const { isOpen: cropperIsOpen, onOpen: cropperOnOpen, onClose: cropperOnClose } = useDisclosure();
+  const {
+    isOpen: cropperIsOpen,
+    onOpen: cropperOnOpen,
+    onClose: cropperOnClose,
+  } = useDisclosure();
 
-  const { data: user } = useQuery<Account>(aKey, () => getAccount().then((response) => response.data));
+  const { data: user } = useQuery<Account>(aKey, () =>
+    getAccount().then((response) => response.data),
+  );
   const cache = useQueryClient();
 
   const logoutUser = userStore((state) => state.logout);
@@ -138,7 +144,9 @@ export const Settings = (): JSX.Element | null => {
                       hidden
                       onChange={async (e) => {
                         if (!e.currentTarget.files) return;
-                        setCropImage(URL.createObjectURL(e.currentTarget.files[0]));
+                        setCropImage(
+                          URL.createObjectURL(e.currentTarget.files[0]),
+                        );
                         cropperOnOpen();
                       }}
                     />
@@ -163,16 +171,32 @@ export const Settings = (): JSX.Element | null => {
 
                     <Flex my={8} align="end">
                       <Spacer />
-                      <Button mr={4} colorScheme="white" variant="outline" onClick={closeClicked} fontSize="14px">
+                      <Button
+                        mr={4}
+                        colorScheme="white"
+                        variant="outline"
+                        onClick={closeClicked}
+                        fontSize="14px"
+                      >
                         Close
                       </Button>
 
                       <LightMode>
-                        <Button type="submit" colorScheme="green" isLoading={isSubmitting} fontSize="14px">
+                        <Button
+                          type="submit"
+                          colorScheme="green"
+                          isLoading={isSubmitting}
+                          fontSize="14px"
+                        >
                           Update
                         </Button>
                       </LightMode>
-                      <Button type="submit" colorScheme="red" onClick={logoutClicked} fontSize="14px">
+                      <Button
+                        type="submit"
+                        colorScheme="red"
+                        onClick={logoutClicked}
+                        fontSize="14px"
+                      >
                         Delete Account
                       </Button>
                     </Flex>
@@ -199,13 +223,16 @@ export const Settings = (): JSX.Element | null => {
             </Button>
 
             <Spacer />
-            <Button colorScheme="red" variant="outline" onClick={logoutClicked} fontSize="14px">
+            <Button
+              colorScheme="red"
+              variant="outline"
+              onClick={logoutClicked}
+              fontSize="14px"
+            >
               Logout
             </Button>
           </Flex>
-          <p>
-            main@2.8.0
-          </p>
+          <p>main@2.8.0</p>
         </Box>
       </Box>
       {isOpen && <ChangePasswordModal isOpen={isOpen} onClose={onClose} />}

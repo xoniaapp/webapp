@@ -5,7 +5,10 @@ interface AppLayoutProps {
   showLastColumn?: boolean | null;
 }
 
-export const AppLayout: React.FC<AppLayoutProps> = ({ showLastColumn = false, children }) => (
+export const AppLayout: React.FC<AppLayoutProps> = ({
+  showLastColumn = false,
+  children,
+}) => (
   <Grid
     height="100vh"
     templateColumns={`75px 240px 1fr ${showLastColumn ? "240px" : ""} `}

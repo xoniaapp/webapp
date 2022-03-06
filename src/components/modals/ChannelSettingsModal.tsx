@@ -29,7 +29,11 @@ import { getGuildMembers } from "../../lib/api/handler/guilds";
 import { ChannelSchema } from "../../lib/utils/validation/channel.schema";
 import { useGetCurrentChannel } from "../../lib/utils/hooks/useGetCurrentChannel";
 import { cKey, mKey } from "../../lib/utils/querykeys";
-import { deleteChannel, editChannel, getPrivateChannelMembers } from "../../lib/api/handler/channel";
+import {
+  deleteChannel,
+  editChannel,
+  getPrivateChannelMembers,
+} from "../../lib/api/handler/channel";
 
 interface IProps {
   guildId: string;
@@ -50,9 +54,16 @@ enum ChannelScreen {
   CONFIRM,
 }
 
-export const ChannelSettingsModal: React.FC<IProps> = ({ guildId, channelId, isOpen, onClose }) => {
+export const ChannelSettingsModal: React.FC<IProps> = ({
+  guildId,
+  channelId,
+  isOpen,
+  onClose,
+}) => {
   const key = mKey(guildId);
-  const { data } = useQuery(key, () => getGuildMembers(guildId).then((response) => response.data));
+  const { data } = useQuery(key, () =>
+    getGuildMembers(guildId).then((response) => response.data),
+  );
 
   const channel = useGetCurrentChannel(channelId, cKey(guildId));
 
@@ -72,7 +83,7 @@ export const ChannelSettingsModal: React.FC<IProps> = ({ guildId, channelId, isO
       label: m.username,
       value: m.id,
       image: m.image,
-    })
+    }),
   );
 
   // eslint-disable-next-line
@@ -145,7 +156,12 @@ export const ChannelSettingsModal: React.FC<IProps> = ({ guildId, channelId, isO
                 <ModalBody>
                   <InputField label="channel name" name="name" />
 
-                  <FormControl display="flex" alignItems="center" justifyContent="space-between" mt="4">
+                  <FormControl
+                    display="flex"
+                    alignItems="center"
+                    justifyContent="space-between"
+                    mt="4"
+                  >
                     <FormLabel mb="0">
                       <Flex align="center">
                         <AiOutlineLock />
@@ -160,7 +176,8 @@ export const ChannelSettingsModal: React.FC<IProps> = ({ guildId, channelId, isO
                     />
                   </FormControl>
                   <Text mt="4" fontSize="14px" textColor="brandGray.accent">
-                    By making a channel private, only selected members will be able to view this channel
+                    By making a channel private, only selected members will be
+                    able to view this channel
                   </Text>
                   {!values.isPublic && (
                     <Box mt="2" pb={0}>
@@ -171,7 +188,9 @@ export const ChannelSettingsModal: React.FC<IProps> = ({ guildId, channelId, isO
                         items={members}
                         selectedItems={selectedItems}
                         itemRenderer={ListItem}
-                        onSelectedItemsChange={(changes) => handleSelectedItemsChange(changes.selectedItems)}
+                        onSelectedItemsChange={(changes) =>
+                          handleSelectedItemsChange(changes.selectedItems)
+                        }
                       />
                     </Box>
                   )}
@@ -198,7 +217,13 @@ export const ChannelSettingsModal: React.FC<IProps> = ({ guildId, channelId, isO
                 </ModalBody>
 
                 <ModalFooter bg="brandGray.dark">
-                  <Button onClick={onClose} mr={6} variant="link" fontSize="14px" _focus={{ outline: "none" }}>
+                  <Button
+                    onClick={onClose}
+                    mr={6}
+                    variant="link"
+                    fontSize="14px"
+                    _focus={{ outline: "none" }}
+                  >
                     Cancel
                   </Button>
                   <Button
@@ -220,7 +245,12 @@ export const ChannelSettingsModal: React.FC<IProps> = ({ guildId, channelId, isO
         </ModalContent>
       )}
       {screen === ChannelScreen.CONFIRM && (
-        <DeleteChannelModal goBack={goBack} submitClose={submitClose} name={channel.name} channelId={channel.id} />
+        <DeleteChannelModal
+          goBack={goBack}
+          submitClose={submitClose}
+          name={channel.name}
+          channelId={channel.id}
+        />
       )}
     </Modal>
   );
@@ -233,7 +263,12 @@ interface IScreenProps {
   channelId: string;
 }
 
-const DeleteChannelModal: React.FC<IScreenProps> = ({ goBack, submitClose, name, channelId }) => {
+const DeleteChannelModal: React.FC<IScreenProps> = ({
+  goBack,
+  submitClose,
+  name,
+  channelId,
+}) => {
   const [showError, toggleShow] = useState(false);
   const handleDelete = async (): Promise<void> => {
     try {
@@ -252,7 +287,9 @@ const DeleteChannelModal: React.FC<IScreenProps> = ({ goBack, submitClose, name,
         Delete Channel
       </ModalHeader>
       <ModalBody pb={3}>
-        <Text>Are you sure you want to delete #{name}? This cannot be undone.</Text>
+        <Text>
+          Are you sure you want to delete #{name}? This cannot be undone.
+        </Text>
 
         {showError && (
           <Text my="2" color="menuRed" align="center">
@@ -262,11 +299,21 @@ const DeleteChannelModal: React.FC<IScreenProps> = ({ goBack, submitClose, name,
       </ModalBody>
 
       <ModalFooter bg="brandGray.dark">
-        <Button mr={6} variant="link" onClick={goBack} fontSize="14px" _focus={{ outline: "none" }}>
+        <Button
+          mr={6}
+          variant="link"
+          onClick={goBack}
+          fontSize="14px"
+          _focus={{ outline: "none" }}
+        >
           Cancel
         </Button>
         <LightMode>
-          <Button colorScheme="red" fontSize="14px" onClick={() => handleDelete()}>
+          <Button
+            colorScheme="red"
+            fontSize="14px"
+            onClick={() => handleDelete()}
+          >
             Delete Channel
           </Button>
         </LightMode>

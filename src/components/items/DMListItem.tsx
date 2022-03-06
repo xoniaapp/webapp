@@ -1,5 +1,12 @@
 import React, { useState } from "react";
-import { Avatar, AvatarBadge, Flex, Icon, ListItem, Text } from "@chakra-ui/react";
+import {
+  Avatar,
+  AvatarBadge,
+  Flex,
+  Icon,
+  ListItem,
+  Text,
+} from "@chakra-ui/react";
 import { Link, useHistory, useLocation } from "react-router-dom";
 import { IoMdClose } from "react-icons/io";
 import { useQueryClient } from "react-query";
@@ -22,7 +29,9 @@ export const DMListItem: React.FC<DMListItemProps> = ({ dm }) => {
   const closeDM = async (): Promise<void> => {
     try {
       await closeDirectMessage(dm.id);
-      cache.setQueryData<DMChannel[]>(dmKey, (d) => d!.filter((c) => c.id !== dm.id));
+      cache.setQueryData<DMChannel[]>(dmKey, (d) =>
+        d!.filter((c) => c.id !== dm.id),
+      );
       if (isActive) {
         history.replace("/channels/me");
       }
@@ -48,7 +57,10 @@ export const DMListItem: React.FC<DMListItemProps> = ({ dm }) => {
         <Flex align="center" justify="space-between">
           <Flex align="center">
             <Avatar size="sm" src={dm.user.image}>
-              <AvatarBadge boxSize="1.25em" bg={dm.user.isOnline ? "green.500" : "gray.500"} />
+              <AvatarBadge
+                boxSize="1.25em"
+                bg={dm.user.isOnline ? "green.500" : "gray.500"}
+              />
             </Avatar>
             <Text ml="2">{dm.user.username}</Text>
           </Flex>

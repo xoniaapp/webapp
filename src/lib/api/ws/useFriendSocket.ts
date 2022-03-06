@@ -7,7 +7,10 @@ import { homeStore } from "../../stores/homeStore";
 import { Friend } from "../../models/friend";
 
 type WSMessage =
-  | { action: "toggle_online" | "toggle_offline" | "remove_friend"; data: string }
+  | {
+      action: "toggle_online" | "toggle_offline" | "remove_friend";
+      data: string;
+    }
   | { action: "requestCount"; data: number }
   | { action: "add_friend"; data: Friend };
 
@@ -22,7 +25,7 @@ export function useFriendSocket(): void {
       JSON.stringify({
         action: "joinUser",
         room: current?.id,
-      })
+      }),
     );
     socket.send(JSON.stringify({ action: "getRequestCount" }));
 
@@ -56,13 +59,17 @@ export function useFriendSocket(): void {
 
         case "add_friend": {
           cache.setQueryData<Friend[]>(fKey, (data) =>
-            [...data!, response.data].sort((a, b) => a.username.localeCompare(b.username))
+            [...data!, response.data].sort((a, b) =>
+              a.username.localeCompare(b.username),
+            ),
           );
           break;
         }
 
         case "remove_friend": {
-          cache.setQueryData<Friend[]>(fKey, (data) => [...data!.filter((m) => m.id !== response.data)]);
+          cache.setQueryData<Friend[]>(fKey, (data) => [
+            ...data!.filter((m) => m.id !== response.data),
+          ]);
           break;
         }
 
@@ -76,7 +83,7 @@ export function useFriendSocket(): void {
         JSON.stringify({
           action: "leaveRoom",
           room: current?.id,
-        })
+        }),
       );
 
       socket.close();

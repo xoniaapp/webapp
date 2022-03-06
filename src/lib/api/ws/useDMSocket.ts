@@ -18,7 +18,7 @@ export function useDMSocket(): void {
       JSON.stringify({
         action: "joinUser",
         room: current?.id,
-      })
+      }),
     );
 
     socket.addEventListener("message", (event) => {
@@ -47,7 +47,7 @@ export function useDMSocket(): void {
         JSON.stringify({
           action: "leaveRoom",
           room: current?.id,
-        })
+        }),
       );
       socket.close();
     };

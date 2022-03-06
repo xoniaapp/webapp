@@ -35,7 +35,8 @@ const DMStartMessages: React.FC = () => {
       <Avatar h="80px" w="80px" src={channel?.user.image} />
       <Heading mt={2}>{channel?.user.username}</Heading>
       <Text textColor="brandGray.accent">
-        This is the beginning of your direct message history with @{channel?.user.username}
+        This is the beginning of your direct message history with @
+        {channel?.user.username}
       </Text>
       <Divider mt={2} />
     </Box>

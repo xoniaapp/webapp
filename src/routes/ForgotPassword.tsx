@@ -15,7 +15,10 @@ export const ForgotPassword = (): JSX.Element => {
     <Flex minHeight="100vh" width="full" align="center" justifyContent="center">
       <Box px={4} width="full" maxWidth="500px" textAlign="center">
         <Flex mb="4" justify="center">
-          <Image src="https://cdn.services.xoniaapp.com/assets/logo.png" w="80px" />
+          <Image
+            src="https://cdn.services.xoniaapp.com/assets/logo.png"
+            w="80px"
+          />
         </Flex>
         <Box p={4} borderRadius={4} background="brandGray.light">
           <Box textAlign="center">
@@ -31,7 +34,8 @@ export const ForgotPassword = (): JSX.Element => {
                   if (data) {
                     toast({
                       title: "Reset Mail.",
-                      description: "If an account with that email already exists, we sent you an email",
+                      description:
+                        "If an account with that email already exists, we sent you an email",
                       status: "success",
                       duration: 5000,
                       isClosable: true,
@@ -48,7 +52,12 @@ export const ForgotPassword = (): JSX.Element => {
             >
               {({ isSubmitting }) => (
                 <Form>
-                  <InputField label="Email" name="email" autoComplete="email" type="email" />
+                  <InputField
+                    label="Email"
+                    name="email"
+                    autoComplete="email"
+                    type="email"
+                  />
 
                   <Button
                     background="highlight.standard"

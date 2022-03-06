@@ -18,7 +18,10 @@ import { InputField } from "../common/InputField";
 import { toErrorMap } from "../../lib/utils/toErrorMap";
 import { userStore } from "../../lib/stores/userStore";
 import { MemberSchema } from "../../lib/utils/validation/member.schema";
-import { changeGuildMemberSettings, getGuildMemberSettings } from "../../lib/api/handler/members";
+import {
+  changeGuildMemberSettings,
+  getGuildMemberSettings,
+} from "../../lib/api/handler/members";
 
 interface IProps {
   guildId: string;
@@ -26,10 +29,14 @@ interface IProps {
   onClose: () => void;
 }
 
-export const EditMemberModal: React.FC<IProps> = ({ guildId, isOpen, onClose }) => {
+export const EditMemberModal: React.FC<IProps> = ({
+  guildId,
+  isOpen,
+  onClose,
+}) => {
   const current = userStore((state) => state.current);
   const { data } = useQuery(`settings-${guildId}`, () =>
-    getGuildMemberSettings(guildId).then((response) => response.data)
+    getGuildMemberSettings(guildId).then((response) => response.data),
   );
   const [showError, toggleShow] = useState(false);
 
@@ -50,7 +57,10 @@ export const EditMemberModal: React.FC<IProps> = ({ guildId, isOpen, onClose }) 
               // Default color --> Reset
               if (values.color === "#fff") setFieldValue("color", null);
 
-              const { data: responseData } = await changeGuildMemberSettings(guildId, values);
+              const { data: responseData } = await changeGuildMemberSettings(
+                guildId,
+                values,
+              );
               if (responseData) {
                 onClose();
               }
@@ -124,7 +134,13 @@ export const EditMemberModal: React.FC<IProps> = ({ guildId, isOpen, onClose }) 
               </ModalBody>
 
               <ModalFooter bg="brandGray.dark">
-                <Button onClick={onClose} mr={6} variant="link" fontSize="14px" _focus={{ outline: "none" }}>
+                <Button
+                  onClick={onClose}
+                  mr={6}
+                  variant="link"
+                  fontSize="14px"
+                  _focus={{ outline: "none" }}
+                >
                   Cancel
                 </Button>
                 <Button

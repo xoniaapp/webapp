@@ -7,7 +7,10 @@ import { gKey } from "../../utils/querykeys";
 import { Guild } from "../../models/guild";
 
 type WSMessage =
-  | { action: "delete_guild" | "remove_from_guild" | "new_notification"; data: string }
+  | {
+      action: "delete_guild" | "remove_from_guild" | "new_notification";
+      data: string;
+    }
   | { action: "edit_guild"; data: Guild };
 
 export function useGuildSocket(): void {
@@ -23,7 +26,7 @@ export function useGuildSocket(): void {
       JSON.stringify({
         action: "joinUser",
         room: current?.id,
-      })
+      }),
     );
 
     socket.addEventListener("message", (event) => {
@@ -98,7 +101,7 @@ export function useGuildSocket(): void {
         JSON.stringify({
           action: "leaveRoom",
           room: current?.id,
-        })
+        }),
       );
       socket.close();
     };

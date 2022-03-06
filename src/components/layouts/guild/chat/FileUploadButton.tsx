@@ -97,7 +97,13 @@ export const FileUploadButton: React.FC = () => {
           </Modal>
         )}
         {progress > 0 && (
-          <Modal size="sm" isOpen={progress > 0} closeOnOverlayClick={false} onClose={closeModal} isCentered>
+          <Modal
+            size="sm"
+            isOpen={progress > 0}
+            closeOnOverlayClick={false}
+            onClose={closeModal}
+            isCentered
+          >
             <ModalContent bg="brandGray.darker" textAlign="center">
               <ModalHeader pb="0">Upload Progress</ModalHeader>
               <ModalBody>

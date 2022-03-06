@@ -8,7 +8,10 @@ import { Channel } from "../../models/channel";
 
 type WSMessage =
   | { action: "delete_channel" | "new_notification"; data: string }
-  | { action: "add_channel" | "add_private_channel" | "edit_channel"; data: Channel };
+  | {
+      action: "add_channel" | "add_private_channel" | "edit_channel";
+      data: Channel;
+    };
 
 export function useChannelSocket(guildId: string, key: string): void {
   const location = useLocation();
@@ -24,13 +27,13 @@ export function useChannelSocket(guildId: string, key: string): void {
       JSON.stringify({
         action: "joinGuild",
         room: guildId,
-      })
+      }),
     );
     socket.send(
       JSON.stringify({
         action: "joinUser",
         room: current?.id,
-      })
+      }),
     );
 
     const disconnect = (): void => {
@@ -38,13 +41,13 @@ export function useChannelSocket(guildId: string, key: string): void {
         JSON.stringify({
           action: "leaveGuild",
           room: guildId,
-        })
+        }),
       );
       socket.send(
         JSON.stringify({
           action: "leaveRoom",
           room: current?.id,
-        })
+        }),
       );
       socket.close();
     };
@@ -53,12 +56,18 @@ export function useChannelSocket(guildId: string, key: string): void {
       const response: WSMessage = JSON.parse(event.data);
       switch (response.action) {
         case "add_channel": {
-          cache.setQueryData<Channel[]>(key, (data) => [...data!, response.data]);
+          cache.setQueryData<Channel[]>(key, (data) => [
+            ...data!,
+            response.data,
+          ]);
           break;
         }
 
         case "add_private_channel": {
-          cache.setQueryData<Channel[]>(key, (data) => [...data!, response.data]);
+          cache.setQueryData<Channel[]>(key, (data) => [
+            ...data!,
+            response.data,
+          ]);
           break;
         }
 

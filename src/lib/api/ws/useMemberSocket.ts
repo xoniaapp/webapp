@@ -4,7 +4,10 @@ import { getSocket } from "../getSocket";
 import { Member } from "../../models/member";
 
 type WSMessage =
-  | { action: "remove_member" | "toggle_online" | "toggle_offline"; data: string }
+  | {
+      action: "remove_member" | "toggle_online" | "toggle_offline";
+      data: string;
+    }
   | { action: "add_member"; data: Member };
 
 export function useMemberSocket(guildId: string, key: string): void {
@@ -16,7 +19,7 @@ export function useMemberSocket(guildId: string, key: string): void {
       JSON.stringify({
         action: "joinGuild",
         room: guildId,
-      })
+      }),
     );
 
     socket.addEventListener("message", (event) => {
@@ -35,13 +38,15 @@ export function useMemberSocket(guildId: string, key: string): void {
                 return a.username.localeCompare(b.nickname);
               }
               return a.username.localeCompare(b.username);
-            })
+            }),
           );
           break;
         }
 
         case "remove_member": {
-          cache.setQueryData<Member[]>(key, (data) => [...data!.filter((m) => m.id !== response.data)]);
+          cache.setQueryData<Member[]>(key, (data) => [
+            ...data!.filter((m) => m.id !== response.data),
+          ]);
           break;
         }
 
@@ -77,7 +82,7 @@ export function useMemberSocket(guildId: string, key: string): void {
         JSON.stringify({
           action: "leaveRoom",
           room: guildId,
-        })
+        }),
       );
       socket.close();
     };

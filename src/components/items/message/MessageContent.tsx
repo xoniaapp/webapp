@@ -8,7 +8,9 @@ interface MessageProps {
   message: Message;
 }
 
-export const MessageContent: React.FC<MessageProps> = ({ message: { attachment, text, createdAt, updatedAt } }) => {
+export const MessageContent: React.FC<MessageProps> = ({
+  message: { attachment, text, createdAt, updatedAt },
+}) => {
   if (attachment) {
     const { filetype, url, filename } = attachment;
     if (filetype.startsWith("image/")) {
@@ -17,8 +19,7 @@ export const MessageContent: React.FC<MessageProps> = ({ message: { attachment, 
           <Image fit="contain" src={url} alt="" borderRadius="md" />
         </Box>
       );
-    }
-   else if (filetype.startsWith("audio/")) {
+    } else if (filetype.startsWith("audio/")) {
       return (
         <Box my="2">
           {/* eslint-disable-next-line jsx-a11y/media-has-caption */}
@@ -27,23 +28,21 @@ export const MessageContent: React.FC<MessageProps> = ({ message: { attachment, 
           </audio>
         </Box>
       );
-    }
-   else if (filetype.startsWith("application/")) {
+    } else if (filetype.startsWith("application/")) {
       return (
         <Box>
-          <a
-          href={url}
-          >
-          {filename}
-          </a>
+          <a href={url}>{filename}</a>
         </Box>
-      )
+      );
     }
   }
   return (
     <Flex alignItems="center">
       <Text>
-        <ReactMarkdown linkTarget="_blank" remarkPlugins={[[remarkGfm, { singleTilde: false }]]}>
+        <ReactMarkdown
+          linkTarget="_blank"
+          remarkPlugins={[[remarkGfm, { singleTilde: false }]]}
+        >
           {/* @ts-ignore */}
           {text}
         </ReactMarkdown>

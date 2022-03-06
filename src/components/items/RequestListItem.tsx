@@ -1,10 +1,20 @@
-import { Avatar, Box, Flex, IconButton, ListItem, Text } from "@chakra-ui/react";
+import {
+  Avatar,
+  Box,
+  Flex,
+  IconButton,
+  ListItem,
+  Text,
+} from "@chakra-ui/react";
 import React from "react";
 import { BiCheck } from "react-icons/bi";
 import { AiOutlineClose } from "react-icons/ai";
 import { useQueryClient } from "react-query";
 import { StyledTooltip } from "../sections/StyledTooltip";
-import { acceptFriendRequest, declineFriendRequest } from "../../lib/api/handler/account";
+import {
+  acceptFriendRequest,
+  declineFriendRequest,
+} from "../../lib/api/handler/account";
 import { fKey, rKey } from "../../lib/utils/querykeys";
 import { FriendRequest, RequestType } from "../../lib/models/friend";
 
@@ -12,7 +22,9 @@ interface RequestListItemProps {
   request: FriendRequest;
 }
 
-export const RequestListItem: React.FC<RequestListItemProps> = ({ request }) => {
+export const RequestListItem: React.FC<RequestListItemProps> = ({
+  request,
+}) => {
   const cache = useQueryClient();
 
   const acceptRequest = async (): Promise<void> => {
@@ -55,7 +67,9 @@ export const RequestListItem: React.FC<RequestListItemProps> = ({ request }) => 
           <Box ml="2">
             <Text>{request.username}</Text>
             <Text fontSize="12px">
-              {request.type === RequestType.INCOMING ? "Incoming Friend Request" : "Outgoing Friend Request"}
+              {request.type === RequestType.INCOMING
+                ? "Incoming Friend Request"
+                : "Outgoing Friend Request"}
             </Text>
           </Box>
         </Flex>
