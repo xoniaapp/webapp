@@ -232,7 +232,9 @@ export const Settings = (): JSX.Element | null => {
               Logout
             </Button>
           </Flex>
-          <p>main@2.8.0</p>
+          <code>
+            stable@2.8.9
+          </code>
         </Box>
       </Box>
       {isOpen && <ChangePasswordModal isOpen={isOpen} onClose={onClose} />}
