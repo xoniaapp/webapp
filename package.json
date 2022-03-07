@@ -38,8 +38,6 @@
     "eject": "react-scripts eject",
     "lint": "npx eslint src/**",
     "prettier": "npx prettier --write **/*",
-    "compile": "tsc",
-    "workflow": "yarn compile && yarn prettier && yarn lint && yarn test --watchAll=false"
   },
   "eslintConfig": {
     "extends": "react-app"
