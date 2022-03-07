@@ -1,9 +1,9 @@
 export const memberScrollbarCss = {
   "&::-webkit-scrollbar": {
-    width: "4px",
+    width: "5px",
   },
   "&::-webkit-scrollbar-track": {
-    width: "4px",
+    width: "5px",
   },
   "&::-webkit-scrollbar-thumb": {
     background: "brandGray.darker",

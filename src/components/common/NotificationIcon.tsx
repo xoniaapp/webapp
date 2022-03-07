@@ -22,7 +22,7 @@ export const NotificationIcon: React.FC<NotificationIconProps> = ({
     justify="center"
     align="center"
   >
-    <Text fontSize="12px" fontWeight="bold" color="white">
+    <Text fontSize="12px" color="white">
       {count}
     </Text>
   </Flex>
@@ -38,7 +38,7 @@ export const PingIcon: React.FC<NotificationIconProps> = ({ count }) => (
     align="center"
     ml={2}
   >
-    <Text fontSize="11px" fontWeight="bold" color="white">
+    <Text fontSize="11px" color="white">
       {count}
     </Text>
   </Flex>

@@ -91,7 +91,7 @@ export const FileUploadButton: React.FC = () => {
                   Reason:
                   {errors}
                 </Text>
-                <Text>Please try something under 5MB</Text>
+                <Text>Please try something under 80MB</Text>
               </ModalBody>
             </ModalContent>
           </Modal>
@@ -105,7 +105,7 @@ export const FileUploadButton: React.FC = () => {
             isCentered
           >
             <ModalContent bg="brandGray.darker" textAlign="center">
-              <ModalHeader pb="0">Upload Progress</ModalHeader>
+              <ModalHeader pb="0">Uploading...</ModalHeader>
               <ModalBody>
                 <Progress hasStripe isAnimated value={progress} />
               </ModalBody>
