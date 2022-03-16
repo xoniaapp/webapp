@@ -98,7 +98,7 @@ export const Settings = (): JSX.Element | null => {
                   if (data) {
                     setUser(data);
                     toast({
-                      title: "Account Updated.",
+                      title: "Updated!",
                       status: "success",
                       duration: 3000,
                       isClosable: true,
@@ -108,7 +108,7 @@ export const Settings = (): JSX.Element | null => {
                   if (err?.response?.status === 500) {
                     toast({
                       title: "Something went wrong!",
-                      description: "Try again later",
+                      description: "Try again later!",
                       status: "error",
                       duration: 3000,
                       isClosable: true,
@@ -233,7 +233,7 @@ export const Settings = (): JSX.Element | null => {
             </Button>
           </Flex>
           <code>
-            production@2.9.0
+            nightly@pre-2.9.0
           </code>
         </Box>
       </Box>
