@@ -25,7 +25,7 @@ export const Login = (): JSX.Element => {
       <Box px={4} width="full" maxWidth="500px" textAlign="center">
         <Flex mb="4" justify="center">
           <Image
-            src="https://cdn.services.xoniaapp.com/assets/logo.png"
+            src={`${process.env.PUBLIC_URL}/logo.png`}
             w="80px"
           />
         </Flex>

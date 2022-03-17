@@ -34,7 +34,7 @@ export const Invite: React.FC = () => {
       <Box textAlign="center">
         <Flex mb="4" justify="center">
           <Image
-            src="https://raw.githubusercontent.com/xoniaapp/app/main/public/logo.png"
+            src={`${process.env.PUBLIC_URL}/logo.png`}
             w="80px"
           />
         </Flex>

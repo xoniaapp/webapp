@@ -32,7 +32,7 @@ export const ResetPassword: React.FC = () => {
       <Box px={4} width="full" maxWidth="500px" textAlign="center">
         <Flex mb="4" justify="center">
           <Image
-            src="https://raw.githubusercontent.com/xoniaapp/app/main/public/logo.png"
+            src={`${process.env.PUBLIC_URL}/logo.png`}
             w="80px"
           />
         </Flex>
