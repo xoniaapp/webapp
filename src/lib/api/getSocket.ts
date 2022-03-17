@@ -6,6 +6,7 @@ export const getSocket = (): ReconnectingWebSocket =>
 let socket: ReconnectingWebSocket | null = null;
 export const getSameSocket = (): ReconnectingWebSocket => {
   if (!socket) {
+    console.log("[WS] Connected to WebSocket", "color:blue; font-size:15px");
     socket = new ReconnectingWebSocket(process.env.REACT_APP_WS!);
   }
 
