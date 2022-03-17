@@ -24,6 +24,7 @@ export function useRequestSocket(): void {
     );
 
     socket.addEventListener("message", (event) => {
+      console.log("%c[WS] EVENT", "color:green; font-size:8px");
       const response: WSMessage = JSON.parse(event.data);
       switch (response.action) {
         case "add_request": {
