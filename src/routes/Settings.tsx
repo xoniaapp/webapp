@@ -233,7 +233,7 @@ export const Settings = (): JSX.Element | null => {
             </Button>
           </Flex>
           <code>
-            nightly@pre-2.9.0
+            beta@2.9.1
           </code>
         </Box>
       </Box>
