@@ -225,7 +225,7 @@ export const GuildSettingsModal: React.FC<IProps> = ({
                   </Flex>
                   {showError && (
                     <Text my="2" color="menuRed" align="center">
-                      Server Error. Try again later
+                      Something went wrong on our side!
                     </Text>
                   )}
                 </ModalBody>
@@ -315,12 +315,12 @@ const DeleteGuildModal: React.FC<IScreenProps> = ({
       </ModalHeader>
       <ModalBody pb={3}>
         <Text>
-          Are you sure you want to delete <b>{name}</b>? This cannot be undone.
+          Are you sure you want to delete <b>{name}</b>?
         </Text>
 
         {showError && (
           <Text my="2" color="menuRed" align="center">
-            Server Error. Try again later
+            Something went wrong on our side!
           </Text>
         )}
       </ModalBody>
@@ -376,7 +376,7 @@ const BanListModal: React.FC<IBanScreenProps> = ({ goBack, guildId }) => {
         {data?.length} Bans
       </ModalHeader>
       <ModalBody pb={3} overflowY="auto" css={channelScrollbarCss}>
-        <Text mb={2}>Bans are by account. Click on the icon to unban.</Text>
+        <Text mb={2}>Click on the icon to unban.</Text>
 
         {data?.map((m) => (
           <Flex
@@ -403,7 +403,7 @@ const BanListModal: React.FC<IBanScreenProps> = ({ goBack, guildId }) => {
             />
           </Flex>
         ))}
-        {data?.length === 0 && <Text>No bans yet.</Text>}
+        {data?.length === 0 && <Text>No one banned yet!</Text>}
       </ModalBody>
 
       <ModalFooter bg="brandGray.dark">
