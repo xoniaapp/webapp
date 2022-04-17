@@ -23,7 +23,9 @@ const SUPPORTED_FORMATS = [
   "application/x-7z-compressed",
   "application/x-bzip",
   "application/x-bzip2",
+  "application/x-7z-compressed",
   "application/octet-stream",
+  "application/java-archive",
 ];
 
 export const FileSchema = yup.object().shape({
