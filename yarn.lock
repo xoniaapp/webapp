@@ -11195,10 +11195,10 @@ react-push-notification@^1.3.0:
   resolved "https://registry.yarnpkg.com/react-push-notification/-/react-push-notification-1.3.0.tgz#082e3af568a1d27ec33c437434c60edba83112bc"
   integrity sha512-hyYKZqwtNOgRP74fAafVIivEr99vUtH0nDgcWkPKd302BhMuUMr5wuuEX236bSbCoM4nxlOge1m0CKIEtWBqLA==
 
-react-query@^3.25.0:
-  version "3.25.1"
-  resolved "https://registry.yarnpkg.com/react-query/-/react-query-3.25.1.tgz#221ff17406518a7689378dcbbdc986b0ba2c3919"
-  integrity sha512-tGZkap921d9dJD2F8+NpEu3djLRP+tpZKHKhQvqUMYMfWT5R18iRtGAG5ZeUMlRKuhzNaZx3cHiYj3DsyZ1SWw==
+react-query@^3.34.19:
+  version "3.35.0"
+  resolved "https://registry.yarnpkg.com/react-query/-/react-query-3.35.0.tgz#f807ba8497f8d6218a73e81a977e44ea786a7267"
+  integrity sha512-mRBJdpELLV+snzyXDsXM5ZEXM+HYt05L7st6ihSXr3nHX+4ULFr30mDjsziZvx0oF5dhlSDB8aMdvG6Ah4Bukg==
   dependencies:
     "@babel/runtime" "^7.5.5"
     broadcast-channel "^3.4.1"
