@@ -9,7 +9,7 @@
     "@emotion/styled": "^11.3.0",
     "axios": "^0.22.0",
     "chakra-ui-autocomplete": "^1.4.4",
-    "dayjs": "^1.10.7",
+    "dayjs": "^1.11.0",
     "formik": "^2.2.9",
     "framer-motion": ">=4.1.17",
     "msw": "^0.35.0",
