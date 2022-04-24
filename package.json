@@ -6,7 +6,7 @@
     "@chakra-ui/react": "^1.8.7",
     "@chakra-ui/theme-tools": "^1.2.1",
     "@emotion/react": "^11.4.1",
-    "@emotion/styled": "^11.3.0",
+    "@emotion/styled": "^11.8.1",
     "axios": "^0.22.0",
     "chakra-ui-autocomplete": "^1.4.4",
     "dayjs": "^1.10.7",
