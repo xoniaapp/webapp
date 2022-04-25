@@ -28,7 +28,7 @@
     "react-textarea-autosize": "^8.3.3",
     "reconnecting-websocket": "^4.4.0",
     "remark-gfm": "^3.0.1",
-    "yup": "^0.32.9",
+    "yup": "^0.32.11",
     "zustand": "^3.5.12"
   },
   "scripts": {
