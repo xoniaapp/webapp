@@ -50,7 +50,7 @@ export const DeleteMessageModal: React.FC<IProps> = ({
           Delete Message
         </ModalHeader>
         <ModalBody>
-          <Text mb="4">Are you sure you want to delete this message?</Text>
+          <Text mb="4">Are you sure?</Text>
 
           <Flex
             alignItems="center"
@@ -82,7 +82,7 @@ export const DeleteMessageModal: React.FC<IProps> = ({
 
           {showError && (
             <Text my="2" color="menuRed" align="center">
-              Server Error. Try again later
+              Something is not okay.
             </Text>
           )}
         </ModalBody>

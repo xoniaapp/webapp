@@ -93,11 +93,11 @@ export const Register = (): JSX.Element => {
                   </Button>
                   {error && (
                     <Text mt="4" color="menuRed" align="center">
-                      Server Error. Try again later
+                      Something went wrong!
                     </Text>
                   )}
                   <Text mt="4">
-                    Already have an account?{" "}
+                    Have an account?{" "}
                     <Link
                       as={RLink}
                       to="/login"

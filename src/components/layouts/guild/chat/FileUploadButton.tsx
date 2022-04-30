@@ -84,14 +84,14 @@ export const FileUploadButton: React.FC = () => {
           <Modal size="sm" isOpen={isOpen} onClose={closeModal} isCentered>
             <ModalOverlay />
             <ModalContent bg="brandGray.light" textAlign="center">
-              <ModalHeader pb="0">Error Uploading File</ModalHeader>
+              <ModalHeader pb="0">Hmm, Something is not OK!</ModalHeader>
               <ModalCloseButton _focus={{ outline: "none" }} />
               <ModalBody>
                 <Text mb="2">
                   Reason:
                   {errors}
                 </Text>
-                <Text>Please try something under 80MB</Text>
+                <Text>Is you file above 80 megabytes?</Text>
               </ModalBody>
             </ModalContent>
           </Modal>

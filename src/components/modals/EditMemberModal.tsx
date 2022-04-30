@@ -99,7 +99,7 @@ export const EditMemberModal: React.FC<IProps> = ({
                   fontSize="14px"
                   onClick={() => setFieldValue("nickname", null)}
                 >
-                  Reset Nickname
+                  Reset
                 </Text>
 
                 <Divider my="4" />
@@ -123,12 +123,12 @@ export const EditMemberModal: React.FC<IProps> = ({
                   fontSize="14px"
                   onClick={() => setFieldValue("color", "#fff")}
                 >
-                  Reset Color
+                  Reset
                 </Text>
 
                 {showError && (
                   <Text mt="4" color="menuRed" align="center">
-                    Server Error. Try again later
+                    Something went wrong!
                   </Text>
                 )}
               </ModalBody>

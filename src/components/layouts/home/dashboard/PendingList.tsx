@@ -31,7 +31,7 @@ export const PendingList: React.FC = () => {
     return (
       <Flex justify="center" align="center" w="full">
         <Text textColor="brandGray.accent">
-          There are no pending friend requests
+          No pending friends yet!
         </Text>
       </Flex>
     );

@@ -44,7 +44,7 @@ export const UserPopover: React.FC<UserPopoverProps> = ({
       </PopoverHeader>
       <PopoverFooter bg="brandGray.dark">
         <Text textColor="brandGray.accent" fontSize="12px" textAlign="center">
-          Right click user for more actions
+          Right click for more!
         </Text>
       </PopoverFooter>
     </PopoverContent>

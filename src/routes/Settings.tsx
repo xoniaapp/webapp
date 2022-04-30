@@ -197,7 +197,7 @@ export const Settings = (): JSX.Element | null => {
                         onClick={logoutClicked}
                         fontSize="14px"
                       >
-                        Delete Account
+                        DELETE ACCOUNT
                       </Button>
                     </Flex>
                   </Box>
@@ -233,7 +233,7 @@ export const Settings = (): JSX.Element | null => {
             </Button>
           </Flex>
           <code>
-            main@2.9.0-production
+            main@2.9.1-git-build-server
           </code>
         </Box>
       </Box>

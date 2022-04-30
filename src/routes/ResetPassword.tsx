@@ -105,18 +105,18 @@ export const ResetPassword: React.FC = () => {
             </Formik>
             {showError && (
               <Text mt="4" color="menuRed" align="center">
-                Server Error. Try again later
+                Something went wrong.
               </Text>
             )}
             {tokenError && (
               <Flex direction="column" mt="4" justify="center" align="center">
-                <Text color="menuRed">Invalid or expired token.</Text>
+                <Text color="menuRed">Invalid token.</Text>
                 <Link
                   as={RLink}
                   to="/forgot-password"
                   _focus={{ outline: "none" }}
                 >
-                  Click here to get a new token
+                  Get a new token
                 </Link>
               </Flex>
             )}
