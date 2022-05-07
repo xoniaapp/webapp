@@ -233,7 +233,7 @@ export const Settings = (): JSX.Element | null => {
             </Button>
           </Flex>
           <code>
-            {process.env.CF_PAGES_COMMIT_SHA}@{process.env.CF_PAGES_BRANCH}
+         {process.env.COMMIT_REF}
           </code>
         </Box>
       </Box>
