@@ -233,7 +233,7 @@ export const Settings = (): JSX.Element | null => {
             </Button>
           </Flex>
           <code>
-         {process.env.COMMIT_REF}
+             main@{process.env.REACT_APP_VERSION}
           </code>
         </Box>
       </Box>
