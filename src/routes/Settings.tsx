@@ -233,7 +233,7 @@ export const Settings = (): JSX.Element | null => {
             </Button>
           </Flex>
           <code>
-             main@{process.env.REACT_APP_VERSION}
+             main@{process.env.REACT_APP_GIT_SHA}
           </code>
         </Box>
       </Box>
