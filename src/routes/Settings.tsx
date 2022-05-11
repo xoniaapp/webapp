@@ -188,17 +188,9 @@ export const Settings = (): JSX.Element | null => {
                           isLoading={isSubmitting}
                           fontSize="14px"
                         >
-                          Update
+                          Save
                         </Button>
                       </LightMode>
-                      <Button
-                        type="submit"
-                        colorScheme="red"
-                        onClick={logoutClicked}
-                        fontSize="14px"
-                      >
-                        DELETE ACCOUNT
-                      </Button>
                     </Flex>
                   </Box>
                 </Form>
@@ -232,6 +224,8 @@ export const Settings = (): JSX.Element | null => {
               Logout
             </Button>
           </Flex>
+          <h6>Version</h6>
+          <br />
           <code>
              main@{process.env.REACT_APP_GIT_SHA}
           </code>

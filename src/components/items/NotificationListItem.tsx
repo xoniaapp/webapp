@@ -50,6 +50,7 @@ export const NotificationListItem: React.FC<NotificationListItemProps> = ({
 
   return (
     <Flex mb="2" justify="center" position="relative">
+      {/* TODO: Make sound when an message arrives. */}
       {isActive && <ActiveGuildPill />}
       {isHover && <HoverGuildPill />}
       <NotificationIndicator />

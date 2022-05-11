@@ -38,6 +38,7 @@ export const PingIcon: React.FC<NotificationIconProps> = ({ count }) => (
     align="center"
     ml={2}
   >
+    {/* TODO: Once a notification arrives play an sound. */}
     <Text fontSize="11px" color="white">
       {count}
     </Text>

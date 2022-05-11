@@ -51,17 +51,17 @@
 
 .menu-item:hover {
   color: white;
-  background-color: #c43714;
+  background-color: #d14242;
   border-radius: 2px;
 }
 
 .delete-item {
-  color: #f04747 !important;
+  color: #d14242 !important;
 }
 
 .delete-item:hover {
   color: white;
-  background-color: #e43a3a;
+  background-color: #d14242;
   border-radius: 2px;
 }
 
@@ -106,7 +106,7 @@
 .react-contexify__theme--light
   .react-contexify__submenu--is-open
   > .react-contexify__item__content {
-  color: #e64343;
+  color: #d14242;
   background-color: #e0eefd;
 }
 .react-contexify__theme--light
@@ -115,7 +115,7 @@
 .react-contexify__theme--light
   .react-contexify__item:not(.react-contexify__item--disabled):focus
   > .react-contexify__item__content {
-  color: #e64343;
+  color: #d14242;
   background-color: #e0eefd;
 }
 .react-contexify__theme--light .react-contexify__item__content {
