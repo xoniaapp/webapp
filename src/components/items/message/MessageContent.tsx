@@ -44,7 +44,6 @@ export const MessageContent: React.FC<MessageProps> = ({
           remarkPlugins={[[remarkGfm, { singleTilde: false }]]}
         >
           {/* @ts-ignore */}
-          {/* Render Markdown in {text} */}
           {text}
         </ReactMarkdown>
       </Text>
