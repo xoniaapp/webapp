@@ -35,7 +35,7 @@ export const ForgotPassword = (): JSX.Element => {
                     toast({
                       title: "Reset Mail.",
                       description:
-                        "If an account with that email already exists, we sent you an email",
+                        "If a account with that main exists, we'll send you a mail.",
                       status: "success",
                       duration: 5000,
                       isClosable: true,
@@ -71,7 +71,7 @@ export const ForgotPassword = (): JSX.Element => {
                     _focus={{ boxShadow: "none" }}
                     fontSize="14px"
                   >
-                    Send Mail
+                    Send Request
                   </Button>
                 </Form>
               )}
