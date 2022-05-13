@@ -224,7 +224,7 @@ export const Settings = (): JSX.Element | null => {
               Logout
             </Button>
           </Flex>
-          <h6>Version</h6>
+          <p>Build Version</p>
           <br />
           <code>
              main@{process.env.REACT_APP_GIT_SHA}
