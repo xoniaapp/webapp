@@ -34,7 +34,7 @@
   },
   "scripts": {
     "start": "vite --host",
-    "build": "tsc && vite build",
+    "build": "export VITE_GIT_SHA=$(git rev-parse --short HEAD) && tsc && vite build",
     "serve": "vite preview",
     "lint": "npx eslint src/**",
     "prettier": "npx prettier --write **/*"
