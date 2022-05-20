@@ -25,7 +25,7 @@ export const Login = (): JSX.Element => {
       <Box px={4} width="full" maxWidth="500px" textAlign="center">
         <Flex mb="4" justify="center">
           <Image
-            src={`${process.env.PUBLIC_URL}/logo.png`}
+            src={`/logo.png`}
             w="80px"
           />
         </Flex>

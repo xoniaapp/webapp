@@ -34,7 +34,7 @@ export const Invite: React.FC = () => {
       <Box textAlign="center">
         <Flex mb="4" justify="center">
           <Image
-            src={`${process.env.PUBLIC_URL}/logo.png`}
+            src={`/logo.png`}
             w="80px"
           />
         </Flex>

@@ -227,7 +227,7 @@ export const Settings = (): JSX.Element | null => {
           <p>Build Version</p>
           <br />
           <code>
-             main@{process.env.REACT_APP_GIT_SHA}
+             main@{import.meta.env.VITE_GIT_SHA}
           </code>
         </Box>
       </Box>
