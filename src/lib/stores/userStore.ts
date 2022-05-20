@@ -9,9 +9,7 @@ type AccountState = {
 }
 
 export const userStore = create<AccountState>(
-  {
     /* @ts-ignore */
-  },
   persist(
     (set) => ({
       current: null,

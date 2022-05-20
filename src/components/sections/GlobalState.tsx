@@ -10,9 +10,8 @@ type WSMessage =
   | { action: 'new_dm_notification'; data: DMChannel }
   | { action: 'send_request' }
 
-{
-  /* @ts-ignore */
-}
+
+/* @ts-ignore */
 export const GlobalState: React.FC = ({ children }) => {
   const current = userStore((state) => state.current)
   const inc = homeStore((state) => state.increment)

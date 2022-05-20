@@ -7,13 +7,10 @@ type SettingsState = {
 }
 
 export const settingsStore = create<SettingsState>(
-  {
-    /* @ts-ignore */
-  },
+  /* @ts-ignore */
   persist(
     (set, get) => ({
       showMembers: true,
-      // @ts-ignore
       toggleShowMembers: () => set({ showMembers: !get().showMembers }),
     }),
     {
