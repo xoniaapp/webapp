@@ -10,22 +10,22 @@ import {
   ModalOverlay,
   Text,
   VStack,
-} from "@chakra-ui/react";
-import { Form, Formik } from "formik";
-import React, { useState } from "react";
-import { useQueryClient } from "react-query";
-import { useHistory } from "react-router-dom";
-import { InputField } from "../common/InputField";
-import { GuildSchema } from "../../lib/utils/validation/guild.schema";
-import { createGuild, joinGuild } from "../../lib/api/handler/guilds";
-import { userStore } from "../../lib/stores/userStore";
-import { toErrorMap } from "../../lib/utils/toErrorMap";
-import { gKey } from "../../lib/utils/querykeys";
-import { Guild } from "../../lib/models/guild";
+} from '@chakra-ui/react'
+import { Form, Formik } from 'formik'
+import React, { useState } from 'react'
+import { useQueryClient } from 'react-query'
+import { useHistory } from 'react-router-dom'
+import { InputField } from '../common/InputField'
+import { GuildSchema } from '../../lib/utils/validation/guild.schema'
+import { createGuild, joinGuild } from '../../lib/api/handler/guilds'
+import { userStore } from '../../lib/stores/userStore'
+import { toErrorMap } from '../../lib/utils/toErrorMap'
+import { gKey } from '../../lib/utils/querykeys'
+import { Guild } from '../../lib/models/guild'
 
 interface IProps {
-  isOpen: boolean;
-  onClose: () => void;
+  isOpen: boolean
+  onClose: () => void
 }
 
 enum AddGuildScreen {
@@ -35,13 +35,13 @@ enum AddGuildScreen {
 }
 
 export const AddGuildModal: React.FC<IProps> = ({ isOpen, onClose }) => {
-  const [screen, setScreen] = useState(AddGuildScreen.START);
+  const [screen, setScreen] = useState(AddGuildScreen.START)
 
-  const goBack = (): void => setScreen(AddGuildScreen.START);
+  const goBack = (): void => setScreen(AddGuildScreen.START)
   const submitClose = (): void => {
-    setScreen(AddGuildScreen.START);
-    onClose();
-  };
+    setScreen(AddGuildScreen.START)
+    onClose()
+  }
 
   return (
     <Modal isOpen={isOpen} onClose={submitClose} isCentered size="sm">
@@ -58,7 +58,7 @@ export const AddGuildModal: React.FC<IProps> = ({ isOpen, onClose }) => {
           <ModalHeader textAlign="center" fontWeight="bold">
             Create a server
           </ModalHeader>
-          <ModalCloseButton _focus={{ outline: "none" }} />
+          <ModalCloseButton _focus={{ outline: 'none' }} />
           <ModalBody pb={6}>
             <VStack spacing="5">
               <Text textAlign="center">
@@ -69,9 +69,9 @@ export const AddGuildModal: React.FC<IProps> = ({ isOpen, onClose }) => {
                 background="highlight.standard"
                 color="white"
                 type="submit"
-                _hover={{ bg: "highlight.hover" }}
-                _active={{ bg: "highlight.active" }}
-                _focus={{ boxShadow: "none" }}
+                _hover={{ bg: 'highlight.hover' }}
+                _active={{ bg: 'highlight.active' }}
+                _focus={{ boxShadow: 'none' }}
                 w="full"
                 onClick={() => setScreen(AddGuildScreen.CREATE)}
               >
@@ -87,9 +87,9 @@ export const AddGuildModal: React.FC<IProps> = ({ isOpen, onClose }) => {
                 background="highlight.standard"
                 color="white"
                 type="submit"
-                _hover={{ bg: "highlight.hover" }}
-                _active={{ bg: "highlight.active" }}
-                _focus={{ boxShadow: "none" }}
+                _hover={{ bg: 'highlight.hover' }}
+                _active={{ bg: 'highlight.active' }}
+                _focus={{ boxShadow: 'none' }}
                 w="full"
                 onClick={() => setScreen(AddGuildScreen.INVITE)}
               >
@@ -100,39 +100,39 @@ export const AddGuildModal: React.FC<IProps> = ({ isOpen, onClose }) => {
         </ModalContent>
       )}
     </Modal>
-  );
-};
+  )
+}
 
 interface IScreenProps {
-  goBack: () => void;
-  submitClose: () => void;
+  goBack: () => void
+  submitClose: () => void
 }
 
 const JoinServerModal: React.FC<IScreenProps> = ({ goBack, submitClose }) => {
-  const cache = useQueryClient();
-  const history = useHistory();
+  const cache = useQueryClient()
+  const history = useHistory()
 
   return (
     <ModalContent bg="brandGray.light">
       <Formik
         initialValues={{
-          link: "",
+          link: '',
         }}
         onSubmit={async (values, { setErrors }) => {
-          if (values.link === "") {
-            setErrors({ link: "Enter a valid link" });
+          if (values.link === '') {
+            setErrors({ link: 'Enter a valid link' })
           } else {
             try {
-              const { data } = await joinGuild(values);
+              const { data } = await joinGuild(values)
               if (data) {
-                cache.setQueryData<Guild[]>(gKey, (old) => [...old!, data]);
-                submitClose();
-                history.push(`/channels/${data.id}/${data.default_channel_id}`);
+                cache.setQueryData<Guild[]>(gKey, (old) => [...old!, data])
+                submitClose()
+                history.push(`/channels/${data.id}/${data.default_channel_id}`)
               }
             } catch (err: any) {
-              const status = err?.response?.status;
+              const status = err?.response?.status
               if (status === 400 || status === 500) {
-                setErrors({ link: err?.response?.data?.error.message });
+                setErrors({ link: err?.response?.data?.error.message })
               }
             }
           }
@@ -143,7 +143,7 @@ const JoinServerModal: React.FC<IScreenProps> = ({ goBack, submitClose }) => {
             <ModalHeader textAlign="center" fontWeight="bold" pb="0">
               Join a Server
             </ModalHeader>
-            <ModalCloseButton _focus={{ outline: "none" }} />
+            <ModalCloseButton _focus={{ outline: 'none' }} />
             <ModalBody pb={3}>
               <Text fontSize="14px" textColor="brandGray.accent">
                 Enter an invite below to join an existing server
@@ -174,7 +174,7 @@ const JoinServerModal: React.FC<IScreenProps> = ({ goBack, submitClose }) => {
                 variant="link"
                 onClick={goBack}
                 fontSize="14px"
-                _focus={{ outline: "none" }}
+                _focus={{ outline: 'none' }}
               >
                 Back
               </Button>
@@ -182,9 +182,9 @@ const JoinServerModal: React.FC<IScreenProps> = ({ goBack, submitClose }) => {
                 background="highlight.standard"
                 color="white"
                 type="submit"
-                _hover={{ bg: "highlight.hover" }}
-                _active={{ bg: "highlight.active" }}
-                _focus={{ boxShadow: "none" }}
+                _hover={{ bg: 'highlight.hover' }}
+                _active={{ bg: 'highlight.active' }}
+                _focus={{ boxShadow: 'none' }}
                 isLoading={isSubmitting}
                 fontSize="14px"
               >
@@ -195,13 +195,13 @@ const JoinServerModal: React.FC<IScreenProps> = ({ goBack, submitClose }) => {
         )}
       </Formik>
     </ModalContent>
-  );
-};
+  )
+}
 
 const CreateServerModal: React.FC<IScreenProps> = ({ goBack, submitClose }) => {
-  const user = userStore((state) => state.current);
-  const cache = useQueryClient();
-  const history = useHistory();
+  const user = userStore((state) => state.current)
+  const cache = useQueryClient()
+  const history = useHistory()
 
   return (
     <ModalContent bg="brandGray.light">
@@ -212,19 +212,19 @@ const CreateServerModal: React.FC<IScreenProps> = ({ goBack, submitClose }) => {
         validationSchema={GuildSchema}
         onSubmit={async (values, { setErrors }) => {
           try {
-            const { data } = await createGuild(values);
+            const { data } = await createGuild(values)
             if (data) {
-              cache.setQueryData<Guild[]>(gKey, (old) => [...old!, data]);
-              submitClose();
-              history.push(`/channels/${data.id}/${data.default_channel_id}`);
+              cache.setQueryData<Guild[]>(gKey, (old) => [...old!, data])
+              submitClose()
+              history.push(`/channels/${data.id}/${data.default_channel_id}`)
             }
           } catch (err: any) {
             if (err?.response?.status === 400) {
-              setErrors({ name: "The server limit is 100" });
+              setErrors({ name: 'The server limit is 100' })
             }
             if (err?.response?.data?.errors) {
-              const errors = err?.response?.data?.errors;
-              setErrors(toErrorMap(errors));
+              const errors = err?.response?.data?.errors
+              setErrors(toErrorMap(errors))
             }
           }
         }}
@@ -234,7 +234,7 @@ const CreateServerModal: React.FC<IScreenProps> = ({ goBack, submitClose }) => {
             <ModalHeader textAlign="center" fontWeight="bold" pb="0">
               Create your server
             </ModalHeader>
-            <ModalCloseButton _focus={{ outline: "none" }} />
+            <ModalCloseButton _focus={{ outline: 'none' }} />
             <ModalBody pb={3}>
               <InputField label="server name" name="name" value={values.name} />
             </ModalBody>
@@ -245,7 +245,7 @@ const CreateServerModal: React.FC<IScreenProps> = ({ goBack, submitClose }) => {
                 fontSize="14px"
                 variant="link"
                 onClick={goBack}
-                _focus={{ outline: "none" }}
+                _focus={{ outline: 'none' }}
               >
                 Back
               </Button>
@@ -253,9 +253,9 @@ const CreateServerModal: React.FC<IScreenProps> = ({ goBack, submitClose }) => {
                 background="highlight.standard"
                 color="white"
                 type="submit"
-                _hover={{ bg: "highlight.hover" }}
-                _active={{ bg: "highlight.active" }}
-                _focus={{ boxShadow: "none" }}
+                _hover={{ bg: 'highlight.hover' }}
+                _active={{ bg: 'highlight.active' }}
+                _focus={{ boxShadow: 'none' }}
                 isLoading={isSubmitting}
                 fontSize="14px"
               >
@@ -266,5 +266,5 @@ const CreateServerModal: React.FC<IScreenProps> = ({ goBack, submitClose }) => {
         )}
       </Formik>
     </ModalContent>
-  );
-};
+  )
+}

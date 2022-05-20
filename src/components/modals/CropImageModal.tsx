@@ -12,16 +12,16 @@ import {
   SliderFilledTrack,
   SliderThumb,
   SliderTrack,
-} from "@chakra-ui/react";
-import React, { useCallback, useState } from "react";
-import Cropper from "react-easy-crop";
-import getCroppedImg from "../../lib/utils/cropImage";
+} from '@chakra-ui/react'
+import React, { useCallback, useState } from 'react'
+import Cropper from 'react-easy-crop'
+import getCroppedImg from '../../lib/utils/cropImage'
 
 interface IProps {
-  isOpen: boolean;
-  initialImage: string;
-  applyCrop: (image: Blob) => void;
-  onClose: () => void;
+  isOpen: boolean
+  initialImage: string
+  applyCrop: (image: Blob) => void
+  onClose: () => void
 }
 
 export const CropImageModal: React.FC<IProps> = ({
@@ -33,20 +33,20 @@ export const CropImageModal: React.FC<IProps> = ({
   const [crop, setCrop] = useState({
     x: 0,
     y: 0,
-  });
-  const [zoom, setZoom] = useState(1);
-  const [croppedAreaPixels, setCroppedAreaPixels] = useState(null);
+  })
+  const [zoom, setZoom] = useState(1)
+  const [croppedAreaPixels, setCroppedAreaPixels] = useState(null)
 
   const onCropComplete = useCallback((croppedArea, croppedAreaPixelsResult) => {
-    setCroppedAreaPixels(croppedAreaPixelsResult);
-  }, []);
+    setCroppedAreaPixels(croppedAreaPixelsResult)
+  }, [])
 
   const showCroppedImage = useCallback(async () => {
     try {
-      const croppedImage = await getCroppedImg(initialImage, croppedAreaPixels);
-      applyCrop(croppedImage);
+      const croppedImage = await getCroppedImg(initialImage, croppedAreaPixels)
+      applyCrop(croppedImage)
     } catch (e) {}
-  }, [croppedAreaPixels, initialImage, applyCrop]);
+  }, [croppedAreaPixels, initialImage, applyCrop])
 
   return (
     <Modal
@@ -59,7 +59,7 @@ export const CropImageModal: React.FC<IProps> = ({
 
       <ModalContent bg="brandGray.light">
         <ModalHeader fontWeight="bold">EDIT MEDIA</ModalHeader>
-        <ModalCloseButton _focus={{ outline: "none" }} />
+        <ModalCloseButton _focus={{ outline: 'none' }} />
         <ModalBody>
           <Box h="400px" overflow="hidden" position="relative">
             <Cropper
@@ -98,9 +98,9 @@ export const CropImageModal: React.FC<IProps> = ({
             color="white"
             type="submit"
             fontSize="14px"
-            _hover={{ bg: "highlight.hover" }}
-            _active={{ bg: "highlight.active" }}
-            _focus={{ boxShadow: "none" }}
+            _hover={{ bg: 'highlight.hover' }}
+            _active={{ bg: 'highlight.active' }}
+            _focus={{ boxShadow: 'none' }}
             onClick={showCroppedImage}
           >
             Apply
@@ -108,5 +108,5 @@ export const CropImageModal: React.FC<IProps> = ({
         </ModalFooter>
       </ModalContent>
     </Modal>
-  );
-};
+  )
+}

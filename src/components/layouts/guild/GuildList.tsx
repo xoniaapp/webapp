@@ -1,4 +1,4 @@
-import React from "react";
+import React from 'react'
 import {
   Box,
   Divider,
@@ -6,21 +6,21 @@ import {
   GridItem,
   UnorderedList,
   useDisclosure,
-} from "@chakra-ui/react";
-import { useQuery } from "react-query";
-import { AddGuildModal } from "../../modals/AddGuildModal";
-import { GuildListItem } from "../../items/GuildListItem";
-import { AddGuildIcon } from "../../sections/AddGuildIcon";
-import { HomeIcon } from "../../sections/HomeIcon";
-import { getUserGuilds } from "../../../lib/api/handler/guilds";
-import { gKey, nKey } from "../../../lib/utils/querykeys";
-import { guildScrollbarCss } from "./css/GuildScrollerCSS";
-import { useGuildSocket } from "../../../lib/api/ws/useGuildSocket";
-import { NotificationListItem } from "../../items/NotificationListItem";
-import { DMNotification } from "../../../lib/models/dm";
+} from '@chakra-ui/react'
+import { useQuery } from 'react-query'
+import { AddGuildModal } from '../../modals/AddGuildModal'
+import { GuildListItem } from '../../items/GuildListItem'
+import { AddGuildIcon } from '../../sections/AddGuildIcon'
+import { HomeIcon } from '../../sections/HomeIcon'
+import { getUserGuilds } from '../../../lib/api/handler/guilds'
+import { gKey, nKey } from '../../../lib/utils/querykeys'
+import { guildScrollbarCss } from './css/GuildScrollerCSS'
+import { useGuildSocket } from '../../../lib/api/ws/useGuildSocket'
+import { NotificationListItem } from '../../items/NotificationListItem'
+import { DMNotification } from '../../../lib/models/dm'
 
 export const GuildList: React.FC = () => {
-  const { isOpen, onOpen, onClose } = useDisclosure();
+  const { isOpen, onOpen, onClose } = useDisclosure()
 
   const { data } = useQuery(
     gKey,
@@ -28,13 +28,13 @@ export const GuildList: React.FC = () => {
     {
       cacheTime: Infinity,
     },
-  );
+  )
 
   const { data: dmData } = useQuery<DMNotification[]>(nKey, () => [], {
     cacheTime: Infinity,
-  });
+  })
 
-  useGuildSocket();
+  useGuildSocket()
 
   return (
     <GridItem
@@ -63,5 +63,5 @@ export const GuildList: React.FC = () => {
       {isOpen && <AddGuildModal isOpen={isOpen} onClose={onClose} />}
       <Box h="20px" />
     </GridItem>
-  );
-};
+  )
+}

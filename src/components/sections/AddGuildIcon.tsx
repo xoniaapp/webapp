@@ -1,19 +1,20 @@
-import React, { useState } from "react";
-import { Flex } from "@chakra-ui/react";
-import { AiOutlinePlus } from "react-icons/ai";
-import { StyledTooltip } from "./StyledTooltip";
-import { HoverGuildPill } from "../common/GuildPills";
+import React, { useState } from 'react'
+import { Flex } from '@chakra-ui/react'
+import { AiOutlinePlus } from 'react-icons/ai'
+import { StyledTooltip } from './StyledTooltip'
+import { HoverGuildPill } from '../common/GuildPills'
 
 interface AddGuildIconProps {
-  onOpen: () => void;
+  onOpen: () => void
 }
 
 export const AddGuildIcon: React.FC<AddGuildIconProps> = ({ onOpen }) => {
-  const [isHover, setHover] = useState(false);
+  const [isHover, setHover] = useState(false)
 
   return (
     <>
       {isHover && <HoverGuildPill />}
+      {/* @ts-ignore */}
       <StyledTooltip label="Add a Server" position="right">
         <Flex
           id="add-guild-icon"
@@ -26,10 +27,10 @@ export const AddGuildIcon: React.FC<AddGuildIconProps> = ({ onOpen }) => {
           h="48px"
           w="48px"
           _hover={{
-            cursor: "pointer",
-            borderRadius: "35%",
-            bg: "brandGreen",
-            color: "white",
+            cursor: 'pointer',
+            borderRadius: '35%',
+            bg: 'brandGreen',
+            color: 'white',
           }}
           onClick={onOpen}
           onMouseLeave={() => setHover(false)}
@@ -39,5 +40,5 @@ export const AddGuildIcon: React.FC<AddGuildIconProps> = ({ onOpen }) => {
         </Flex>
       </StyledTooltip>
     </>
-  );
-};
+  )
+}

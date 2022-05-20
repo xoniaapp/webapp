@@ -1,4 +1,4 @@
-import * as yup from "yup";
+import * as yup from 'yup'
 
 export const MemberSchema = yup.object().shape({
   nickname: yup.string().nullable().min(3).max(30),
@@ -7,6 +7,6 @@ export const MemberSchema = yup.object().shape({
     .nullable()
     .matches(
       /^#[0-9a-f]{3}(?:[0-9a-f]{3})?$/i,
-      "The color must be a valid hex color",
+      'The color must be a valid hex color',
     ),
-});
+})

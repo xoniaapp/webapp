@@ -9,21 +9,21 @@ import {
   ModalOverlay,
   Text,
   useToast,
-} from "@chakra-ui/react";
-import { Form, Formik } from "formik";
-import React from "react";
-import { toErrorMap } from "../../lib/utils/toErrorMap";
-import { ChangePasswordSchema } from "../../lib/utils/validation/auth.schema";
-import { InputField } from "../common/InputField";
-import { changePassword } from "../../lib/api/handler/auth";
+} from '@chakra-ui/react'
+import { Form, Formik } from 'formik'
+import React from 'react'
+import { toErrorMap } from '../../lib/utils/toErrorMap'
+import { ChangePasswordSchema } from '../../lib/utils/validation/auth.schema'
+import { InputField } from '../common/InputField'
+import { changePassword } from '../../lib/api/handler/auth'
 
 interface IProps {
-  isOpen: boolean;
-  onClose: () => void;
+  isOpen: boolean
+  onClose: () => void
 }
 
 export const ChangePasswordModal: React.FC<IProps> = ({ isOpen, onClose }) => {
-  const toast = useToast();
+  const toast = useToast()
 
   return (
     <Modal isOpen={isOpen} onClose={onClose} isCentered>
@@ -32,36 +32,36 @@ export const ChangePasswordModal: React.FC<IProps> = ({ isOpen, onClose }) => {
       <ModalContent bg="brandGray.light">
         <Formik
           initialValues={{
-            currentPassword: "",
-            newPassword: "",
-            confirmNewPassword: "",
+            currentPassword: '',
+            newPassword: '',
+            confirmNewPassword: '',
           }}
           validationSchema={ChangePasswordSchema}
           onSubmit={async (values, { setErrors }) => {
             try {
-              const { data } = await changePassword(values);
+              const { data } = await changePassword(values)
               if (data) {
                 toast({
-                  title: "Changed Password",
-                  status: "success",
+                  title: 'Changed Password',
+                  status: 'success',
                   duration: 5000,
                   isClosable: true,
-                });
-                onClose();
+                })
+                onClose()
               }
             } catch (err: any) {
               if (err?.response?.status === 500) {
                 toast({
-                  title: "Server Error",
-                  description: "Try again later",
-                  status: "error",
+                  title: 'Server Error',
+                  description: 'Try again later',
+                  status: 'error',
                   duration: 3000,
                   isClosable: true,
-                });
+                })
               }
               if (err?.response?.data?.errors) {
-                const errors = err?.response?.data?.errors;
-                setErrors(toErrorMap(errors));
+                const errors = err?.response?.data?.errors
+                setErrors(toErrorMap(errors))
               }
             }
           }}
@@ -71,7 +71,7 @@ export const ChangePasswordModal: React.FC<IProps> = ({ isOpen, onClose }) => {
               <ModalHeader textAlign="center" fontWeight="bold">
                 Change your password
               </ModalHeader>
-              <ModalCloseButton _focus={{ outline: "none" }} />
+              <ModalCloseButton _focus={{ outline: 'none' }} />
               <ModalBody pb={6}>
                 <Text>Enter your current password and a new password</Text>
                 <InputField
@@ -102,7 +102,7 @@ export const ChangePasswordModal: React.FC<IProps> = ({ isOpen, onClose }) => {
                   fontSize="14px"
                   mr={6}
                   variant="link"
-                  _focus={{ outline: "none" }}
+                  _focus={{ outline: 'none' }}
                 >
                   Cancel
                 </Button>
@@ -110,9 +110,9 @@ export const ChangePasswordModal: React.FC<IProps> = ({ isOpen, onClose }) => {
                   background="highlight.standard"
                   color="white"
                   type="submit"
-                  _hover={{ bg: "highlight.hover" }}
-                  _active={{ bg: "highlight.active" }}
-                  _focus={{ boxShadow: "none" }}
+                  _hover={{ bg: 'highlight.hover' }}
+                  _active={{ bg: 'highlight.active' }}
+                  _focus={{ boxShadow: 'none' }}
                   isLoading={isSubmitting}
                   fontSize="14px"
                 >
@@ -124,5 +124,5 @@ export const ChangePasswordModal: React.FC<IProps> = ({ isOpen, onClose }) => {
         </Formik>
       </ModalContent>
     </Modal>
-  );
-};
+  )
+}

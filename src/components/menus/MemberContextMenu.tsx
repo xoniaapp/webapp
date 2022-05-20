@@ -1,17 +1,17 @@
-import React, { useState } from "react";
-import { Divider, Flex, Text, useDisclosure } from "@chakra-ui/react";
-import { Item, Menu, theme } from "react-contexify";
-import { useHistory } from "react-router-dom";
-import { getOrCreateDirectMessage } from "../../lib/api/handler/dm";
-import { sendFriendRequest } from "../../lib/api/handler/account";
-import { RemoveFriendModal } from "../modals/RemoveFriendModal";
-import { ModActionModal } from "../modals/ModActionModal";
-import { Member } from "../../lib/models/member";
+import React, { useState } from 'react'
+import { Divider, Flex, Text, useDisclosure } from '@chakra-ui/react'
+import { Item, Menu, theme } from 'react-contexify'
+import { useHistory } from 'react-router-dom'
+import { getOrCreateDirectMessage } from '../../lib/api/handler/dm'
+import { sendFriendRequest } from '../../lib/api/handler/account'
+import { RemoveFriendModal } from '../modals/RemoveFriendModal'
+import { ModActionModal } from '../modals/ModActionModal'
+import { Member } from '../../lib/models/member'
 
 interface MemberContextMenuProps {
-  member: Member;
-  isOwner: boolean;
-  id: string;
+  member: Member
+  isOwner: boolean
+  id: string
 }
 
 export const MemberContextMenu: React.FC<MemberContextMenuProps> = ({
@@ -19,33 +19,33 @@ export const MemberContextMenu: React.FC<MemberContextMenuProps> = ({
   isOwner,
   id,
 }) => {
-  const history = useHistory();
-  const { isOpen, onOpen, onClose } = useDisclosure();
+  const history = useHistory()
+  const { isOpen, onOpen, onClose } = useDisclosure()
   const {
     isOpen: modIsOpen,
     onOpen: modOnOpen,
     onClose: modOnClose,
-  } = useDisclosure();
-  const [isBan, setIsBan] = useState(false);
+  } = useDisclosure()
+  const [isBan, setIsBan] = useState(false)
 
   const getOrCreateDM = async (): Promise<void> => {
     try {
-      const { data } = await getOrCreateDirectMessage(member.id);
+      const { data } = await getOrCreateDirectMessage(member.id)
       if (data) {
-        history.push(`/channels/me/${data.id}`);
+        history.push(`/channels/me/${data.id}`)
       }
     } catch (err) {}
-  };
+  }
 
   const handleFriendClick = async (): Promise<void> => {
     if (!member.isFriend) {
       try {
-        await sendFriendRequest(member.id);
+        await sendFriendRequest(member.id)
       } catch (err) {}
     } else {
-      onOpen();
+      onOpen()
     }
-  };
+  }
 
   return (
     <>
@@ -57,7 +57,7 @@ export const MemberContextMenu: React.FC<MemberContextMenuProps> = ({
         </Item>
         <Item onClick={handleFriendClick} className="menu-item">
           <Flex align="center" justify="space-between" w="full">
-            <Text>{member.isFriend ? "Remove" : "Add"} Friend</Text>
+            <Text>{member.isFriend ? 'Remove' : 'Add'} Friend</Text>
           </Flex>
         </Item>
         {isOwner && (
@@ -67,8 +67,8 @@ export const MemberContextMenu: React.FC<MemberContextMenuProps> = ({
             </Flex>
             <Item
               onClick={() => {
-                setIsBan(false);
-                modOnOpen();
+                setIsBan(false)
+                modOnOpen()
               }}
               className="delete-item"
             >
@@ -78,8 +78,8 @@ export const MemberContextMenu: React.FC<MemberContextMenuProps> = ({
             </Item>
             <Item
               onClick={() => {
-                setIsBan(true);
-                modOnOpen();
+                setIsBan(true)
+                modOnOpen()
               }}
               className="delete-item"
             >
@@ -100,5 +100,5 @@ export const MemberContextMenu: React.FC<MemberContextMenuProps> = ({
         />
       )}
     </>
-  );
-};
+  )
+}

@@ -16,37 +16,37 @@ import {
   ModalOverlay,
   Switch,
   Text,
-} from "@chakra-ui/react";
-import { Form, Formik } from "formik";
-import React, { useState } from "react";
-import { AiOutlineLock } from "react-icons/ai";
-import { FaRegTrashAlt } from "react-icons/fa";
-import { CUIAutoComplete } from "chakra-ui-autocomplete";
-import { useQuery } from "react-query";
-import { InputField } from "../common/InputField";
-import { toErrorMap } from "../../lib/utils/toErrorMap";
-import { getGuildMembers } from "../../lib/api/handler/guilds";
-import { ChannelSchema } from "../../lib/utils/validation/channel.schema";
-import { useGetCurrentChannel } from "../../lib/utils/hooks/useGetCurrentChannel";
-import { cKey, mKey } from "../../lib/utils/querykeys";
+} from '@chakra-ui/react'
+import { Form, Formik } from 'formik'
+import React, { useState } from 'react'
+import { AiOutlineLock } from 'react-icons/ai'
+import { FaRegTrashAlt } from 'react-icons/fa'
+import { CUIAutoComplete } from 'chakra-ui-autocomplete'
+import { useQuery } from 'react-query'
+import { InputField } from '../common/InputField'
+import { toErrorMap } from '../../lib/utils/toErrorMap'
+import { getGuildMembers } from '../../lib/api/handler/guilds'
+import { ChannelSchema } from '../../lib/utils/validation/channel.schema'
+import { useGetCurrentChannel } from '../../lib/utils/hooks/useGetCurrentChannel'
+import { cKey, mKey } from '../../lib/utils/querykeys'
 import {
   deleteChannel,
   editChannel,
   getPrivateChannelMembers,
-} from "../../lib/api/handler/channel";
+} from '../../lib/api/handler/channel'
 
 interface IProps {
-  guildId: string;
-  channelId: string;
-  isOpen: boolean;
-  onClose: () => void;
+  guildId: string
+  channelId: string
+  isOpen: boolean
+  onClose: () => void
 }
 
 interface Item {
   // eslint-disable-next-line react/no-unused-prop-types
-  value: string;
-  label: string;
-  image: string;
+  value: string
+  label: string
+  image: string
 }
 
 enum ChannelScreen {
@@ -60,23 +60,23 @@ export const ChannelSettingsModal: React.FC<IProps> = ({
   isOpen,
   onClose,
 }) => {
-  const key = mKey(guildId);
+  const key = mKey(guildId)
   const { data } = useQuery(key, () =>
     getGuildMembers(guildId).then((response) => response.data),
-  );
+  )
 
-  const channel = useGetCurrentChannel(channelId, cKey(guildId));
+  const channel = useGetCurrentChannel(channelId, cKey(guildId))
 
-  const members: Item[] = [];
-  const [selectedItems, setSelectedItems] = useState<Item[]>([]);
-  const [screen, setScreen] = useState(ChannelScreen.START);
-  const [showError, toggleShow] = useState(false);
+  const members: Item[] = []
+  const [selectedItems, setSelectedItems] = useState<Item[]>([])
+  const [screen, setScreen] = useState(ChannelScreen.START)
+  const [showError, toggleShow] = useState(false)
 
-  const goBack = (): void => setScreen(ChannelScreen.START);
+  const goBack = (): void => setScreen(ChannelScreen.START)
   const submitClose = (): void => {
-    setScreen(ChannelScreen.START);
-    onClose();
-  };
+    setScreen(ChannelScreen.START)
+    onClose()
+  }
 
   data?.map((m) =>
     members.push({
@@ -84,34 +84,34 @@ export const ChannelSettingsModal: React.FC<IProps> = ({
       value: m.id,
       image: m.image,
     }),
-  );
+  )
 
   // eslint-disable-next-line
   const { data: _ } = useQuery<Item[]>(`${channelId}-members`, async () => {
-    const { data: memberData } = await getPrivateChannelMembers(channelId);
-    const current = members.filter((m) => memberData.includes(m.value));
-    setSelectedItems(current);
-    return current;
-  });
+    const { data: memberData } = await getPrivateChannelMembers(channelId)
+    const current = members.filter((m) => memberData.includes(m.value))
+    setSelectedItems(current)
+    return current
+  })
 
   const handleCreateItem = (item: Item): void => {
-    setSelectedItems((curr) => [...curr, item]);
-  };
+    setSelectedItems((curr) => [...curr, item])
+  }
 
   const handleSelectedItemsChange = (changedItems?: Item[]): void => {
     if (changedItems) {
-      setSelectedItems(changedItems);
+      setSelectedItems(changedItems)
     }
-  };
+  }
 
   const ListItem = ({ image, label }: Item): JSX.Element => (
     <Flex align="center">
       <Avatar mr={2} size="sm" src={image} />
       <Text textColor="#000">{label}</Text>
     </Flex>
-  );
+  )
 
-  if (!channel) return null;
+  if (!channel) return null
 
   return (
     <Modal isOpen={isOpen} onClose={onClose} isCentered>
@@ -126,23 +126,23 @@ export const ChannelSettingsModal: React.FC<IProps> = ({
             validationSchema={ChannelSchema}
             onSubmit={async (values, { setErrors, resetForm }) => {
               try {
-                const ids: string[] = [];
-                selectedItems.map((i) => ids.push(i.value));
+                const ids: string[] = []
+                selectedItems.map((i) => ids.push(i.value))
                 const { data: responseData } = await editChannel(channelId, {
                   ...values,
                   members: ids,
-                });
+                })
                 if (responseData) {
-                  resetForm();
-                  onClose();
+                  resetForm()
+                  onClose()
                 }
               } catch (err: any) {
                 if (err?.response?.status === 500) {
-                  toggleShow(true);
+                  toggleShow(true)
                 }
                 if (err?.response?.data?.errors) {
-                  const errors = err?.response?.data?.errors;
-                  setErrors(toErrorMap(errors));
+                  const errors = err?.response?.data?.errors
+                  setErrors(toErrorMap(errors))
                 }
               }
             }}
@@ -152,7 +152,7 @@ export const ChannelSettingsModal: React.FC<IProps> = ({
                 <ModalHeader textAlign="center" fontWeight="bold">
                   Channel Settings
                 </ModalHeader>
-                <ModalCloseButton _focus={{ outline: "none" }} />
+                <ModalCloseButton _focus={{ outline: 'none' }} />
                 <ModalBody>
                   <InputField label="channel name" name="name" />
 
@@ -171,7 +171,7 @@ export const ChannelSettingsModal: React.FC<IProps> = ({
                     <Switch
                       defaultChecked={!values.isPublic}
                       onChange={(e) => {
-                        setFieldValue("isPublic", !e.target.checked);
+                        setFieldValue('isPublic', !e.target.checked)
                       }}
                     />
                   </FormControl>
@@ -222,7 +222,7 @@ export const ChannelSettingsModal: React.FC<IProps> = ({
                     mr={6}
                     variant="link"
                     fontSize="14px"
-                    _focus={{ outline: "none" }}
+                    _focus={{ outline: 'none' }}
                   >
                     Cancel
                   </Button>
@@ -230,9 +230,9 @@ export const ChannelSettingsModal: React.FC<IProps> = ({
                     background="highlight.standard"
                     color="white"
                     type="submit"
-                    _hover={{ bg: "highlight.hover" }}
-                    _active={{ bg: "highlight.active" }}
-                    _focus={{ boxShadow: "none" }}
+                    _hover={{ bg: 'highlight.hover' }}
+                    _active={{ bg: 'highlight.active' }}
+                    _focus={{ boxShadow: 'none' }}
                     isLoading={isSubmitting}
                     fontSize="14px"
                   >
@@ -253,14 +253,14 @@ export const ChannelSettingsModal: React.FC<IProps> = ({
         />
       )}
     </Modal>
-  );
-};
+  )
+}
 
 interface IScreenProps {
-  goBack: () => void;
-  submitClose: () => void;
-  name: string;
-  channelId: string;
+  goBack: () => void
+  submitClose: () => void
+  name: string
+  channelId: string
 }
 
 const DeleteChannelModal: React.FC<IScreenProps> = ({
@@ -269,17 +269,17 @@ const DeleteChannelModal: React.FC<IScreenProps> = ({
   name,
   channelId,
 }) => {
-  const [showError, toggleShow] = useState(false);
+  const [showError, toggleShow] = useState(false)
   const handleDelete = async (): Promise<void> => {
     try {
-      const { data } = await deleteChannel(channelId);
+      const { data } = await deleteChannel(channelId)
       if (data) {
-        submitClose();
+        submitClose()
       }
     } catch (err) {
-      toggleShow(true);
+      toggleShow(true)
     }
-  };
+  }
 
   return (
     <ModalContent bg="brandGray.light">
@@ -304,7 +304,7 @@ const DeleteChannelModal: React.FC<IScreenProps> = ({
           variant="link"
           onClick={goBack}
           fontSize="14px"
-          _focus={{ outline: "none" }}
+          _focus={{ outline: 'none' }}
         >
           Cancel
         </Button>
@@ -319,5 +319,5 @@ const DeleteChannelModal: React.FC<IScreenProps> = ({
         </LightMode>
       </ModalFooter>
     </ModalContent>
-  );
-};
+  )
+}
