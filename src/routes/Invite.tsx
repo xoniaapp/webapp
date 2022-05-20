@@ -33,7 +33,7 @@ export const Invite: React.FC = () => {
     <Flex minHeight="100vh" align="center" justify="center" h="full">
       <Box textAlign="center">
         <Flex mb="4" justify="center">
-          <Image src={`/logo.png`} w="80px" />
+          <Image src={`https://raw.githubusercontent.com/xoniaapp/app/main/logo.png`} w="80px" />
         </Flex>
         <Text>Please wait...</Text>
         <Text>You will be automatically redirected.</Text>
