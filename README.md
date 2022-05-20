@@ -1,11 +1,31 @@
-### Xonia webapp
+# Getting Started
 
-## Getting started
-**We use yarn.**
-`git clone github.com/xoniaapp/webapp.git`
-**Make sure you have Node.JS 16+ Installed with Yarn**
-then,
+### Git clone the repo.
 
-`cd webapp && yarn`
-### Start the dev Server
-`yarn dev`
+```
+git clone git@github.com:xoniaapp/webapp.git
+```
+
+### CD into the repo.
+
+```
+cd ./webapp
+```
+
+### Checkout to testing branch
+
+```
+git checkout testing
+```
+
+### Use Yarn to install deps.
+
+```
+yarn
+```
+
+### Start the dev server
+
+```
+yarn run dev
+```
