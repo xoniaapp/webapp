@@ -1,45 +1,48 @@
-import React, { useEffect } from "react";
-import { useQueryClient } from "react-query";
-import { userStore } from "../../lib/stores/userStore";
-import { getSocket } from "../../lib/api/getSocket";
-import { homeStore } from "../../lib/stores/homeStore";
-import { nKey } from "../../lib/utils/querykeys";
-import { DMChannel, DMNotification } from "../../lib/models/dm";
+import React, { useEffect } from 'react'
+import { useQueryClient } from 'react-query'
+import { userStore } from '../../lib/stores/userStore'
+import { getSocket } from '../../lib/api/getSocket'
+import { homeStore } from '../../lib/stores/homeStore'
+import { nKey } from '../../lib/utils/querykeys'
+import { DMChannel, DMNotification } from '../../lib/models/dm'
 
 type WSMessage =
-  | { action: "new_dm_notification"; data: DMChannel }
-  | { action: "send_request" };
+  | { action: 'new_dm_notification'; data: DMChannel }
+  | { action: 'send_request' }
 
+{
+  /* @ts-ignore */
+}
 export const GlobalState: React.FC = ({ children }) => {
-  const current = userStore((state) => state.current);
-  const inc = homeStore((state) => state.increment);
-  const cache = useQueryClient();
+  const current = userStore((state) => state.current)
+  const inc = homeStore((state) => state.increment)
+  const cache = useQueryClient()
 
   // eslint-disable-next-line consistent-return
   useEffect(() => {
     if (current) {
       const disconnect = (): void => {
-        socket.send(JSON.stringify({ action: "toggleOffline" }));
-        socket.close();
-      };
+        socket.send(JSON.stringify({ action: 'toggleOffline' }))
+        socket.close()
+      }
 
-      const socket = getSocket();
-      socket.send(JSON.stringify({ action: "toggleOnline" }));
+      const socket = getSocket()
+      socket.send(JSON.stringify({ action: 'toggleOnline' }))
       socket.send(
         JSON.stringify({
-          action: "joinUser",
+          action: 'joinUser',
           room: current?.id,
         }),
-      );
+      )
 
-      socket.addEventListener("message", (event) => {
-        const response: WSMessage = JSON.parse(event.data);
+      socket.addEventListener('message', (event) => {
+        const response: WSMessage = JSON.parse(event.data)
         switch (response.action) {
-          case "new_dm_notification": {
-            const channel = response.data;
+          case 'new_dm_notification': {
+            const channel = response.data
             if (channel.user.id !== current.id) {
               cache.setQueryData<DMNotification[]>(nKey, (data) => {
-                const index = data?.findIndex((c) => c.id === channel.id);
+                const index = data?.findIndex((c) => c.id === channel.id)
                 if (index !== -1 && index !== undefined) {
                   return [
                     {
@@ -47,7 +50,7 @@ export const GlobalState: React.FC = ({ children }) => {
                       count: data![index].count + 1,
                     },
                     ...data!.filter((c) => c.id !== channel.id),
-                  ];
+                  ]
                 }
                 return [
                   {
@@ -55,29 +58,29 @@ export const GlobalState: React.FC = ({ children }) => {
                     count: 1,
                   },
                   ...(data || []),
-                ];
-              });
+                ]
+              })
             }
-            break;
+            break
           }
 
-          case "send_request": {
-            if (!window.location.pathname.includes("/channels/me")) {
-              inc();
+          case 'send_request': {
+            if (!window.location.pathname.includes('/channels/me')) {
+              inc()
             }
-            break;
+            break
           }
 
           default:
-            break;
+            break
         }
-      });
+      })
 
-      window.addEventListener("beforeunload", disconnect);
+      window.addEventListener('beforeunload', disconnect)
 
-      return () => disconnect();
+      return () => disconnect()
     }
-  }, [current, inc, cache]);
+  }, [current, inc, cache])
 
-  return <>{children}</>;
-};
+  return <>{children}</>
+}

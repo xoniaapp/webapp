@@ -11,16 +11,16 @@ import {
   ModalHeader,
   ModalOverlay,
   Text,
-} from "@chakra-ui/react";
-import React, { useState } from "react";
-import { deleteMessage } from "../../lib/api/handler/messages";
-import { getTime } from "../../lib/utils/dateUtils";
-import { Message } from "../../lib/models/message";
+} from '@chakra-ui/react'
+import React, { useState } from 'react'
+import { deleteMessage } from '../../lib/api/handler/messages'
+import { getTime } from '../../lib/utils/dateUtils'
+import { Message } from '../../lib/models/message'
 
 interface IProps {
-  message: Message;
-  isOpen: boolean;
-  onClose: () => void;
+  message: Message
+  isOpen: boolean
+  onClose: () => void
 }
 
 export const DeleteMessageModal: React.FC<IProps> = ({
@@ -28,18 +28,18 @@ export const DeleteMessageModal: React.FC<IProps> = ({
   isOpen,
   onClose,
 }) => {
-  const [showError, toggleShow] = useState(false);
+  const [showError, toggleShow] = useState(false)
 
   const handleDelete = async (): Promise<void> => {
     try {
-      const { data } = await deleteMessage(message.id);
+      const { data } = await deleteMessage(message.id)
       if (data) {
-        onClose();
+        onClose()
       }
     } catch (err) {
-      toggleShow(true);
+      toggleShow(true)
     }
-  };
+  }
 
   return (
     <Modal isOpen={isOpen} onClose={onClose} isCentered>
@@ -93,7 +93,7 @@ export const DeleteMessageModal: React.FC<IProps> = ({
             mr={6}
             variant="link"
             fontSize="14px"
-            _focus={{ outline: "none" }}
+            _focus={{ outline: 'none' }}
           >
             Cancel
           </Button>
@@ -110,5 +110,5 @@ export const DeleteMessageModal: React.FC<IProps> = ({
         </ModalFooter>
       </ModalContent>
     </Modal>
-  );
-};
+  )
+}

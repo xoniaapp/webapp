@@ -1,11 +1,11 @@
-import React from "react";
-import { Flex, Icon, MenuItem, Text } from "@chakra-ui/react";
-import { IconType } from "react-icons";
+import React from 'react'
+import { Flex, Icon, MenuItem, Text } from '@chakra-ui/react'
+import { IconType } from 'react-icons'
 
 interface StyledMenuItemProps {
-  label: string;
-  icon: IconType;
-  handleClick: () => void;
+  label: string
+  icon: IconType
+  handleClick: () => void
 }
 
 export const StyledMenuItem: React.FC<StyledMenuItemProps> = ({
@@ -14,7 +14,7 @@ export const StyledMenuItem: React.FC<StyledMenuItemProps> = ({
   handleClick,
 }) => (
   <MenuItem
-    _hover={{ bg: "highlight.standard", borderRadius: "2px" }}
+    _hover={{ bg: 'highlight.standard', borderRadius: '2px' }}
     onClick={handleClick}
   >
     <Flex align="center" justify="space-between" w="full">
@@ -22,7 +22,7 @@ export const StyledMenuItem: React.FC<StyledMenuItemProps> = ({
       <Icon as={icon} />
     </Flex>
   </MenuItem>
-);
+)
 
 export const StyledRedMenuItem: React.FC<StyledMenuItemProps> = ({
   label,
@@ -30,7 +30,7 @@ export const StyledRedMenuItem: React.FC<StyledMenuItemProps> = ({
   handleClick,
 }) => (
   <MenuItem
-    _hover={{ bg: "menuRed", color: "#fff", borderRadius: "2px" }}
+    _hover={{ bg: 'menuRed', color: '#fff', borderRadius: '2px' }}
     onClick={handleClick}
   >
     <Flex align="center" justify="space-between" w="full">
@@ -38,4 +38,4 @@ export const StyledRedMenuItem: React.FC<StyledMenuItemProps> = ({
       <Icon as={icon} />
     </Flex>
   </MenuItem>
-);
+)

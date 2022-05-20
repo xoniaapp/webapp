@@ -1,4 +1,4 @@
-import React from "react";
+import React from 'react'
 import {
   Button,
   Input,
@@ -14,26 +14,26 @@ import {
   ModalOverlay,
   Text,
   useClipboard,
-} from "@chakra-ui/react";
-import { Form, Formik } from "formik";
-import { useQueryClient } from "react-query";
-import { userStore } from "../../lib/stores/userStore";
-import { InputField } from "../common/InputField";
-import { sendFriendRequest } from "../../lib/api/handler/account";
-import { rKey } from "../../lib/utils/querykeys";
+} from '@chakra-ui/react'
+import { Form, Formik } from 'formik'
+import { useQueryClient } from 'react-query'
+import { userStore } from '../../lib/stores/userStore'
+import { InputField } from '../common/InputField'
+import { sendFriendRequest } from '../../lib/api/handler/account'
+import { rKey } from '../../lib/utils/querykeys'
 
 interface AddFriendModalProps {
-  isOpen: boolean;
-  onClose: () => void;
+  isOpen: boolean
+  onClose: () => void
 }
 
 export const AddFriendModal: React.FC<AddFriendModalProps> = ({
   isOpen,
   onClose,
 }) => {
-  const current = userStore((state) => state.current);
-  const cache = useQueryClient();
-  const { hasCopied, onCopy } = useClipboard(current?.id || "");
+  const current = userStore((state) => state.current)
+  const cache = useQueryClient()
+  const { hasCopied, onCopy } = useClipboard(current?.id || '')
 
   return (
     <Modal isOpen={isOpen} onClose={onClose} isCentered>
@@ -41,22 +41,22 @@ export const AddFriendModal: React.FC<AddFriendModalProps> = ({
       <ModalContent bg="brandGray.light">
         <Formik
           initialValues={{
-            id: "",
+            id: '',
           }}
           onSubmit={async (values, { setErrors }) => {
-            if (values.id === "" && values.id.length !== 20) {
-              setErrors({ id: "Enter a valid ID" });
+            if (values.id === '' && values.id.length !== 20) {
+              setErrors({ id: 'Enter a valid ID' })
             } else {
               try {
-                const { data } = await sendFriendRequest(values.id);
+                const { data } = await sendFriendRequest(values.id)
                 if (data) {
-                  onClose();
-                  await cache.invalidateQueries(rKey);
+                  onClose()
+                  await cache.invalidateQueries(rKey)
                 }
               } catch (err: any) {
                 if (err?.response?.data?.error) {
-                  const error = err?.response?.data?.error?.message;
-                  setErrors({ id: error });
+                  const error = err?.response?.data?.error?.message
+                  setErrors({ id: error })
                 }
               }
             }
@@ -67,7 +67,7 @@ export const AddFriendModal: React.FC<AddFriendModalProps> = ({
               <ModalHeader fontWeight="bold" pb="0">
                 ADD FRIEND
               </ModalHeader>
-              <ModalCloseButton _focus={{ outline: "none" }} />
+              <ModalCloseButton _focus={{ outline: 'none' }} />
               <ModalBody>
                 <Text mb="4">Add friends using their User ID</Text>
                 <InputGroup mb={2}>
@@ -76,24 +76,24 @@ export const AddFriendModal: React.FC<AddFriendModalProps> = ({
                   </InputLeftAddon>
                   <Input
                     bg="brandGray.dark"
-                    borderColor={hasCopied ? "brandGreen" : "black"}
+                    borderColor={hasCopied ? 'brandGreen' : 'black'}
                     borderRadius="3px"
                     focusBorderColor="highlight.standard"
-                    value={current?.id || ""}
+                    value={current?.id || ''}
                     isReadOnly
                   />
                   <InputRightElement width="4.5rem">
                     <Button
                       h="1.75rem"
                       size="sm"
-                      bg={hasCopied ? "brandGreen" : "highlight.standard"}
+                      bg={hasCopied ? 'brandGreen' : 'highlight.standard'}
                       color="white"
-                      _hover={{ bg: "highlight.hover" }}
-                      _active={{ bg: "highlight.active" }}
-                      _focus={{ boxShadow: "none" }}
+                      _hover={{ bg: 'highlight.hover' }}
+                      _active={{ bg: 'highlight.active' }}
+                      _focus={{ boxShadow: 'none' }}
                       onClick={onCopy}
                     >
-                      {hasCopied ? "Copied" : "Copy"}
+                      {hasCopied ? 'Copied' : 'Copy'}
                     </Button>
                   </InputRightElement>
                 </InputGroup>
@@ -106,7 +106,7 @@ export const AddFriendModal: React.FC<AddFriendModalProps> = ({
                   variant="link"
                   onClick={onClose}
                   fontSize="14px"
-                  _focus={{ outline: "none" }}
+                  _focus={{ outline: 'none' }}
                 >
                   Cancel
                 </Button>
@@ -114,9 +114,9 @@ export const AddFriendModal: React.FC<AddFriendModalProps> = ({
                   background="highlight.standard"
                   color="white"
                   type="submit"
-                  _hover={{ bg: "highlight.hover" }}
-                  _active={{ bg: "highlight.active" }}
-                  _focus={{ boxShadow: "none" }}
+                  _hover={{ bg: 'highlight.hover' }}
+                  _active={{ bg: 'highlight.active' }}
+                  _focus={{ boxShadow: 'none' }}
                   isLoading={isSubmitting}
                   fontSize="14px"
                 >
@@ -128,5 +128,5 @@ export const AddFriendModal: React.FC<AddFriendModalProps> = ({
         </Formik>
       </ModalContent>
     </Modal>
-  );
-};
+  )
+}

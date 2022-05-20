@@ -1,49 +1,49 @@
-import React, { useEffect, useState } from "react";
-import { Flex, Icon, ListItem, Text, useDisclosure } from "@chakra-ui/react";
-import { FaHashtag, FaUserLock } from "react-icons/fa";
-import { MdSettings } from "react-icons/md";
-import { Link, useLocation } from "react-router-dom";
-import { useQueryClient } from "react-query";
-import { userStore } from "../../lib/stores/userStore";
-import { ChannelSettingsModal } from "../modals/ChannelSettingsModal";
-import { useGetCurrentGuild } from "../../lib/utils/hooks/useGetCurrentGuild";
-import { ChannelNotificationIndicator } from "../common/GuildPills";
-import { cKey } from "../../lib/utils/querykeys";
-import { Channel } from "../../lib/models/channel";
+import React, { useEffect, useState } from 'react'
+import { Flex, Icon, ListItem, Text, useDisclosure } from '@chakra-ui/react'
+import { FaHashtag, FaUserLock } from 'react-icons/fa'
+import { MdSettings } from 'react-icons/md'
+import { Link, useLocation } from 'react-router-dom'
+import { useQueryClient } from 'react-query'
+import { userStore } from '../../lib/stores/userStore'
+import { ChannelSettingsModal } from '../modals/ChannelSettingsModal'
+import { useGetCurrentGuild } from '../../lib/utils/hooks/useGetCurrentGuild'
+import { ChannelNotificationIndicator } from '../common/GuildPills'
+import { cKey } from '../../lib/utils/querykeys'
+import { Channel } from '../../lib/models/channel'
 
 interface ChannelListItemProps {
-  channel: Channel;
-  guildId: string;
+  channel: Channel
+  guildId: string
 }
 
 export const ChannelListItem: React.FC<ChannelListItemProps> = ({
   channel,
   guildId,
 }) => {
-  const currentPath = `/channels/${guildId}/${channel.id}`;
-  const location = useLocation();
-  const isActive = location.pathname === currentPath;
-  const [showSettings, setShowSettings] = useState(false);
+  const currentPath = `/channels/${guildId}/${channel.id}`
+  const location = useLocation()
+  const isActive = location.pathname === currentPath
+  const [showSettings, setShowSettings] = useState(false)
 
-  const current = userStore((state) => state.current);
-  const guild = useGetCurrentGuild(guildId);
+  const current = userStore((state) => state.current)
+  const guild = useGetCurrentGuild(guildId)
 
-  const { isOpen, onOpen, onClose } = useDisclosure();
+  const { isOpen, onOpen, onClose } = useDisclosure()
 
-  const cache = useQueryClient();
+  const cache = useQueryClient()
 
   useEffect(() => {
     if (channel.hasNotification && isActive) {
       cache.setQueryData<Channel[]>(cKey(guildId), (d) => {
-        const data = d ?? [];
-        const index = data.findIndex((c) => c.id === channel.id);
+        const data = d ?? []
+        const index = data.findIndex((c) => c.id === channel.id)
         if (index !== -1) {
-          data[index] = { ...data[index], hasNotification: false };
+          data[index] = { ...data[index], hasNotification: false }
         }
-        return data;
-      });
+        return data
+      })
     }
-  });
+  })
 
   return (
     <Link to={currentPath}>
@@ -51,15 +51,15 @@ export const ChannelListItem: React.FC<ChannelListItemProps> = ({
         p="5px"
         m="0 10px"
         color={
-          isActive || channel.hasNotification ? "#fff" : "brandGray.accent"
+          isActive || channel.hasNotification ? '#fff' : 'brandGray.accent'
         }
         _hover={{
-          bg: "brandGray.light",
-          borderRadius: "5px",
-          cursor: "pointer",
-          color: "#fff",
+          bg: 'brandGray.light',
+          borderRadius: '5px',
+          cursor: 'pointer',
+          color: '#fff',
         }}
-        bg={isActive ? "brandGray.active" : undefined}
+        bg={isActive ? 'brandGray.active' : undefined}
         mb="2px"
         position="relative"
         onMouseLeave={() => setShowSettings(false)}
@@ -81,10 +81,10 @@ export const ChannelListItem: React.FC<ChannelListItemProps> = ({
                 as={MdSettings}
                 color="brandGray.accent"
                 fontSize="12px"
-                _hover={{ color: "#fff" }}
+                _hover={{ color: '#fff' }}
                 onClick={(e) => {
-                  e.preventDefault();
-                  onOpen();
+                  e.preventDefault()
+                  onOpen()
                 }}
               />
               {isOpen && (
@@ -100,5 +100,5 @@ export const ChannelListItem: React.FC<ChannelListItemProps> = ({
         </Flex>
       </ListItem>
     </Link>
-  );
-};
+  )
+}

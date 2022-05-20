@@ -1,15 +1,15 @@
-import create from "zustand";
+import create from 'zustand'
 
 type HomeStoreType = {
-  notifCount: number;
-  requestCount: number;
-  increment: () => void;
-  setRequests: (r: number) => void;
-  reset: () => void;
-  resetRequest: () => void;
-  isPending: boolean;
-  toggleDisplay: () => void;
-};
+  notifCount: number
+  requestCount: number
+  increment: () => void
+  setRequests: (r: number) => void
+  reset: () => void
+  resetRequest: () => void
+  isPending: boolean
+  toggleDisplay: () => void
+}
 
 export const homeStore = create<HomeStoreType>((set) => ({
   notifCount: 0,
@@ -20,4 +20,4 @@ export const homeStore = create<HomeStoreType>((set) => ({
   setRequests: (r) => set({ requestCount: r }),
   isPending: false,
   toggleDisplay: () => set((state) => ({ isPending: !state.isPending })),
-}));
+}))

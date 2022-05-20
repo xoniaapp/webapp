@@ -1,8 +1,8 @@
-import { Flex, Text } from "@chakra-ui/react";
-import React from "react";
+import { Flex, Text } from '@chakra-ui/react'
+import React from 'react'
 
 interface NotificationIconProps {
-  count: number;
+  count: number
 }
 
 export const NotificationIcon: React.FC<NotificationIconProps> = ({
@@ -26,7 +26,7 @@ export const NotificationIcon: React.FC<NotificationIconProps> = ({
       {count}
     </Text>
   </Flex>
-);
+)
 
 export const PingIcon: React.FC<NotificationIconProps> = ({ count }) => (
   <Flex
@@ -43,4 +43,4 @@ export const PingIcon: React.FC<NotificationIconProps> = ({ count }) => (
       {count}
     </Text>
   </Flex>
-);
+)

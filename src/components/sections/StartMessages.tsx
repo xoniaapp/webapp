@@ -1,19 +1,19 @@
-import { Avatar, Box, Divider, Flex, Heading, Text } from "@chakra-ui/react";
-import React from "react";
-import { useParams } from "react-router-dom";
-import { useGetCurrentChannel } from "../../lib/utils/hooks/useGetCurrentChannel";
-import { cKey } from "../../lib/utils/querykeys";
-import { useGetCurrentDM } from "../../lib/utils/hooks/useGetCurrentDM";
-import { RouterProps } from "../../lib/models/routerProps";
+import { Avatar, Box, Divider, Flex, Heading, Text } from '@chakra-ui/react'
+import React from 'react'
+import { useParams } from 'react-router-dom'
+import { useGetCurrentChannel } from '../../lib/utils/hooks/useGetCurrentChannel'
+import { cKey } from '../../lib/utils/querykeys'
+import { useGetCurrentDM } from '../../lib/utils/hooks/useGetCurrentDM'
+import { RouterProps } from '../../lib/models/routerProps'
 
 export const StartMessages: React.FC = () => {
-  const { guildId } = useParams<RouterProps>();
-  return guildId === undefined ? <DMStartMessages /> : <ChannelStartMessages />;
-};
+  const { guildId } = useParams<RouterProps>()
+  return guildId === undefined ? <DMStartMessages /> : <ChannelStartMessages />
+}
 
 const ChannelStartMessages: React.FC = () => {
-  const { guildId, channelId } = useParams<RouterProps>();
-  const channel = useGetCurrentChannel(channelId, cKey(guildId));
+  const { guildId, channelId } = useParams<RouterProps>()
+  const channel = useGetCurrentChannel(channelId, cKey(guildId))
 
   return (
     <Flex alignItems="center" mb="2" justify="center">
@@ -22,12 +22,12 @@ const ChannelStartMessages: React.FC = () => {
         <Text>This is the start of the #{channel?.name} channel</Text>
       </Box>
     </Flex>
-  );
-};
+  )
+}
 
 const DMStartMessages: React.FC = () => {
-  const { channelId } = useParams<RouterProps>();
-  const channel = useGetCurrentDM(channelId);
+  const { channelId } = useParams<RouterProps>()
+  const channel = useGetCurrentDM(channelId)
 
   return (
     <Box m="4">
@@ -40,5 +40,5 @@ const DMStartMessages: React.FC = () => {
       </Text>
       <Divider mt={2} />
     </Box>
-  );
-};
+  )
+}

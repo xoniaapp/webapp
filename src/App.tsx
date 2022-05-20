@@ -1,7 +1,7 @@
-import * as React from "react";
-import { QueryClient, QueryClientProvider } from "react-query";
-import { Routes } from "./routes/Routes";
-import { GlobalState } from "./components/sections/GlobalState";
+import * as React from 'react'
+import { QueryClient, QueryClientProvider } from 'react-query'
+import { Routes } from './routes/Routes'
+import { GlobalState } from './components/sections/GlobalState'
 
 const client = new QueryClient({
   defaultOptions: {
@@ -11,12 +11,13 @@ const client = new QueryClient({
       cacheTime: 0,
     },
   },
-});
+})
 
 export const App: React.FC = () => (
   <QueryClientProvider client={client}>
+    {/* @ts-ignore */}
     <GlobalState>
       <Routes />
     </GlobalState>
   </QueryClientProvider>
-);
+)

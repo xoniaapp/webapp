@@ -1,64 +1,57 @@
-import {
-  Avatar,
-  Box,
-  Flex,
-  IconButton,
-  ListItem,
-  Text,
-} from "@chakra-ui/react";
-import React from "react";
-import { BiCheck } from "react-icons/bi";
-import { AiOutlineClose } from "react-icons/ai";
-import { useQueryClient } from "react-query";
-import { StyledTooltip } from "../sections/StyledTooltip";
+import { Avatar, Box, Flex, IconButton, ListItem, Text } from '@chakra-ui/react'
+import React from 'react'
+import { BiCheck } from 'react-icons/bi'
+import { AiOutlineClose } from 'react-icons/ai'
+import { useQueryClient } from 'react-query'
+import { StyledTooltip } from '../sections/StyledTooltip'
 import {
   acceptFriendRequest,
   declineFriendRequest,
-} from "../../lib/api/handler/account";
-import { fKey, rKey } from "../../lib/utils/querykeys";
-import { FriendRequest, RequestType } from "../../lib/models/friend";
+} from '../../lib/api/handler/account'
+import { fKey, rKey } from '../../lib/utils/querykeys'
+import { FriendRequest, RequestType } from '../../lib/models/friend'
 
 interface RequestListItemProps {
-  request: FriendRequest;
+  request: FriendRequest
 }
 
 export const RequestListItem: React.FC<RequestListItemProps> = ({
   request,
 }) => {
-  const cache = useQueryClient();
+  const cache = useQueryClient()
 
   const acceptRequest = async (): Promise<void> => {
     try {
-      const { data } = await acceptFriendRequest(request.id);
+      const { data } = await acceptFriendRequest(request.id)
       if (data) {
         cache.setQueryData<FriendRequest[]>(rKey, (d) => {
-          const queryData = d ?? [];
-          return queryData.filter((r) => r.id !== request.id);
-        });
-        await cache.invalidateQueries(fKey);
+          const queryData = d ?? []
+          return queryData.filter((r) => r.id !== request.id)
+        })
+        await cache.invalidateQueries(fKey)
       }
     } catch (err) {}
-  };
+  }
 
   const declineRequest = async (): Promise<void> => {
     try {
-      const { data } = await declineFriendRequest(request.id);
+      const { data } = await declineFriendRequest(request.id)
       if (data) {
         cache.setQueryData<FriendRequest[]>(rKey, (d) => {
-          const queryData = d ?? [];
-          return queryData.filter((r) => r.id !== request.id);
-        });
+          const queryData = d ?? []
+          return queryData.filter((r) => r.id !== request.id)
+        })
       }
     } catch (err) {}
-  };
+  }
 
   return (
     <ListItem
       p="3"
       mx="3"
       _hover={{
-        bg: "brandGray.dark",
-        borderRadius: "5px",
+        bg: 'brandGray.dark',
+        borderRadius: '5px',
       }}
     >
       <Flex align="center" justify="space-between">
@@ -68,13 +61,14 @@ export const RequestListItem: React.FC<RequestListItemProps> = ({
             <Text>{request.username}</Text>
             <Text fontSize="12px">
               {request.type === RequestType.INCOMING
-                ? "Incoming Friend Request"
-                : "Outgoing Friend Request"}
+                ? 'Incoming Friend Request'
+                : 'Outgoing Friend Request'}
             </Text>
           </Box>
         </Flex>
         <Flex align="center">
           {request.type === 1 && (
+            // @ts-ignore
             <StyledTooltip label="Accept" position="top">
               <IconButton
                 icon={<BiCheck />}
@@ -86,6 +80,7 @@ export const RequestListItem: React.FC<RequestListItemProps> = ({
               />
             </StyledTooltip>
           )}
+          {/* @ts-ignore */}
           <StyledTooltip label="Decline" position="top">
             <IconButton
               icon={<AiOutlineClose />}
@@ -98,5 +93,5 @@ export const RequestListItem: React.FC<RequestListItemProps> = ({
         </Flex>
       </Flex>
     </ListItem>
-  );
-};
+  )
+}

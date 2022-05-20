@@ -8,20 +8,20 @@ import {
   ModalHeader,
   ModalOverlay,
   Text,
-} from "@chakra-ui/react";
-import React from "react";
-import { useQueryClient } from "react-query";
-import { useParams } from "react-router-dom";
-import { mKey } from "../../lib/utils/querykeys";
-import { Member } from "../../lib/models/member";
-import { RouterProps } from "../../lib/models/routerProps";
-import { banMember, kickMember } from "../../lib/api/handler/members";
+} from '@chakra-ui/react'
+import React from 'react'
+import { useQueryClient } from 'react-query'
+import { useParams } from 'react-router-dom'
+import { mKey } from '../../lib/utils/querykeys'
+import { Member } from '../../lib/models/member'
+import { RouterProps } from '../../lib/models/routerProps'
+import { banMember, kickMember } from '../../lib/api/handler/members'
 
 interface IProps {
-  member: Member;
-  isOpen: boolean;
-  isBan: boolean;
-  onClose: () => void;
+  member: Member
+  isOpen: boolean
+  isBan: boolean
+  onClose: () => void
 }
 
 export const ModActionModal: React.FC<IProps> = ({
@@ -30,9 +30,9 @@ export const ModActionModal: React.FC<IProps> = ({
   onClose,
   isBan,
 }) => {
-  const cache = useQueryClient();
-  const action = isBan ? "Ban " : "Kick ";
-  const { guildId } = useParams<RouterProps>();
+  const cache = useQueryClient()
+  const action = isBan ? 'Ban ' : 'Kick '
+  const { guildId } = useParams<RouterProps>()
 
   return (
     <Modal isOpen={isOpen} onClose={onClose} isCentered>
@@ -52,7 +52,7 @@ export const ModActionModal: React.FC<IProps> = ({
           <Text mb="4">
             Are you sure you want to {action.toLocaleLowerCase()} @
             {member.username}?
-            {!isBan && " They will be able to rejoin again with a new invite."}
+            {!isBan && ' They will be able to rejoin again with a new invite.'}
           </Text>
         </ModalBody>
 
@@ -62,7 +62,7 @@ export const ModActionModal: React.FC<IProps> = ({
             mr={6}
             variant="link"
             fontSize="14px"
-            _focus={{ outline: "none" }}
+            _focus={{ outline: 'none' }}
           >
             Cancel
           </Button>
@@ -71,17 +71,17 @@ export const ModActionModal: React.FC<IProps> = ({
               colorScheme="red"
               fontSize="14px"
               onClick={async () => {
-                onClose();
+                onClose()
                 try {
                   const { data } = isBan
                     ? await banMember(guildId, member.id)
-                    : await kickMember(guildId, member.id);
+                    : await kickMember(guildId, member.id)
                   if (data) {
                     cache.setQueryData<Member[]>(mKey(guildId), (d) => {
                       if (d !== undefined)
-                        return d!.filter((f) => f.id !== member.id);
-                      return d!;
-                    });
+                        return d!.filter((f) => f.id !== member.id)
+                      return d!
+                    })
                   }
                 } catch (err) {}
               }}
@@ -92,5 +92,5 @@ export const ModActionModal: React.FC<IProps> = ({
         </ModalFooter>
       </ModalContent>
     </Modal>
-  );
-};
+  )
+}

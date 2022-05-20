@@ -1,4 +1,4 @@
-import React from "react";
+import React from 'react'
 import {
   Flex,
   GridItem,
@@ -8,60 +8,60 @@ import {
   MenuButton,
   MenuDivider,
   useDisclosure,
-} from "@chakra-ui/react";
-import { FiChevronDown, FiX } from "react-icons/fi";
-import { FaUserEdit, FaUserPlus } from "react-icons/fa";
-import { MdAddCircle } from "react-icons/md";
-import { HiLogout } from "react-icons/hi";
-import { RiSettings5Fill } from "react-icons/ri";
-import { useHistory, useParams } from "react-router-dom";
-import { useQueryClient } from "react-query";
-import { StyledMenuList } from "./StyledMenuList";
-import { StyledMenuItem, StyledRedMenuItem } from "./StyledMenuItem";
-import { leaveGuild } from "../../lib/api/handler/guilds";
-import { userStore } from "../../lib/stores/userStore";
-import { useGetCurrentGuild } from "../../lib/utils/hooks/useGetCurrentGuild";
-import { GuildSettingsModal } from "../modals/GuildSettingsModal";
-import { EditMemberModal } from "../modals/EditMemberModal";
-import { gKey } from "../../lib/utils/querykeys";
-import { RouterProps } from "../../lib/models/routerProps";
-import { Guild } from "../../lib/models/guild";
+} from '@chakra-ui/react'
+import { FiChevronDown, FiX } from 'react-icons/fi'
+import { FaUserEdit, FaUserPlus } from 'react-icons/fa'
+import { MdAddCircle } from 'react-icons/md'
+import { HiLogout } from 'react-icons/hi'
+import { RiSettings5Fill } from 'react-icons/ri'
+import { useHistory, useParams } from 'react-router-dom'
+import { useQueryClient } from 'react-query'
+import { StyledMenuList } from './StyledMenuList'
+import { StyledMenuItem, StyledRedMenuItem } from './StyledMenuItem'
+import { leaveGuild } from '../../lib/api/handler/guilds'
+import { userStore } from '../../lib/stores/userStore'
+import { useGetCurrentGuild } from '../../lib/utils/hooks/useGetCurrentGuild'
+import { GuildSettingsModal } from '../modals/GuildSettingsModal'
+import { EditMemberModal } from '../modals/EditMemberModal'
+import { gKey } from '../../lib/utils/querykeys'
+import { RouterProps } from '../../lib/models/routerProps'
+import { Guild } from '../../lib/models/guild'
 
 interface GuildMenuProps {
-  channelOpen: () => void;
-  inviteOpen: () => void;
+  channelOpen: () => void
+  inviteOpen: () => void
 }
 
 export const GuildMenu: React.FC<GuildMenuProps> = ({
   channelOpen,
   inviteOpen,
 }) => {
-  const { guildId } = useParams<RouterProps>();
-  const guild = useGetCurrentGuild(guildId);
-  const history = useHistory();
-  const cache = useQueryClient();
+  const { guildId } = useParams<RouterProps>()
+  const guild = useGetCurrentGuild(guildId)
+  const history = useHistory()
+  const cache = useQueryClient()
 
-  const user = userStore((state) => state.current);
-  const isOwner = guild?.ownerId === user?.id;
+  const user = userStore((state) => state.current)
+  const isOwner = guild?.ownerId === user?.id
 
-  const { isOpen, onOpen, onClose } = useDisclosure();
+  const { isOpen, onOpen, onClose } = useDisclosure()
   const {
     isOpen: memberOpen,
     onOpen: memberOnOpen,
     onClose: memberOnClose,
-  } = useDisclosure();
+  } = useDisclosure()
 
   const handleLeave = async (): Promise<void> => {
     try {
-      const { data } = await leaveGuild(guildId);
+      const { data } = await leaveGuild(guildId)
       if (data) {
         cache.setQueryData<Guild[]>(gKey, (d) =>
           d!.filter((g) => g.id !== guild?.id),
-        );
-        history.replace("/channels/me");
+        )
+        history.replace('/channels/me')
       }
     } catch (err) {}
-  };
+  }
 
   return (
     <GridItem
@@ -81,6 +81,7 @@ export const GuildMenu: React.FC<GuildMenuProps> = ({
                 <Icon as={!menuIsOpen ? FiChevronDown : FiX} />
               </MenuButton>
             </Flex>
+            {/* @ts-ignore */}
             <StyledMenuList>
               <StyledMenuItem
                 label="Invite People"
@@ -136,5 +137,5 @@ export const GuildMenu: React.FC<GuildMenuProps> = ({
         />
       )}
     </GridItem>
-  );
-};
+  )
+}

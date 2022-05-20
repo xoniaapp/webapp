@@ -1,14 +1,14 @@
-import React from "react";
-import { BrowserRouter, Route, Switch } from "react-router-dom";
-import { Login } from "./Login";
-import { Register } from "./Register";
-import { ForgotPassword } from "./ForgotPassword";
-import { ResetPassword } from "./ResetPassword";
-import { Home } from "./Home";
-import { ViewGuild } from "./ViewGuild";
-import { AuthRoute } from "./AuthRoute";
-import { Settings } from "./Settings";
-import { Invite } from "./Invite";
+import React from 'react'
+import { BrowserRouter, Route, Switch } from 'react-router-dom'
+import { Login } from './Login'
+import { Register } from './Register'
+import { ForgotPassword } from './ForgotPassword'
+import { ResetPassword } from './ResetPassword'
+import { Home } from './Home'
+import { ViewGuild } from './ViewGuild'
+import { AuthRoute } from './AuthRoute'
+import { Settings } from './Settings'
+import { Invite } from './Invite'
 
 export const Routes: React.FC = () => (
   <BrowserRouter>
@@ -39,4 +39,4 @@ export const Routes: React.FC = () => (
       <AuthRoute exact path="/:link" component={Invite} />
     </Switch>
   </BrowserRouter>
-);
+)

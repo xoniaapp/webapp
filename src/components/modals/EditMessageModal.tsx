@@ -12,16 +12,16 @@ import {
   ModalHeader,
   ModalOverlay,
   Text,
-} from "@chakra-ui/react";
-import React, { useState } from "react";
-import { editMessage } from "../../lib/api/handler/messages";
-import { getTime } from "../../lib/utils/dateUtils";
-import { Message } from "../../lib/models/message";
+} from '@chakra-ui/react'
+import React, { useState } from 'react'
+import { editMessage } from '../../lib/api/handler/messages'
+import { getTime } from '../../lib/utils/dateUtils'
+import { Message } from '../../lib/models/message'
 
 interface IProps {
-  message: Message;
-  isOpen: boolean;
-  onClose: () => void;
+  message: Message
+  isOpen: boolean
+  onClose: () => void
 }
 
 export const EditMessageModal: React.FC<IProps> = ({
@@ -29,19 +29,19 @@ export const EditMessageModal: React.FC<IProps> = ({
   isOpen,
   onClose,
 }) => {
-  const [text, setNewText] = useState(message.text!);
-  const [showError, toggleShow] = useState(false);
+  const [text, setNewText] = useState(message.text!)
+  const [showError, toggleShow] = useState(false)
 
   const handleSubmit = async (): Promise<void> => {
-    if (!text || !text.trim()) return;
+    if (!text || !text.trim()) return
 
     try {
-      await editMessage(message.id, text.trim());
-      onClose();
+      await editMessage(message.id, text.trim())
+      onClose()
     } catch (err) {
-      toggleShow(true);
+      toggleShow(true)
     }
-  };
+  }
 
   return (
     <Modal isOpen={isOpen} onClose={onClose} isCentered>
@@ -95,7 +95,7 @@ export const EditMessageModal: React.FC<IProps> = ({
             mr={6}
             variant="link"
             fontSize="14px"
-            _focus={{ outline: "none" }}
+            _focus={{ outline: 'none' }}
           >
             Cancel
           </Button>
@@ -107,5 +107,5 @@ export const EditMessageModal: React.FC<IProps> = ({
         </ModalFooter>
       </ModalContent>
     </Modal>
-  );
-};
+  )
+}
