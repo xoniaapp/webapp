@@ -225,8 +225,9 @@ export const Settings = (): JSX.Element | null => {
             </Button>
           </Flex>
           <p>Build Version</p>
-          <br />
+          <a href={`https://github.com/xoniaapp/webapp/commit/${import.meta.env.VITE_GIT_SHA}`}>
           <code>main@{import.meta.env.VITE_GIT_SHA}</code>
+          </a>
         </Box>
       </Box>
       {isOpen && <ChangePasswordModal isOpen={isOpen} onClose={onClose} />}
