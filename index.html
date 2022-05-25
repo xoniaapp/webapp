@@ -1,10 +1,18 @@
 <!DOCTYPE html>
 <html lang="en_US">
 
+<!-- 
+  ### NOTICE ###
+  --------------
+  Licensed under the AGPL-3.0 License
+-->
+
 <head>
+
   <!-- TITLE -->
   <title>Xonia</title>
 
+  <!-- Meta Tags -->
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
   <meta name="robots " content="index, follow" />
@@ -36,8 +44,7 @@
   <!-- GOOGLE FONTS -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="*">
-
-  <link href="https://fonts.googleapis.com/css2?family=Raleway&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Fira+Sans&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Source+Code+Pro&display=swap" rel="stylesheet">
 
 </head>
@@ -46,34 +53,47 @@
   body {
     overflow-y: hidden;
   }
+
   * {
-    font-family: 'Raleway', sans-serif !important;
+    font-family: 'Fira Sans', sans-serif !important;
   }
+
   code {
     font-family: 'Source Code Pro', monospace !important;
   }
+
   a {
     color: rgb(110, 110, 110) !important;
   }
+
   a:hover {
     color: rgb(160, 160, 160) !important;
   }
 </style>
+
 <body>
 
   <noscript>
     <style>
       .cp-lost {
-        color: blue;
+        color: black;
       }
     </style>
-    <h1 class="cp-l">
-      Please enable Javascript to use this app!
-    </h1>
+
+    <body>
+      <section>
+        <center>
+          <h1 class="cp-l">
+            Enable JavaScript to use Xonia.
+          </h1>
+        </center>
+      </section>
+    </body>
   </noscript>
 
   <div id="root">
   </div>
 </body>
 <script type="module" src="/src/index.tsx"></script>
+
 </html>
