@@ -34,6 +34,15 @@ export const MessageContent: React.FC<MessageProps> = ({
           <a href={url}>{filename}</a>
         </Box>
       )
+    } else if (filetype.startsWith('video/')) {
+      return (
+        <Box>
+          <video width="400" height="255" controls>
+            <source src={url} type={filetype} />
+            Your browser does not support the video tag.
+          </video>
+        </Box>
+      )
     }
   }
   return (
