@@ -1,11 +1,15 @@
 import create from 'zustand'
 
+
+
 type ChannelState = {
   typing: string[]
   addTyping: (username: string) => void
   removeTyping: (username: string) => void
   reset: () => void
 }
+
+
 
 export const channelStore = create<ChannelState>((set) => ({
   typing: [],
