@@ -1,10 +1,10 @@
-import { Avatar, Box, Divider, Flex, Heading, Text } from '@chakra-ui/react'
-import React from 'react'
-import { useParams } from 'react-router-dom'
-import { useGetCurrentChannel } from '../../lib/utils/hooks/useGetCurrentChannel'
-import { cKey } from '../../lib/utils/querykeys'
-import { useGetCurrentDM } from '../../lib/utils/hooks/useGetCurrentDM'
-import { RouterProps } from '../../lib/models/routerProps'
+import { Avatar, Box, Divider, Flex, Heading, Text } from "@chakra-ui/react"
+import React from "react"
+import { useParams } from "react-router-dom"
+import { useGetCurrentChannel } from "../../lib/utils/hooks/useGetCurrentChannel"
+import { cKey } from "../../lib/utils/querykeys"
+import { useGetCurrentDM } from "../../lib/utils/hooks/useGetCurrentDM"
+import { RouterProps } from "../../lib/models/routerProps"
 
 export const StartMessages: React.FC = () => {
   const { guildId } = useParams<RouterProps>()

@@ -8,12 +8,12 @@ import {
   ModalHeader,
   ModalOverlay,
   Text,
-} from '@chakra-ui/react'
-import React from 'react'
-import { useQueryClient } from 'react-query'
-import { removeFriend } from '../../lib/api/handler/account'
-import { fKey } from '../../lib/utils/querykeys'
-import { Friend } from '../../lib/models/friend'
+} from "@chakra-ui/react"
+import React from "react"
+import { useQueryClient } from "react-query"
+import { removeFriend } from "../../lib/api/handler/account"
+import { fKey } from "../../lib/utils/querykeys"
+import { Friend } from "../../lib/models/friend"
 
 interface IProps {
   member: Friend
@@ -38,7 +38,7 @@ export const RemoveFriendModal: React.FC<IProps> = ({
         </ModalHeader>
         <ModalBody>
           <Text mb="4">
-            Are you sure you want to permanently remove{' '}
+            Are you sure you want to permanently remove{" "}
             <b>{member?.username}</b> from your friends?
           </Text>
         </ModalBody>
@@ -49,7 +49,7 @@ export const RemoveFriendModal: React.FC<IProps> = ({
             mr={6}
             variant="link"
             fontSize="14px"
-            _focus={{ outline: 'none' }}
+            _focus={{ outline: "none" }}
           >
             Cancel
           </Button>

@@ -16,27 +16,27 @@ import {
   Text,
   Tooltip,
   useDisclosure,
-} from '@chakra-ui/react'
-import { Form, Formik } from 'formik'
-import React, { useRef, useState } from 'react'
-import { FaRegTrashAlt } from 'react-icons/fa'
-import { IoCheckmarkCircle, IoPersonRemove } from 'react-icons/io5'
-import { ImHammer2 } from 'react-icons/im'
-import { BiUnlink } from 'react-icons/bi'
-import { useQuery, useQueryClient } from 'react-query'
-import { InputField } from '../common/InputField'
-import { toErrorMap } from '../../lib/utils/toErrorMap'
-import { useGetCurrentGuild } from '../../lib/utils/hooks/useGetCurrentGuild'
-import { GuildSchema } from '../../lib/utils/validation/guild.schema'
+} from "@chakra-ui/react"
+import { Form, Formik } from "formik"
+import React, { useRef, useState } from "react"
+import { FaRegTrashAlt } from "react-icons/fa"
+import { IoCheckmarkCircle, IoPersonRemove } from "react-icons/io5"
+import { ImHammer2 } from "react-icons/im"
+import { BiUnlink } from "react-icons/bi"
+import { useQuery, useQueryClient } from "react-query"
+import { InputField } from "../common/InputField"
+import { toErrorMap } from "../../lib/utils/toErrorMap"
+import { useGetCurrentGuild } from "../../lib/utils/hooks/useGetCurrentGuild"
+import { GuildSchema } from "../../lib/utils/validation/guild.schema"
 import {
   deleteGuild,
   editGuild,
   invalidateInviteLinks,
-} from '../../lib/api/handler/guilds'
-import { CropImageModal } from './CropImageModal'
-import { channelScrollbarCss } from '../layouts/guild/css/ChannelScrollerCSS'
-import { getBanList, unbanMember } from '../../lib/api/handler/members'
-import { Member } from '../../lib/models/member'
+} from "../../lib/api/handler/guilds"
+import { CropImageModal } from "./CropImageModal"
+import { channelScrollbarCss } from "../layouts/guild/css/ChannelScrollerCSS"
+import { getBanList, unbanMember } from "../../lib/api/handler/members"
+import { Member } from "../../lib/models/member"
 
 interface IProps {
   guildId: string
@@ -74,13 +74,13 @@ export const GuildSettingsModal: React.FC<IProps> = ({
   } = useDisclosure()
 
   const inputFile: any = useRef(null)
-  const [imageUrl, setImageUrl] = useState<string | null>(guild?.icon || '')
-  const [cropImage, setCropImage] = useState('')
+  const [imageUrl, setImageUrl] = useState<string | null>(guild?.icon || "")
+  const [cropImage, setCropImage] = useState("")
   const [croppedImage, setCroppedImage] = useState<any>(null)
 
   const applyCrop = (file: Blob): void => {
     setImageUrl(URL.createObjectURL(file))
-    setCroppedImage(new File([file], 'icon', { type: 'image/jpeg' }))
+    setCroppedImage(new File([file], "icon", { type: "image/jpeg" }))
     cropperOnClose()
   }
 
@@ -108,11 +108,11 @@ export const GuildSettingsModal: React.FC<IProps> = ({
             onSubmit={async (values, { setErrors, resetForm }) => {
               try {
                 const formData = new FormData()
-                formData.append('name', values.name)
+                formData.append("name", values.name)
                 if (cropImage) {
-                  formData.append('image', croppedImage)
+                  formData.append("image", croppedImage)
                 } else if (imageUrl) {
-                  formData.append('icon', imageUrl)
+                  formData.append("icon", imageUrl)
                 }
 
                 const { data } = await editGuild(guildId, formData)
@@ -136,7 +136,7 @@ export const GuildSettingsModal: React.FC<IProps> = ({
                 <ModalHeader textAlign="center" fontWeight="bold" pb={0}>
                   Server Overview
                 </ModalHeader>
-                <ModalCloseButton _focus={{ outline: 'none' }} />
+                <ModalCloseButton _focus={{ outline: "none" }} />
                 <ModalBody>
                   <Flex mb="4" justify="center">
                     <Box textAlign="center">
@@ -146,9 +146,9 @@ export const GuildSettingsModal: React.FC<IProps> = ({
                           name={guild?.name[0]}
                           bg="brandGray.darker"
                           color="#fff"
-                          src={imageUrl || ''}
+                          src={imageUrl || ""}
                           _hover={{
-                            cursor: 'pointer',
+                            cursor: "pointer",
                             opacity: 0.5,
                           }}
                           onClick={() => inputFile.current.click()}
@@ -157,8 +157,8 @@ export const GuildSettingsModal: React.FC<IProps> = ({
                       <Text
                         mt="2"
                         _hover={{
-                          cursor: 'pointer',
-                          color: 'brandGray.accent',
+                          cursor: "pointer",
+                          color: "brandGray.accent",
                         }}
                         onClick={() => {
                           setCroppedImage(null)
@@ -197,7 +197,7 @@ export const GuildSettingsModal: React.FC<IProps> = ({
                       onClick={invalidateInvites}
                       fontSize="14px"
                       rightIcon={isReset ? <IoCheckmarkCircle /> : <BiUnlink />}
-                      colorScheme={isReset ? 'green' : 'gray'}
+                      colorScheme={isReset ? "green" : "gray"}
                     >
                       Invalidate Links
                     </Button>
@@ -243,9 +243,9 @@ export const GuildSettingsModal: React.FC<IProps> = ({
                     background="highlight.standard"
                     color="white"
                     type="submit"
-                    _hover={{ bg: 'highlight.hover' }}
-                    _active={{ bg: 'highlight.active' }}
-                    _focus={{ boxShadow: 'none' }}
+                    _hover={{ bg: "highlight.hover" }}
+                    _active={{ bg: "highlight.active" }}
+                    _focus={{ boxShadow: "none" }}
                     isLoading={isSubmitting}
                     fontSize="14px"
                   >
@@ -331,7 +331,7 @@ const DeleteGuildModal: React.FC<IScreenProps> = ({
           variant="link"
           onClick={goBack}
           fontSize="14px"
-          _focus={{ outline: 'none' }}
+          _focus={{ outline: "none" }}
         >
           Cancel
         </Button>
@@ -382,8 +382,8 @@ const BanListModal: React.FC<IBanScreenProps> = ({ goBack, guildId }) => {
           <Flex
             p="3"
             _hover={{
-              bg: 'brandGray.dark',
-              borderRadius: '5px',
+              bg: "brandGray.dark",
+              borderRadius: "5px",
             }}
             align="center"
             justify="space-between"
@@ -412,7 +412,7 @@ const BanListModal: React.FC<IBanScreenProps> = ({ goBack, guildId }) => {
           variant="link"
           onClick={goBack}
           fontSize="14px"
-          _focus={{ outline: 'none' }}
+          _focus={{ outline: "none" }}
         >
           Back
         </Button>

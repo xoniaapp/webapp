@@ -1,12 +1,12 @@
-import { Box, Button, Flex, Heading, Image, Link, Text } from '@chakra-ui/react'
-import { Form, Formik } from 'formik'
-import React, { useState } from 'react'
-import { Link as RLink, useHistory, useParams } from 'react-router-dom'
-import { InputField } from '../components/common/InputField'
-import { toErrorMap } from '../lib/utils/toErrorMap'
-import { userStore } from '../lib/stores/userStore'
-import { ResetPasswordSchema } from '../lib/utils/validation/auth.schema'
-import { resetPassword } from '../lib/api/handler/auth'
+import { Box, Button, Flex, Heading, Image, Link, Text } from "@chakra-ui/react"
+import { Form, Formik } from "formik"
+import React, { useState } from "react"
+import { Link as RLink, useHistory, useParams } from "react-router-dom"
+import { InputField } from "../components/common/InputField"
+import { toErrorMap } from "../lib/utils/toErrorMap"
+import { userStore } from "../lib/stores/userStore"
+import { ResetPasswordSchema } from "../lib/utils/validation/auth.schema"
+import { resetPassword } from "../lib/api/handler/auth"
 
 interface TokenProps {
   token: string
@@ -16,14 +16,17 @@ export const ResetPassword: React.FC = () => {
   const history = useHistory()
   const { token } = useParams<TokenProps>()
   const [showError, setShowError] = useState(false)
-  const [tokenError, setTokenError] = useState('')
+  const [tokenError, setTokenError] = useState("")
   const setUser = userStore((state) => state.setUser)
 
   return (
     <Flex minHeight="100vh" width="full" align="center" justifyContent="center">
       <Box px={4} width="full" maxWidth="500px" textAlign="center">
         <Flex mb="4" justify="center">
-          <Image src={`https://raw.githubusercontent.com/xoniaapp/app/main/logo.png`} w="80px" />
+          <Image
+            src={`https://raw.githubusercontent.com/xoniaapp/app/main/logo.png`}
+            w="80px"
+          />
         </Flex>
         <Box p={4} borderRadius={4} background="brandGray.light">
           <Box textAlign="center">
@@ -32,8 +35,8 @@ export const ResetPassword: React.FC = () => {
           <Box my={4} textAlign="left">
             <Formik
               initialValues={{
-                newPassword: '',
-                confirmNewPassword: '',
+                newPassword: "",
+                confirmNewPassword: "",
               }}
               validationSchema={ResetPasswordSchema}
               onSubmit={async (values, { setErrors }) => {
@@ -44,7 +47,7 @@ export const ResetPassword: React.FC = () => {
                   })
                   if (data) {
                     setUser(data)
-                    history.push('/channels/me')
+                    history.push("/channels/me")
                   }
                 } catch (err: any) {
                   if (err?.response?.status === 500) {
@@ -53,7 +56,7 @@ export const ResetPassword: React.FC = () => {
                     const errors = err?.response?.data?.errors
                     const errorMap = toErrorMap(errors)
 
-                    if ('token' in errorMap) {
+                    if ("token" in errorMap) {
                       setTokenError(errorMap.token)
                     }
                     setErrors(errorMap)
@@ -83,9 +86,9 @@ export const ResetPassword: React.FC = () => {
                     mt={4}
                     type="submit"
                     isLoading={isSubmitting}
-                    _hover={{ bg: 'highlight.hover' }}
-                    _active={{ bg: 'highlight.active' }}
-                    _focus={{ boxShadow: 'none' }}
+                    _hover={{ bg: "highlight.hover" }}
+                    _active={{ bg: "highlight.active" }}
+                    _focus={{ boxShadow: "none" }}
                   >
                     Reset Password
                   </Button>
@@ -103,7 +106,7 @@ export const ResetPassword: React.FC = () => {
                 <Link
                   as={RLink}
                   to="/forgot-password"
-                  _focus={{ outline: 'none' }}
+                  _focus={{ outline: "none" }}
                 >
                   Get a new token
                 </Link>

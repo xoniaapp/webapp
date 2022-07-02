@@ -1,7 +1,7 @@
-import React from 'react'
-import { Tooltip } from '@chakra-ui/react'
+import React from "react"
+import { Tooltip } from "@chakra-ui/react"
 
-type Placement = 'top' | 'right'
+type Placement = "top" | "right"
 
 interface StyledTooltipProps {
   label: string

@@ -1,12 +1,12 @@
-import { useEffect } from 'react'
-import { useQueryClient } from 'react-query'
-import { getSocket } from '../getSocket'
-import { userStore } from '../../stores/userStore'
-import { rKey } from '../../utils/querykeys'
-import { homeStore } from '../../stores/homeStore'
-import { FriendRequest } from '../../models/friend'
+import { useEffect } from "react"
+import { useQueryClient } from "react-query"
+import { getSocket } from "../getSocket"
+import { userStore } from "../../stores/userStore"
+import { rKey } from "../../utils/querykeys"
+import { homeStore } from "../../stores/homeStore"
+import { FriendRequest } from "../../models/friend"
 
-type WSMessage = { action: 'add_request'; data: FriendRequest }
+type WSMessage = { action: "add_request"; data: FriendRequest }
 
 export function useRequestSocket(): void {
   const current = userStore((state) => state.current)
@@ -18,15 +18,15 @@ export function useRequestSocket(): void {
 
     socket.send(
       JSON.stringify({
-        action: 'joinUser',
+        action: "joinUser",
         room: current?.id,
       }),
     )
 
-    socket.addEventListener('message', (event) => {
+    socket.addEventListener("message", (event) => {
       const response: WSMessage = JSON.parse(event.data)
       switch (response.action) {
-        case 'add_request': {
+        case "add_request": {
           cache.setQueryData<FriendRequest[]>(rKey, (data) =>
             [...data!, response.data].sort((a, b) =>
               a.username.localeCompare(b.username),
@@ -43,7 +43,7 @@ export function useRequestSocket(): void {
     return () => {
       socket.send(
         JSON.stringify({
-          action: 'leaveRoom',
+          action: "leaveRoom",
           room: current?.id,
         }),
       )

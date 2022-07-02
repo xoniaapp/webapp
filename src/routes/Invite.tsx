@@ -1,7 +1,7 @@
-import React, { useEffect, useState } from 'react'
-import { Link as RLink, useHistory, useParams } from 'react-router-dom'
-import { Box, Flex, Image, Link, Text } from '@chakra-ui/react'
-import { joinGuild } from '../lib/api/handler/guilds'
+import React, { useEffect, useState } from "react"
+import { Link as RLink, useHistory, useParams } from "react-router-dom"
+import { Box, Flex, Image, Link, Text } from "@chakra-ui/react"
+import { joinGuild } from "../lib/api/handler/guilds"
 
 interface InviteRouter {
   link: string
@@ -33,7 +33,10 @@ export const Invite: React.FC = () => {
     <Flex minHeight="100vh" align="center" justify="center" h="full">
       <Box textAlign="center">
         <Flex mb="4" justify="center">
-          <Image src={`https://raw.githubusercontent.com/xoniaapp/app/main/logo.png`} w="80px" />
+          <Image
+            src={`https://raw.githubusercontent.com/xoniaapp/app/main/logo.png`}
+            w="80px"
+          />
         </Flex>
         <Text>Please wait...</Text>
         <Text>You will be automatically redirected.</Text>
@@ -43,15 +46,15 @@ export const Invite: React.FC = () => {
               {errors}
             </Text>
             <Text>
-              Click{' '}
+              Click{" "}
               <Link
                 as={RLink}
                 to="/channels/me"
                 color="highlight.standard"
-                _focus={{ outline: 'none' }}
+                _focus={{ outline: "none" }}
               >
                 here
-              </Link>{' '}
+              </Link>{" "}
               to return.
             </Text>
           </Box>

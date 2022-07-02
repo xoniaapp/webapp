@@ -1,13 +1,13 @@
 /* eslint-disable react/jsx-props-no-spreading */
-import React, { InputHTMLAttributes } from 'react'
-import { useField } from 'formik'
+import React, { InputHTMLAttributes } from "react"
+import { useField } from "formik"
 import {
   FormControl,
   FormErrorMessage,
   FormLabel,
   Input,
   Text,
-} from '@chakra-ui/react'
+} from "@chakra-ui/react"
 
 type InputFieldProps = InputHTMLAttributes<HTMLInputElement> & {
   label: string

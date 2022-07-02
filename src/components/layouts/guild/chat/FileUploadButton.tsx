@@ -10,14 +10,14 @@ import {
   Progress,
   Text,
   useDisclosure,
-} from '@chakra-ui/react'
-import React, { useRef, useState } from 'react'
-import { MdAddCircle } from 'react-icons/md'
-import { useParams } from 'react-router-dom'
-import { sendMessage } from '../../../../lib/api/handler/messages'
-import { FileSchema } from '../../../../lib/utils/validation/message.schema'
-import { StyledTooltip } from '../../../sections/StyledTooltip'
-import { RouterProps } from '../../../../lib/models/routerProps'
+} from "@chakra-ui/react"
+import React, { useRef, useState } from "react"
+import { MdAddCircle } from "react-icons/md"
+import { useParams } from "react-router-dom"
+import { sendMessage } from "../../../../lib/api/handler/messages"
+import { FileSchema } from "../../../../lib/utils/validation/message.schema"
+import { StyledTooltip } from "../../../sections/StyledTooltip"
+import { RouterProps } from "../../../../lib/models/routerProps"
 
 export const FileUploadButton: React.FC = () => {
   const { channelId } = useParams<RouterProps>()
@@ -48,7 +48,7 @@ export const FileUploadButton: React.FC = () => {
     }
 
     const data = new FormData()
-    data.append('file', file)
+    data.append("file", file)
     await sendMessage(channelId, data, (event: any) => {
       const loaded = Math.round((100 * event.loaded) / event.total)
       setProgress(loaded)
@@ -63,8 +63,8 @@ export const FileUploadButton: React.FC = () => {
         <InputLeftElement
           color="iconColor"
           _hover={{
-            cursor: 'pointer',
-            color: '#fcfcfc',
+            cursor: "pointer",
+            color: "#fcfcfc",
           }}
           onClick={() => inputFile.current.click()}
         >
@@ -78,7 +78,7 @@ export const FileUploadButton: React.FC = () => {
               if (!e.currentTarget.files) return
               handleSubmit(e.currentTarget.files[0]).then(() => {
                 setSubmitting(false)
-                e.target.value = ''
+                e.target.value = ""
               })
             }}
           />
@@ -87,7 +87,7 @@ export const FileUploadButton: React.FC = () => {
               <ModalOverlay />
               <ModalContent bg="brandGray.light" textAlign="center">
                 <ModalHeader pb="0">Hmm, Something is not OK!</ModalHeader>
-                <ModalCloseButton _focus={{ outline: 'none' }} />
+                <ModalCloseButton _focus={{ outline: "none" }} />
                 <ModalBody>
                   {/* @ts-ignore */}
                   <Text mb="2">

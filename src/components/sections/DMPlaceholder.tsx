@@ -1,5 +1,5 @@
-import React from 'react'
-import { Box, Flex } from '@chakra-ui/react'
+import React from "react"
+import { Box, Flex } from "@chakra-ui/react"
 
 export const DMPlaceholder: React.FC = () => (
   <Flex align="center" m="3">

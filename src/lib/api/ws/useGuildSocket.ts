@@ -1,17 +1,17 @@
-import { useEffect } from 'react'
-import { useHistory, useLocation } from 'react-router-dom'
-import { useQueryClient } from 'react-query'
-import { getSocket } from '../getSocket'
-import { userStore } from '../../stores/userStore'
-import { gKey } from '../../utils/querykeys'
-import { Guild } from '../../models/guild'
+import { useEffect } from "react"
+import { useHistory, useLocation } from "react-router-dom"
+import { useQueryClient } from "react-query"
+import { getSocket } from "../getSocket"
+import { userStore } from "../../stores/userStore"
+import { gKey } from "../../utils/querykeys"
+import { Guild } from "../../models/guild"
 
 type WSMessage =
   | {
-      action: 'delete_guild' | 'remove_from_guild' | 'new_notification'
+      action: "delete_guild" | "remove_from_guild" | "new_notification"
       data: string
     }
-  | { action: 'edit_guild'; data: Guild }
+  | { action: "edit_guild"; data: Guild }
 
 export function useGuildSocket(): void {
   const history = useHistory()
@@ -24,15 +24,15 @@ export function useGuildSocket(): void {
 
     socket.send(
       JSON.stringify({
-        action: 'joinUser',
+        action: "joinUser",
         room: current?.id,
       }),
     )
 
-    socket.addEventListener('message', (event) => {
+    socket.addEventListener("message", (event) => {
       const response: WSMessage = JSON.parse(event.data)
       switch (response.action) {
-        case 'edit_guild': {
+        case "edit_guild": {
           const editedGuild = response.data
           cache.setQueryData<Guild[]>(gKey, (d) => {
             const data = d ?? []
@@ -49,19 +49,19 @@ export function useGuildSocket(): void {
           break
         }
 
-        case 'delete_guild': {
+        case "delete_guild": {
           const deleteId = response.data
           cache.setQueryData<Guild[]>(gKey, (d) => {
             const isActive = location.pathname.includes(deleteId)
             if (isActive) {
-              history.replace('/channels/me')
+              history.replace("/channels/me")
             }
             return d!.filter((g) => g.id !== deleteId)
           })
           break
         }
 
-        case 'new_notification': {
+        case "new_notification": {
           const id = response.data
           if (!location.pathname.includes(id)) {
             cache.setQueryData<Guild[]>(gKey, (d) => {
@@ -79,12 +79,12 @@ export function useGuildSocket(): void {
           break
         }
 
-        case 'remove_from_guild': {
+        case "remove_from_guild": {
           cache.setQueryData<Guild[]>(gKey, (d) => {
             const guildId = response.data
             const isActive = location.pathname.includes(guildId)
             if (isActive) {
-              history.replace('/channels/me')
+              history.replace("/channels/me")
             }
             return d!.filter((g) => g.id !== guildId)
           })
@@ -99,7 +99,7 @@ export function useGuildSocket(): void {
     return () => {
       socket.send(
         JSON.stringify({
-          action: 'leaveRoom',
+          action: "leaveRoom",
           room: current?.id,
         }),
       )

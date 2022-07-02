@@ -9,9 +9,9 @@ import {
   PopoverHeader,
   PopoverTrigger,
   Text,
-} from '@chakra-ui/react'
-import React from 'react'
-import { Member } from '../../lib/models/member'
+} from "@chakra-ui/react"
+import React from "react"
+import { Member } from "../../lib/models/member"
 
 interface UserPopoverProps {
   member: Member
@@ -32,7 +32,7 @@ export const UserPopover: React.FC<UserPopoverProps> = ({
             <Avatar src={member.image} size="xl">
               <AvatarBadge
                 boxSize="0.9em"
-                bg={member.isOnline ? 'green.500' : 'gray.500'}
+                bg={member.isOnline ? "green.500" : "gray.500"}
               />
             </Avatar>
             <Text mt={2} textAlign="center" color="#fff" fontWeight="semibold">

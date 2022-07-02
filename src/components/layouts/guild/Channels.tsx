@@ -1,17 +1,17 @@
-import React from 'react'
-import { Box, GridItem, UnorderedList, useDisclosure } from '@chakra-ui/react'
-import { useParams } from 'react-router-dom'
-import { useQuery } from 'react-query'
-import { AccountBar } from '../AccountBar'
-import { CreateChannelModal } from '../../modals/CreateChannelModal'
-import { GuildMenu } from '../../menus/GuildMenu'
-import { InviteModal } from '../../modals/InviteModal'
-import { ChannelListItem } from '../../items/ChannelListItem'
-import { cKey } from '../../../lib/utils/querykeys'
-import { channelScrollbarCss } from './css/ChannelScrollerCSS'
-import { useChannelSocket } from '../../../lib/api/ws/useChannelSocket'
-import { getChannels } from '../../../lib/api/handler/channel'
-import { RouterProps } from '../../../lib/models/routerProps'
+import React from "react"
+import { Box, GridItem, UnorderedList, useDisclosure } from "@chakra-ui/react"
+import { useParams } from "react-router-dom"
+import { useQuery } from "react-query"
+import { AccountBar } from "../AccountBar"
+import { CreateChannelModal } from "../../modals/CreateChannelModal"
+import { GuildMenu } from "../../menus/GuildMenu"
+import { InviteModal } from "../../modals/InviteModal"
+import { ChannelListItem } from "../../items/ChannelListItem"
+import { cKey } from "../../../lib/utils/querykeys"
+import { channelScrollbarCss } from "./css/ChannelScrollerCSS"
+import { useChannelSocket } from "../../../lib/api/ws/useChannelSocket"
+import { getChannels } from "../../../lib/api/handler/channel"
+import { RouterProps } from "../../../lib/models/routerProps"
 
 export const Channels: React.FC = () => {
   const {
@@ -42,7 +42,7 @@ export const Channels: React.FC = () => {
         gridRow="2/4"
         bg="brandGray.dark"
         overflowY="hidden"
-        _hover={{ overflowY: 'auto' }}
+        _hover={{ overflowY: "auto" }}
         css={channelScrollbarCss}
       >
         {inviteIsOpen && (

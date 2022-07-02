@@ -11,11 +11,11 @@ import {
   ModalHeader,
   ModalOverlay,
   Text,
-} from '@chakra-ui/react'
-import React, { useState } from 'react'
-import { deleteMessage } from '../../lib/api/handler/messages'
-import { getTime } from '../../lib/utils/dateUtils'
-import { Message } from '../../lib/models/message'
+} from "@chakra-ui/react"
+import React, { useState } from "react"
+import { deleteMessage } from "../../lib/api/handler/messages"
+import { getTime } from "../../lib/utils/dateUtils"
+import { Message } from "../../lib/models/message"
 
 interface IProps {
   message: Message
@@ -93,7 +93,7 @@ export const DeleteMessageModal: React.FC<IProps> = ({
             mr={6}
             variant="link"
             fontSize="14px"
-            _focus={{ outline: 'none' }}
+            _focus={{ outline: "none" }}
           >
             Cancel
           </Button>

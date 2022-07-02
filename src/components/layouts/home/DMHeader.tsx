@@ -1,9 +1,9 @@
-import React from 'react'
-import { Box, Flex, GridItem, Icon, Text } from '@chakra-ui/react'
-import { FaAt } from 'react-icons/fa'
-import { useParams } from 'react-router-dom'
-import { useGetCurrentDM } from '../../../lib/utils/hooks/useGetCurrentDM'
-import { RouterProps } from '../../../lib/models/routerProps'
+import React from "react"
+import { Box, Flex, GridItem, Icon, Text } from "@chakra-ui/react"
+import { FaAt } from "react-icons/fa"
+import { useParams } from "react-router-dom"
+import { useGetCurrentDM } from "../../../lib/utils/hooks/useGetCurrentDM"
+import { RouterProps } from "../../../lib/models/routerProps"
 
 export const DMHeader: React.FC = () => {
   const { channelId } = useParams<RouterProps>()
@@ -28,7 +28,7 @@ export const DMHeader: React.FC = () => {
           borderRadius="50%"
           h="10px"
           w="10px"
-          bg={channel?.user.isOnline ? 'green.500' : 'gray.500'}
+          bg={channel?.user.isOnline ? "green.500" : "gray.500"}
         />
       </Flex>
     </GridItem>

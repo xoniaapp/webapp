@@ -1,7 +1,7 @@
-import { AxiosResponse } from 'axios'
-import { GuildMemberInput } from '../dtos/GuildMemberInput'
-import { request } from '../setupAxios'
-import { Member } from '../../models/member'
+import { AxiosResponse } from "axios"
+import { GuildMemberInput } from "../dtos/GuildMemberInput"
+import { request } from "../setupAxios"
+import { Member } from "../../models/member"
 
 export const getGuildMemberSettings = (
   id: string,

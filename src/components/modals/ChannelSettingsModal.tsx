@@ -16,24 +16,24 @@ import {
   ModalOverlay,
   Switch,
   Text,
-} from '@chakra-ui/react'
-import { Form, Formik } from 'formik'
-import React, { useState } from 'react'
-import { AiOutlineLock } from 'react-icons/ai'
-import { FaRegTrashAlt } from 'react-icons/fa'
-import { CUIAutoComplete } from 'chakra-ui-autocomplete'
-import { useQuery } from 'react-query'
-import { InputField } from '../common/InputField'
-import { toErrorMap } from '../../lib/utils/toErrorMap'
-import { getGuildMembers } from '../../lib/api/handler/guilds'
-import { ChannelSchema } from '../../lib/utils/validation/channel.schema'
-import { useGetCurrentChannel } from '../../lib/utils/hooks/useGetCurrentChannel'
-import { cKey, mKey } from '../../lib/utils/querykeys'
+} from "@chakra-ui/react"
+import { Form, Formik } from "formik"
+import React, { useState } from "react"
+import { AiOutlineLock } from "react-icons/ai"
+import { FaRegTrashAlt } from "react-icons/fa"
+import { CUIAutoComplete } from "chakra-ui-autocomplete"
+import { useQuery } from "react-query"
+import { InputField } from "../common/InputField"
+import { toErrorMap } from "../../lib/utils/toErrorMap"
+import { getGuildMembers } from "../../lib/api/handler/guilds"
+import { ChannelSchema } from "../../lib/utils/validation/channel.schema"
+import { useGetCurrentChannel } from "../../lib/utils/hooks/useGetCurrentChannel"
+import { cKey, mKey } from "../../lib/utils/querykeys"
 import {
   deleteChannel,
   editChannel,
   getPrivateChannelMembers,
-} from '../../lib/api/handler/channel'
+} from "../../lib/api/handler/channel"
 
 interface IProps {
   guildId: string
@@ -152,7 +152,7 @@ export const ChannelSettingsModal: React.FC<IProps> = ({
                 <ModalHeader textAlign="center" fontWeight="bold">
                   Channel Settings
                 </ModalHeader>
-                <ModalCloseButton _focus={{ outline: 'none' }} />
+                <ModalCloseButton _focus={{ outline: "none" }} />
                 <ModalBody>
                   <InputField label="channel name" name="name" />
 
@@ -171,7 +171,7 @@ export const ChannelSettingsModal: React.FC<IProps> = ({
                     <Switch
                       defaultChecked={!values.isPublic}
                       onChange={(e) => {
-                        setFieldValue('isPublic', !e.target.checked)
+                        setFieldValue("isPublic", !e.target.checked)
                       }}
                     />
                   </FormControl>
@@ -222,7 +222,7 @@ export const ChannelSettingsModal: React.FC<IProps> = ({
                     mr={6}
                     variant="link"
                     fontSize="14px"
-                    _focus={{ outline: 'none' }}
+                    _focus={{ outline: "none" }}
                   >
                     Cancel
                   </Button>
@@ -230,9 +230,9 @@ export const ChannelSettingsModal: React.FC<IProps> = ({
                     background="highlight.standard"
                     color="white"
                     type="submit"
-                    _hover={{ bg: 'highlight.hover' }}
-                    _active={{ bg: 'highlight.active' }}
-                    _focus={{ boxShadow: 'none' }}
+                    _hover={{ bg: "highlight.hover" }}
+                    _active={{ bg: "highlight.active" }}
+                    _focus={{ boxShadow: "none" }}
                     isLoading={isSubmitting}
                     fontSize="14px"
                   >
@@ -304,7 +304,7 @@ const DeleteChannelModal: React.FC<IScreenProps> = ({
           variant="link"
           onClick={goBack}
           fontSize="14px"
-          _focus={{ outline: 'none' }}
+          _focus={{ outline: "none" }}
         >
           Cancel
         </Button>

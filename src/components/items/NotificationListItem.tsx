@@ -1,16 +1,16 @@
-import React, { useEffect, useState } from 'react'
-import { Avatar, Flex } from '@chakra-ui/react'
-import { Link, useLocation } from 'react-router-dom'
-import { useQueryClient } from 'react-query'
-import { StyledTooltip } from '../sections/StyledTooltip'
+import React, { useEffect, useState } from "react"
+import { Avatar, Flex } from "@chakra-ui/react"
+import { Link, useLocation } from "react-router-dom"
+import { useQueryClient } from "react-query"
+import { StyledTooltip } from "../sections/StyledTooltip"
 import {
   ActiveGuildPill,
   HoverGuildPill,
   NotificationIndicator,
-} from '../common/GuildPills'
-import { NotificationIcon } from '../common/NotificationIcon'
-import { dmKey, nKey } from '../../lib/utils/querykeys'
-import { DMChannel, DMNotification } from '../../lib/models/dm'
+} from "../common/GuildPills"
+import { NotificationIcon } from "../common/NotificationIcon"
+import { dmKey, nKey } from "../../lib/utils/querykeys"
+import { DMChannel, DMNotification } from "../../lib/models/dm"
 
 interface NotificationListItemProps {
   notification: DMNotification
@@ -33,7 +33,7 @@ export const NotificationListItem: React.FC<NotificationListItemProps> = ({
   })
 
   const handleClick = (): void => {
-    if (window.location.pathname.includes('/channels/me')) {
+    if (window.location.pathname.includes("/channels/me")) {
       const newChannel: DMChannel = {
         id: notification.id,
         user: notification.user,
@@ -59,7 +59,7 @@ export const NotificationListItem: React.FC<NotificationListItemProps> = ({
         <Link to={`/channels/me/${notification.id}`}>
           <Avatar
             src={notification.user.image}
-            borderRadius={isActive || isHover ? '35%' : '50%'}
+            borderRadius={isActive || isHover ? "35%" : "50%"}
             name={notification.user.username}
             color="#fff"
             bg="brandGray.light"

@@ -1,19 +1,19 @@
-import React, { useRef, useState } from 'react'
-import { Flex, GridItem, InputGroup, Text, Textarea } from '@chakra-ui/react'
-import ResizeTextarea from 'react-textarea-autosize'
-import { useParams } from 'react-router-dom'
-import { useQuery } from 'react-query'
-import { FileUploadButton } from './FileUploadButton'
-import { sendMessage } from '../../../../lib/api/handler/messages'
-import { getSameSocket } from '../../../../lib/api/getSocket'
-import { userStore } from '../../../../lib/stores/userStore'
-import { channelStore } from '../../../../lib/stores/channelStore'
-import { cKey, dmKey } from '../../../../lib/utils/querykeys'
-import '../css/MessageInput.css'
-import { RouterProps } from '../../../../lib/models/routerProps'
+import React, { useRef, useState } from "react"
+import { Flex, GridItem, InputGroup, Text, Textarea } from "@chakra-ui/react"
+import ResizeTextarea from "react-textarea-autosize"
+import { useParams } from "react-router-dom"
+import { useQuery } from "react-query"
+import { FileUploadButton } from "./FileUploadButton"
+import { sendMessage } from "../../../../lib/api/handler/messages"
+import { getSameSocket } from "../../../../lib/api/getSocket"
+import { userStore } from "../../../../lib/stores/userStore"
+import { channelStore } from "../../../../lib/stores/channelStore"
+import { cKey, dmKey } from "../../../../lib/utils/querykeys"
+import "../css/MessageInput.css"
+import { RouterProps } from "../../../../lib/models/routerProps"
 
 export const MessageInput: React.FC = () => {
-  const [text, setText] = useState('')
+  const [text, setText] = useState("")
   const [isSubmitting, setSubmitting] = useState(false)
   const [currentlyTyping, setCurrentlyTyping] = useState(false)
   const inputRef: any = useRef()
@@ -34,7 +34,7 @@ export const MessageInput: React.FC = () => {
 
     socket.send(
       JSON.stringify({
-        action: 'stopTyping',
+        action: "stopTyping",
         room: channelId,
         message: current?.username,
       }),
@@ -44,7 +44,7 @@ export const MessageInput: React.FC = () => {
       setSubmitting(true)
       setCurrentlyTyping(false)
       const formData = new FormData()
-      formData.append('text', text.trim())
+      formData.append("text", text.trim())
       await sendMessage(channelId, formData)
     } catch (err) {}
   }
@@ -58,12 +58,12 @@ export const MessageInput: React.FC = () => {
       case 3:
         return `${members[0]}, ${members[1]} and ${members[2]}`
       default:
-        return 'Several people'
+        return "Several people"
     }
   }
 
   const getPlaceholder = (): string => {
-    if (!channel) return ''
+    if (!channel) return ""
 
     if (channel?.user) {
       return `Message @${channel?.user.username}`
@@ -76,7 +76,7 @@ export const MessageInput: React.FC = () => {
       gridColumn={3}
       gridRow={3}
       px="20px"
-      pb={isTyping.length > 0 ? '0' : '26px'}
+      pb={isTyping.length > 0 ? "0" : "26px"}
       bg="brandGray.light"
     >
       <InputGroup
@@ -99,7 +99,7 @@ export const MessageInput: React.FC = () => {
           name="text"
           placeholder={getPlaceholder()}
           border="0"
-          _focus={{ border: '0' }}
+          _focus={{ border: "0" }}
           ref={inputRef}
           isDisabled={isSubmitting}
           value={text}
@@ -108,7 +108,7 @@ export const MessageInput: React.FC = () => {
             if (value.trim().length === 1 && !currentlyTyping) {
               socket.send(
                 JSON.stringify({
-                  action: 'startTyping',
+                  action: "startTyping",
                   room: channelId,
                   message: current?.username,
                 }),
@@ -117,7 +117,7 @@ export const MessageInput: React.FC = () => {
             } else if (value.length === 0) {
               socket.send(
                 JSON.stringify({
-                  action: 'stopTyping',
+                  action: "stopTyping",
                   room: channelId,
                   message: current?.username,
                 }),
@@ -127,9 +127,9 @@ export const MessageInput: React.FC = () => {
             if (value.length <= 2000) setText(value)
           }}
           onKeyDown={(e) => {
-            if (e.key === 'Enter') {
+            if (e.key === "Enter") {
               handleSubmit().then(() => {
-                setText('')
+                setText("")
                 setSubmitting(false)
                 inputRef?.current?.focus()
               })
@@ -148,7 +148,7 @@ export const MessageInput: React.FC = () => {
           <Text ml="1" fontWeight="semibold">
             {getTypingString(isTyping)}
           </Text>
-          <Text ml="1">{isTyping.length === 1 ? 'is' : 'are'} typing... </Text>
+          <Text ml="1">{isTyping.length === 1 ? "is" : "are"} typing... </Text>
         </Flex>
       )}
     </GridItem>

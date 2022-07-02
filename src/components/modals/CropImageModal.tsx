@@ -12,10 +12,10 @@ import {
   SliderFilledTrack,
   SliderThumb,
   SliderTrack,
-} from '@chakra-ui/react'
-import React, { useCallback, useState } from 'react'
-import Cropper from 'react-easy-crop'
-import getCroppedImg from '../../lib/utils/cropImage'
+} from "@chakra-ui/react"
+import React, { useCallback, useState } from "react"
+import Cropper from "react-easy-crop"
+import getCroppedImg from "../../lib/utils/cropImage"
 
 interface IProps {
   isOpen: boolean
@@ -59,7 +59,7 @@ export const CropImageModal: React.FC<IProps> = ({
 
       <ModalContent bg="brandGray.light">
         <ModalHeader fontWeight="bold">EDIT MEDIA</ModalHeader>
-        <ModalCloseButton _focus={{ outline: 'none' }} />
+        <ModalCloseButton _focus={{ outline: "none" }} />
         <ModalBody>
           <Box h="400px" overflow="hidden" position="relative">
             <Cropper
@@ -98,9 +98,9 @@ export const CropImageModal: React.FC<IProps> = ({
             color="white"
             type="submit"
             fontSize="14px"
-            _hover={{ bg: 'highlight.hover' }}
-            _active={{ bg: 'highlight.active' }}
-            _focus={{ boxShadow: 'none' }}
+            _hover={{ bg: "highlight.hover" }}
+            _active={{ bg: "highlight.active" }}
+            _focus={{ boxShadow: "none" }}
             onClick={showCroppedImage}
           >
             Apply

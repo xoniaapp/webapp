@@ -1,21 +1,21 @@
-import React, { useState } from 'react'
-import { Avatar, Box, Flex, Icon, Text, useDisclosure } from '@chakra-ui/react'
-import { Item, Menu, theme, useContextMenu } from 'react-contexify'
-import { useParams } from 'react-router-dom'
-import { MdEdit } from 'react-icons/md'
-import { FaEllipsisH, FaRegTrashAlt } from 'react-icons/fa'
-import { FiLink } from 'react-icons/fi'
-import { MessageContent } from './MessageContent'
-import { userStore } from '../../../lib/stores/userStore'
-import { getShortenedTime, getTime } from '../../../lib/utils/dateUtils'
-import { DeleteMessageModal } from '../../modals/DeleteMessageModal'
-import { EditMessageModal } from '../../modals/EditMessageModal'
-import { useGetCurrentGuild } from '../../../lib/utils/hooks/useGetCurrentGuild'
-import { MemberContextMenu } from '../../menus/MemberContextMenu'
-import { UserPopover } from '../../sections/UserPopover'
-import { RouterProps } from '../../../lib/models/routerProps'
-import { Message as MessageResponse } from '../../../lib/models/message'
-import '../css/ContextMenu.css'
+import React, { useState } from "react"
+import { Avatar, Box, Flex, Icon, Text, useDisclosure } from "@chakra-ui/react"
+import { Item, Menu, theme, useContextMenu } from "react-contexify"
+import { useParams } from "react-router-dom"
+import { MdEdit } from "react-icons/md"
+import { FaEllipsisH, FaRegTrashAlt } from "react-icons/fa"
+import { FiLink } from "react-icons/fi"
+import { MessageContent } from "./MessageContent"
+import { userStore } from "../../../lib/stores/userStore"
+import { getShortenedTime, getTime } from "../../../lib/utils/dateUtils"
+import { DeleteMessageModal } from "../../modals/DeleteMessageModal"
+import { EditMessageModal } from "../../modals/EditMessageModal"
+import { useGetCurrentGuild } from "../../../lib/utils/hooks/useGetCurrentGuild"
+import { MemberContextMenu } from "../../menus/MemberContextMenu"
+import { UserPopover } from "../../sections/UserPopover"
+import { RouterProps } from "../../../lib/models/routerProps"
+import { Message as MessageResponse } from "../../../lib/models/message"
+import "../css/ContextMenu.css"
 
 interface MessageProps {
   message: MessageResponse
@@ -53,7 +53,7 @@ export const Message: React.FC<MessageProps> = ({
   const { show: profileShow } = useContextMenu({ id })
 
   const openInNewTab = (url: string): void => {
-    const newWindow = window.open(url, '_blank', 'noopener,noreferrer')
+    const newWindow = window.open(url, "_blank", "noopener,noreferrer")
     if (newWindow) newWindow.opener = null
   }
 
@@ -62,8 +62,8 @@ export const Message: React.FC<MessageProps> = ({
       <Flex
         alignItems="center"
         mr="1"
-        mt={isCompact ? '0' : '3'}
-        _hover={{ bg: 'brandGray.hover' }}
+        mt={isCompact ? "0" : "3"}
+        _hover={{ bg: "brandGray.hover" }}
         justify="space-between"
         onMouseLeave={() => setShowSettings(false)}
         onMouseEnter={() => setShowSettings(true)}
@@ -89,7 +89,7 @@ export const Message: React.FC<MessageProps> = ({
                 <Box
                   onClick={show}
                   mr="2"
-                  _hover={{ cursor: 'pointer' }}
+                  _hover={{ cursor: "pointer" }}
                   h="5px"
                 >
                   <FaEllipsisH />
@@ -109,7 +109,7 @@ export const Message: React.FC<MessageProps> = ({
                   mt="1"
                   src={message.user.image}
                   _hover={{
-                    cursor: 'pointer',
+                    cursor: "pointer",
                   }}
                   onContextMenu={(e) => {
                     if (!isAuthor) profileShow(e)
@@ -127,7 +127,7 @@ export const Message: React.FC<MessageProps> = ({
                     </Text>
                   </Flex>
                   {showSettings && showMenu && (
-                    <Box onClick={show} mr="2" _hover={{ cursor: 'pointer' }}>
+                    <Box onClick={show} mr="2" _hover={{ cursor: "pointer" }}>
                       <FaEllipsisH />
                     </Box>
                   )}

@@ -14,19 +14,19 @@ import {
   ModalOverlay,
   Switch,
   Text,
-} from '@chakra-ui/react'
-import { Form, Formik } from 'formik'
-import React, { useState } from 'react'
-import { useQuery } from 'react-query'
-import { AiOutlineLock } from 'react-icons/ai'
-import { CUIAutoComplete } from 'chakra-ui-autocomplete'
-import { useHistory } from 'react-router-dom'
-import { InputField } from '../common/InputField'
-import { toErrorMap } from '../../lib/utils/toErrorMap'
-import { getGuildMembers } from '../../lib/api/handler/guilds'
-import { ChannelSchema } from '../../lib/utils/validation/channel.schema'
-import { mKey } from '../../lib/utils/querykeys'
-import { createChannel } from '../../lib/api/handler/channel'
+} from "@chakra-ui/react"
+import { Form, Formik } from "formik"
+import React, { useState } from "react"
+import { useQuery } from "react-query"
+import { AiOutlineLock } from "react-icons/ai"
+import { CUIAutoComplete } from "chakra-ui-autocomplete"
+import { useHistory } from "react-router-dom"
+import { InputField } from "../common/InputField"
+import { toErrorMap } from "../../lib/utils/toErrorMap"
+import { getGuildMembers } from "../../lib/api/handler/guilds"
+import { ChannelSchema } from "../../lib/utils/validation/channel.schema"
+import { mKey } from "../../lib/utils/querykeys"
+import { createChannel } from "../../lib/api/handler/channel"
 
 interface IProps {
   guildId: string
@@ -87,7 +87,7 @@ export const CreateChannelModal: React.FC<IProps> = ({
       <ModalContent bg="brandGray.light">
         <Formik
           initialValues={{
-            name: '',
+            name: "",
             isPublic: true,
           }}
           validationSchema={ChannelSchema}
@@ -120,7 +120,7 @@ export const CreateChannelModal: React.FC<IProps> = ({
               <ModalHeader textAlign="center" fontWeight="bold">
                 Create Text Channel
               </ModalHeader>
-              <ModalCloseButton _focus={{ outline: 'none' }} />
+              <ModalCloseButton _focus={{ outline: "none" }} />
               <ModalBody>
                 <InputField label="channel name" name="name" />
 
@@ -138,7 +138,7 @@ export const CreateChannelModal: React.FC<IProps> = ({
                   </FormLabel>
                   <Switch
                     onChange={(e) => {
-                      setFieldValue('isPublic', !e.target.checked)
+                      setFieldValue("isPublic", !e.target.checked)
                     }}
                   />
                 </FormControl>
@@ -175,7 +175,7 @@ export const CreateChannelModal: React.FC<IProps> = ({
                   fontSize="14px"
                   mr={6}
                   variant="link"
-                  _focus={{ outline: 'none' }}
+                  _focus={{ outline: "none" }}
                 >
                   Cancel
                 </Button>
@@ -184,9 +184,9 @@ export const CreateChannelModal: React.FC<IProps> = ({
                   color="white"
                   type="submit"
                   fontSize="14px"
-                  _hover={{ bg: 'highlight.hover' }}
-                  _active={{ bg: 'highlight.active' }}
-                  _focus={{ boxShadow: 'none' }}
+                  _hover={{ bg: "highlight.hover" }}
+                  _active={{ bg: "highlight.active" }}
+                  _focus={{ boxShadow: "none" }}
                   isLoading={isSubmitting}
                 >
                   Create Channel

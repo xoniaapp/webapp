@@ -1,10 +1,10 @@
-import React from 'react'
-import { GridItem } from '@chakra-ui/react'
-import { FriendsListHeader } from './FriendsListHeader'
-import { FriendsList } from './FriendsList'
-import { PendingList } from './PendingList'
-import { scrollbarCss } from '../../../../lib/utils/theme'
-import { homeStore } from '../../../../lib/stores/homeStore'
+import React from "react"
+import { GridItem } from "@chakra-ui/react"
+import { FriendsListHeader } from "./FriendsListHeader"
+import { FriendsList } from "./FriendsList"
+import { PendingList } from "./PendingList"
+import { scrollbarCss } from "../../../../lib/utils/theme"
+import { homeStore } from "../../../../lib/stores/homeStore"
 
 export const FriendsDashboard: React.FC = () => {
   const isPending = homeStore((state) => state.isPending)

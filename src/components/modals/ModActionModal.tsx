@@ -8,14 +8,14 @@ import {
   ModalHeader,
   ModalOverlay,
   Text,
-} from '@chakra-ui/react'
-import React from 'react'
-import { useQueryClient } from 'react-query'
-import { useParams } from 'react-router-dom'
-import { mKey } from '../../lib/utils/querykeys'
-import { Member } from '../../lib/models/member'
-import { RouterProps } from '../../lib/models/routerProps'
-import { banMember, kickMember } from '../../lib/api/handler/members'
+} from "@chakra-ui/react"
+import React from "react"
+import { useQueryClient } from "react-query"
+import { useParams } from "react-router-dom"
+import { mKey } from "../../lib/utils/querykeys"
+import { Member } from "../../lib/models/member"
+import { RouterProps } from "../../lib/models/routerProps"
+import { banMember, kickMember } from "../../lib/api/handler/members"
 
 interface IProps {
   member: Member
@@ -31,7 +31,7 @@ export const ModActionModal: React.FC<IProps> = ({
   isBan,
 }) => {
   const cache = useQueryClient()
-  const action = isBan ? 'Ban ' : 'Kick '
+  const action = isBan ? "Ban " : "Kick "
   const { guildId } = useParams<RouterProps>()
 
   return (
@@ -52,7 +52,7 @@ export const ModActionModal: React.FC<IProps> = ({
           <Text mb="4">
             Are you sure you want to {action.toLocaleLowerCase()} @
             {member.username}?
-            {!isBan && ' They will be able to rejoin again with a new invite.'}
+            {!isBan && " They will be able to rejoin again with a new invite."}
           </Text>
         </ModalBody>
 
@@ -62,7 +62,7 @@ export const ModActionModal: React.FC<IProps> = ({
             mr={6}
             variant="link"
             fontSize="14px"
-            _focus={{ outline: 'none' }}
+            _focus={{ outline: "none" }}
           >
             Cancel
           </Button>

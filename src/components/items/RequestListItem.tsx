@@ -1,15 +1,15 @@
-import { Avatar, Box, Flex, IconButton, ListItem, Text } from '@chakra-ui/react'
-import React from 'react'
-import { BiCheck } from 'react-icons/bi'
-import { AiOutlineClose } from 'react-icons/ai'
-import { useQueryClient } from 'react-query'
-import { StyledTooltip } from '../sections/StyledTooltip'
+import { Avatar, Box, Flex, IconButton, ListItem, Text } from "@chakra-ui/react"
+import React from "react"
+import { BiCheck } from "react-icons/bi"
+import { AiOutlineClose } from "react-icons/ai"
+import { useQueryClient } from "react-query"
+import { StyledTooltip } from "../sections/StyledTooltip"
 import {
   acceptFriendRequest,
   declineFriendRequest,
-} from '../../lib/api/handler/account'
-import { fKey, rKey } from '../../lib/utils/querykeys'
-import { FriendRequest, RequestType } from '../../lib/models/friend'
+} from "../../lib/api/handler/account"
+import { fKey, rKey } from "../../lib/utils/querykeys"
+import { FriendRequest, RequestType } from "../../lib/models/friend"
 
 interface RequestListItemProps {
   request: FriendRequest
@@ -50,8 +50,8 @@ export const RequestListItem: React.FC<RequestListItemProps> = ({
       p="3"
       mx="3"
       _hover={{
-        bg: 'brandGray.dark',
-        borderRadius: '5px',
+        bg: "brandGray.dark",
+        borderRadius: "5px",
       }}
     >
       <Flex align="center" justify="space-between">
@@ -61,8 +61,8 @@ export const RequestListItem: React.FC<RequestListItemProps> = ({
             <Text>{request.username}</Text>
             <Text fontSize="12px">
               {request.type === RequestType.INCOMING
-                ? 'Incoming Friend Request'
-                : 'Outgoing Friend Request'}
+                ? "Incoming Friend Request"
+                : "Outgoing Friend Request"}
             </Text>
           </Box>
         </Flex>

@@ -1,12 +1,12 @@
-import React, { useState } from 'react'
-import { Divider, Flex, Text, useDisclosure } from '@chakra-ui/react'
-import { Item, Menu, theme } from 'react-contexify'
-import { useHistory } from 'react-router-dom'
-import { getOrCreateDirectMessage } from '../../lib/api/handler/dm'
-import { sendFriendRequest } from '../../lib/api/handler/account'
-import { RemoveFriendModal } from '../modals/RemoveFriendModal'
-import { ModActionModal } from '../modals/ModActionModal'
-import { Member } from '../../lib/models/member'
+import React, { useState } from "react"
+import { Divider, Flex, Text, useDisclosure } from "@chakra-ui/react"
+import { Item, Menu, theme } from "react-contexify"
+import { useHistory } from "react-router-dom"
+import { getOrCreateDirectMessage } from "../../lib/api/handler/dm"
+import { sendFriendRequest } from "../../lib/api/handler/account"
+import { RemoveFriendModal } from "../modals/RemoveFriendModal"
+import { ModActionModal } from "../modals/ModActionModal"
+import { Member } from "../../lib/models/member"
 
 interface MemberContextMenuProps {
   member: Member
@@ -57,7 +57,7 @@ export const MemberContextMenu: React.FC<MemberContextMenuProps> = ({
         </Item>
         <Item onClick={handleFriendClick} className="menu-item">
           <Flex align="center" justify="space-between" w="full">
-            <Text>{member.isFriend ? 'Remove' : 'Add'} Friend</Text>
+            <Text>{member.isFriend ? "Remove" : "Add"} Friend</Text>
           </Flex>
         </Item>
         {isOwner && (

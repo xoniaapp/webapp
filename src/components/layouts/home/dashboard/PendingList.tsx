@@ -1,12 +1,12 @@
-import React, { useEffect } from 'react'
-import { useQuery } from 'react-query'
-import { Flex, UnorderedList, Text } from '@chakra-ui/react'
-import { rKey } from '../../../../lib/utils/querykeys'
-import { getPendingRequests } from '../../../../lib/api/handler/account'
-import { OnlineLabel } from '../../../sections/OnlineLabel'
-import { RequestListItem } from '../../../items/RequestListItem'
-import { homeStore } from '../../../../lib/stores/homeStore'
-import { useRequestSocket } from '../../../../lib/api/ws/useRequestSocket'
+import React, { useEffect } from "react"
+import { useQuery } from "react-query"
+import { Flex, UnorderedList, Text } from "@chakra-ui/react"
+import { rKey } from "../../../../lib/utils/querykeys"
+import { getPendingRequests } from "../../../../lib/api/handler/account"
+import { OnlineLabel } from "../../../sections/OnlineLabel"
+import { RequestListItem } from "../../../items/RequestListItem"
+import { homeStore } from "../../../../lib/stores/homeStore"
+import { useRequestSocket } from "../../../../lib/api/ws/useRequestSocket"
 
 export const PendingList: React.FC = () => {
   const { data } = useQuery(

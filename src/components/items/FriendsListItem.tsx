@@ -6,16 +6,16 @@ import {
   ListItem,
   Text,
   useDisclosure,
-} from '@chakra-ui/react'
-import React from 'react'
-import { FaEllipsisV } from 'react-icons/fa'
-import { useHistory } from 'react-router-dom'
-import { useQueryClient } from 'react-query'
-import { getOrCreateDirectMessage } from '../../lib/api/handler/dm'
-import { RemoveFriendModal } from '../modals/RemoveFriendModal'
-import { dmKey } from '../../lib/utils/querykeys'
-import { Friend } from '../../lib/models/friend'
-import { DMChannel } from '../../lib/models/dm'
+} from "@chakra-ui/react"
+import React from "react"
+import { FaEllipsisV } from "react-icons/fa"
+import { useHistory } from "react-router-dom"
+import { useQueryClient } from "react-query"
+import { getOrCreateDirectMessage } from "../../lib/api/handler/dm"
+import { RemoveFriendModal } from "../modals/RemoveFriendModal"
+import { dmKey } from "../../lib/utils/querykeys"
+import { Friend } from "../../lib/models/friend"
+import { DMChannel } from "../../lib/models/dm"
 
 interface FriendsListItemProp {
   friend: Friend
@@ -46,8 +46,8 @@ export const FriendsListItem: React.FC<FriendsListItemProp> = ({ friend }) => {
       p="3"
       mx="3"
       _hover={{
-        bg: 'brandGray.dark',
-        borderRadius: '5px',
+        bg: "brandGray.dark",
+        borderRadius: "5px",
       }}
     >
       <Flex align="center" justify="space-between">
@@ -55,12 +55,12 @@ export const FriendsListItem: React.FC<FriendsListItemProp> = ({ friend }) => {
           align="center"
           w="full"
           onClick={getDMChannel}
-          _hover={{ cursor: 'pointer' }}
+          _hover={{ cursor: "pointer" }}
         >
           <Avatar size="sm" src={friend.image}>
             <AvatarBadge
               boxSize="1.25em"
-              bg={friend.isOnline ? 'green.500' : 'gray.500'}
+              bg={friend.isOnline ? "green.500" : "gray.500"}
             />
           </Avatar>
           <Text ml="2">{friend.username}</Text>

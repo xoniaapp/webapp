@@ -1,4 +1,4 @@
-import React from 'react'
+import React from "react"
 import {
   Button,
   Flex,
@@ -7,11 +7,11 @@ import {
   LightMode,
   Text,
   useDisclosure,
-} from '@chakra-ui/react'
-import { FiUsers } from 'react-icons/fi'
-import { AddFriendModal } from '../../../modals/AddFriendModal'
-import { homeStore } from '../../../../lib/stores/homeStore'
-import { PingIcon } from '../../../common/NotificationIcon'
+} from "@chakra-ui/react"
+import { FiUsers } from "react-icons/fi"
+import { AddFriendModal } from "../../../modals/AddFriendModal"
+import { homeStore } from "../../../../lib/stores/homeStore"
+import { PingIcon } from "../../../common/NotificationIcon"
 
 export const FriendsListHeader: React.FC = () => {
   const { isOpen, onOpen, onClose } = useDisclosure()
@@ -42,8 +42,8 @@ export const FriendsListHeader: React.FC = () => {
             onClick={() => {
               if (isPending) toggle()
             }}
-            variant={!isPending ? 'solid' : 'ghost'}
-            _focus={{ boxShadow: 'none' }}
+            variant={!isPending ? "solid" : "ghost"}
+            _focus={{ boxShadow: "none" }}
           >
             Friends
           </Button>
@@ -52,11 +52,11 @@ export const FriendsListHeader: React.FC = () => {
             size="xs"
             ml="2"
             colorScheme="gray"
-            variant={isPending ? 'solid' : 'ghost'}
+            variant={isPending ? "solid" : "ghost"}
             onClick={() => {
               if (!isPending) toggle()
             }}
-            _focus={{ boxShadow: 'none' }}
+            _focus={{ boxShadow: "none" }}
           >
             Pending
             {requests > 0 && <PingIcon count={requests} />}
@@ -67,8 +67,8 @@ export const FriendsListHeader: React.FC = () => {
             fontSize="14px"
             size="xs"
             bg="brandGreen"
-            _hover={{ bg: 'brandGreen' }}
-            _active={{ bg: 'brandGreen' }}
+            _hover={{ bg: "brandGreen" }}
+            _active={{ bg: "brandGreen" }}
             onClick={onOpen}
           >
             Add Friend

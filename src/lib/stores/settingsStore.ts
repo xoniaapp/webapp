@@ -1,5 +1,5 @@
-import create from 'zustand'
-import { persist } from 'zustand/middleware'
+import create from "zustand"
+import { persist } from "zustand/middleware"
 
 type SettingsState = {
   showMembers: boolean
@@ -14,7 +14,7 @@ export const settingsStore = create<SettingsState>(
       toggleShowMembers: () => set({ showMembers: !get().showMembers }),
     }),
     {
-      name: 'settings-storage',
+      name: "settings-storage",
     },
   ),
 )

@@ -9,19 +9,19 @@ import {
   ModalHeader,
   ModalOverlay,
   Text,
-} from '@chakra-ui/react'
-import { Form, Formik } from 'formik'
-import React, { useState } from 'react'
-import { useQuery } from 'react-query'
-import { TwitterPicker } from 'react-color'
-import { InputField } from '../common/InputField'
-import { toErrorMap } from '../../lib/utils/toErrorMap'
-import { userStore } from '../../lib/stores/userStore'
-import { MemberSchema } from '../../lib/utils/validation/member.schema'
+} from "@chakra-ui/react"
+import { Form, Formik } from "formik"
+import React, { useState } from "react"
+import { useQuery } from "react-query"
+import { TwitterPicker } from "react-color"
+import { InputField } from "../common/InputField"
+import { toErrorMap } from "../../lib/utils/toErrorMap"
+import { userStore } from "../../lib/stores/userStore"
+import { MemberSchema } from "../../lib/utils/validation/member.schema"
 import {
   changeGuildMemberSettings,
   getGuildMemberSettings,
-} from '../../lib/api/handler/members'
+} from "../../lib/api/handler/members"
 
 interface IProps {
   guildId: string
@@ -55,7 +55,7 @@ export const EditMemberModal: React.FC<IProps> = ({
           onSubmit={async (values, { setErrors, setFieldValue }) => {
             try {
               // Default color --> Reset
-              if (values.color === '#fff') setFieldValue('color', null)
+              if (values.color === "#fff") setFieldValue("color", null)
 
               const { data: responseData } = await changeGuildMemberSettings(
                 guildId,
@@ -80,7 +80,7 @@ export const EditMemberModal: React.FC<IProps> = ({
               <ModalHeader fontWeight="bold" pb={0}>
                 Change Appearance
               </ModalHeader>
-              <ModalCloseButton _focus={{ outline: 'none' }} />
+              <ModalCloseButton _focus={{ outline: "none" }} />
               <ModalBody>
                 <InputField
                   color={values.color ?? undefined}
@@ -93,11 +93,11 @@ export const EditMemberModal: React.FC<IProps> = ({
                   ml="1"
                   color="brandGray.accent"
                   _hover={{
-                    cursor: 'pointer',
-                    color: 'highlight.standard',
+                    cursor: "pointer",
+                    color: "highlight.standard",
                   }}
                   fontSize="14px"
-                  onClick={() => setFieldValue('nickname', null)}
+                  onClick={() => setFieldValue("nickname", null)}
                 >
                   Reset
                 </Text>
@@ -105,9 +105,9 @@ export const EditMemberModal: React.FC<IProps> = ({
                 <Divider my="4" />
 
                 <TwitterPicker
-                  color={values.color || '#fff'}
+                  color={values.color || "#fff"}
                   onChangeComplete={(color) => {
-                    if (color) setFieldValue('color', color.hex)
+                    if (color) setFieldValue("color", color.hex)
                   }}
                   className="picker"
                 />
@@ -117,11 +117,11 @@ export const EditMemberModal: React.FC<IProps> = ({
                   ml="1"
                   color="brandGray.accent"
                   _hover={{
-                    cursor: 'pointer',
-                    color: 'highlight.standard',
+                    cursor: "pointer",
+                    color: "highlight.standard",
                   }}
                   fontSize="14px"
-                  onClick={() => setFieldValue('color', '#fff')}
+                  onClick={() => setFieldValue("color", "#fff")}
                 >
                   Reset
                 </Text>
@@ -139,7 +139,7 @@ export const EditMemberModal: React.FC<IProps> = ({
                   mr={6}
                   variant="link"
                   fontSize="14px"
-                  _focus={{ outline: 'none' }}
+                  _focus={{ outline: "none" }}
                 >
                   Cancel
                 </Button>
@@ -147,9 +147,9 @@ export const EditMemberModal: React.FC<IProps> = ({
                   background="highlight.standard"
                   color="white"
                   type="submit"
-                  _hover={{ bg: 'highlight.hover' }}
-                  _active={{ bg: 'highlight.active' }}
-                  _focus={{ boxShadow: 'none' }}
+                  _hover={{ bg: "highlight.hover" }}
+                  _active={{ bg: "highlight.active" }}
+                  _focus={{ boxShadow: "none" }}
                   isLoading={isSubmitting}
                   fontSize="14px"
                 >

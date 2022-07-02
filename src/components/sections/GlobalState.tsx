@@ -1,15 +1,14 @@
-import React, { useEffect } from 'react'
-import { useQueryClient } from 'react-query'
-import { userStore } from '../../lib/stores/userStore'
-import { getSocket } from '../../lib/api/getSocket'
-import { homeStore } from '../../lib/stores/homeStore'
-import { nKey } from '../../lib/utils/querykeys'
-import { DMChannel, DMNotification } from '../../lib/models/dm'
+import React, { useEffect } from "react"
+import { useQueryClient } from "react-query"
+import { userStore } from "../../lib/stores/userStore"
+import { getSocket } from "../../lib/api/getSocket"
+import { homeStore } from "../../lib/stores/homeStore"
+import { nKey } from "../../lib/utils/querykeys"
+import { DMChannel, DMNotification } from "../../lib/models/dm"
 
 type WSMessage =
-  | { action: 'new_dm_notification'; data: DMChannel }
-  | { action: 'send_request' }
-
+  | { action: "new_dm_notification"; data: DMChannel }
+  | { action: "send_request" }
 
 /* @ts-ignore */
 export const GlobalState: React.FC = ({ children }) => {
@@ -21,23 +20,23 @@ export const GlobalState: React.FC = ({ children }) => {
   useEffect(() => {
     if (current) {
       const disconnect = (): void => {
-        socket.send(JSON.stringify({ action: 'toggleOffline' }))
+        socket.send(JSON.stringify({ action: "toggleOffline" }))
         socket.close()
       }
 
       const socket = getSocket()
-      socket.send(JSON.stringify({ action: 'toggleOnline' }))
+      socket.send(JSON.stringify({ action: "toggleOnline" }))
       socket.send(
         JSON.stringify({
-          action: 'joinUser',
+          action: "joinUser",
           room: current?.id,
         }),
       )
 
-      socket.addEventListener('message', (event) => {
+      socket.addEventListener("message", (event) => {
         const response: WSMessage = JSON.parse(event.data)
         switch (response.action) {
-          case 'new_dm_notification': {
+          case "new_dm_notification": {
             const channel = response.data
             if (channel.user.id !== current.id) {
               cache.setQueryData<DMNotification[]>(nKey, (data) => {
@@ -63,8 +62,8 @@ export const GlobalState: React.FC = ({ children }) => {
             break
           }
 
-          case 'send_request': {
-            if (!window.location.pathname.includes('/channels/me')) {
+          case "send_request": {
+            if (!window.location.pathname.includes("/channels/me")) {
               inc()
             }
             break
@@ -75,7 +74,7 @@ export const GlobalState: React.FC = ({ children }) => {
         }
       })
 
-      window.addEventListener('beforeunload', disconnect)
+      window.addEventListener("beforeunload", disconnect)
 
       return () => disconnect()
     }

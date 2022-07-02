@@ -1,5 +1,5 @@
 export const guildScrollbarCss = {
-  '&::-webkit-scrollbar': {
-    width: '0',
+  "&::-webkit-scrollbar": {
+    width: "0",
   },
 }

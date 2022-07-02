@@ -1,18 +1,18 @@
-import React, { useState } from 'react'
-import { Box, Flex, Spinner } from '@chakra-ui/react'
-import InfiniteScroll from 'react-infinite-scroll-component'
-import { useInfiniteQuery } from 'react-query'
-import { useParams } from 'react-router-dom'
-import { Message } from '../../../items/message/Message'
-import { StartMessages } from '../../../sections/StartMessages'
-import { getMessages } from '../../../../lib/api/handler/messages'
-import { checkNewDay, getTimeDifference } from '../../../../lib/utils/dateUtils'
-import { guildScrollbarCss } from '../css/GuildScrollerCSS'
-import { useMessageSocket } from '../../../../lib/api/ws/useMessageSocket'
-import { DateDivider } from '../../../sections/DateDivider'
-import { ChatGrid } from './ChatGrid'
-import { RouterProps } from '../../../../lib/models/routerProps'
-import { Message as MessageResponse } from '../../../../lib/models/message'
+import React, { useState } from "react"
+import { Box, Flex, Spinner } from "@chakra-ui/react"
+import InfiniteScroll from "react-infinite-scroll-component"
+import { useInfiniteQuery } from "react-query"
+import { useParams } from "react-router-dom"
+import { Message } from "../../../items/message/Message"
+import { StartMessages } from "../../../sections/StartMessages"
+import { getMessages } from "../../../../lib/api/handler/messages"
+import { checkNewDay, getTimeDifference } from "../../../../lib/utils/dateUtils"
+import { guildScrollbarCss } from "../css/GuildScrollerCSS"
+import { useMessageSocket } from "../../../../lib/api/ws/useMessageSocket"
+import { DateDivider } from "../../../sections/DateDivider"
+import { ChatGrid } from "./ChatGrid"
+import { RouterProps } from "../../../../lib/models/routerProps"
+import { Message as MessageResponse } from "../../../../lib/models/message"
 
 export const ChatScreen: React.FC = () => {
   const { channelId } = useParams<RouterProps>()
@@ -34,7 +34,7 @@ export const ChatScreen: React.FC = () => {
       getNextPageParam: (lastPage) =>
         hasMore && lastPage.length
           ? lastPage[lastPage.length - 1].createdAt
-          : '',
+          : "",
     },
   )
 
@@ -74,8 +74,8 @@ export const ChatScreen: React.FC = () => {
         dataLength={messages.length}
         next={() => fetchNextPage()}
         style={{
-          display: 'flex',
-          flexDirection: 'column-reverse',
+          display: "flex",
+          flexDirection: "column-reverse",
         }}
         inverse
         hasMore={hasMore}

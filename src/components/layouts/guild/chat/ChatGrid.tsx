@@ -1,6 +1,6 @@
-import React from 'react'
-import { GridItem } from '@chakra-ui/react'
-import { scrollbarCss } from '../../../../lib/utils/theme'
+import React from "react"
+import { GridItem } from "@chakra-ui/react"
+import { scrollbarCss } from "../../../../lib/utils/theme"
 
 /* @ts-ignore */
 export const ChatGrid: React.FC = ({ children }) => (

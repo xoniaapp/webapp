@@ -1,6 +1,6 @@
-import create from 'zustand'
-import { persist } from 'zustand/middleware'
-import { Account } from '../models/account'
+import create from "zustand"
+import { persist } from "zustand/middleware"
+import { Account } from "../models/account"
 
 type AccountState = {
   current: Account | null
@@ -9,7 +9,7 @@ type AccountState = {
 }
 
 export const userStore = create<AccountState>(
-    /* @ts-ignore */
+  /* @ts-ignore */
   persist(
     (set) => ({
       current: null,
@@ -17,7 +17,7 @@ export const userStore = create<AccountState>(
       logout: () => set({ current: null }),
     }),
     {
-      name: 'user-storage',
+      name: "user-storage",
     },
   ),
 )

@@ -13,11 +13,11 @@ import {
   ModalOverlay,
   Text,
   useClipboard,
-} from '@chakra-ui/react'
-import React, { useEffect, useState } from 'react'
-import { useParams } from 'react-router-dom'
-import { getInviteLink } from '../../lib/api/handler/guilds'
-import { RouterProps } from '../../lib/models/routerProps'
+} from "@chakra-ui/react"
+import React, { useEffect, useState } from "react"
+import { useParams } from "react-router-dom"
+import { getInviteLink } from "../../lib/api/handler/guilds"
+import { RouterProps } from "../../lib/models/routerProps"
 
 interface InviteModalProps {
   isOpen: boolean
@@ -29,7 +29,7 @@ export const InviteModal: React.FC<InviteModalProps> = ({
   onClose,
 }) => {
   const { guildId } = useParams<RouterProps>()
-  const [inviteLink, setInviteLink] = useState('')
+  const [inviteLink, setInviteLink] = useState("")
   const { hasCopied, onCopy } = useClipboard(inviteLink)
   const [isPermanent, setPermanent] = useState(false)
 
@@ -52,7 +52,7 @@ export const InviteModal: React.FC<InviteModalProps> = ({
         <ModalHeader textAlign="center" fontWeight="bold" pb="0">
           Invite Link
         </ModalHeader>
-        <ModalCloseButton _focus={{ outline: 'none' }} />
+        <ModalCloseButton _focus={{ outline: "none" }} />
         <ModalBody>
           <Text mb="4">
             Share this link with others to grant access to this server
@@ -66,7 +66,7 @@ export const InviteModal: React.FC<InviteModalProps> = ({
             <Input
               id="invite-link"
               bg="brandGray.dark"
-              borderColor={hasCopied ? 'brandGreen' : 'black'}
+              borderColor={hasCopied ? "brandGreen" : "black"}
               borderRadius="3px"
               focusBorderColor="highlight.standard"
               value={inviteLink}
@@ -76,16 +76,16 @@ export const InviteModal: React.FC<InviteModalProps> = ({
               <Button
                 h="1.75rem"
                 size="sm"
-                bg={hasCopied ? 'brandGreen' : 'highlight.standard'}
+                bg={hasCopied ? "brandGreen" : "highlight.standard"}
                 color="white"
                 type="submit"
                 fontSize="14px"
-                _hover={{ bg: 'highlight.hover' }}
-                _active={{ bg: 'highlight.active' }}
-                _focus={{ boxShadow: 'none' }}
+                _hover={{ bg: "highlight.hover" }}
+                _active={{ bg: "highlight.active" }}
+                _focus={{ boxShadow: "none" }}
                 onClick={onCopy}
               >
-                {hasCopied ? 'Copied' : 'Copy'}
+                {hasCopied ? "Copied" : "Copy"}
               </Button>
             </InputRightElement>
           </InputGroup>
@@ -93,7 +93,7 @@ export const InviteModal: React.FC<InviteModalProps> = ({
           <Text my="2" fontSize="12px">
             {isPermanent
               ? "Your invite link won't expire"
-              : 'Your invite link expires in 1 day and can only be used once'}
+              : "Your invite link expires in 1 day and can only be used once"}
           </Text>
         </ModalBody>
 

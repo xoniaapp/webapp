@@ -1,4 +1,4 @@
-import React from 'react'
+import React from "react"
 import {
   Flex,
   GridItem,
@@ -8,24 +8,24 @@ import {
   MenuButton,
   MenuDivider,
   useDisclosure,
-} from '@chakra-ui/react'
-import { FiChevronDown, FiX } from 'react-icons/fi'
-import { FaUserEdit, FaUserPlus } from 'react-icons/fa'
-import { MdAddCircle } from 'react-icons/md'
-import { HiLogout } from 'react-icons/hi'
-import { RiSettings5Fill } from 'react-icons/ri'
-import { useHistory, useParams } from 'react-router-dom'
-import { useQueryClient } from 'react-query'
-import { StyledMenuList } from './StyledMenuList'
-import { StyledMenuItem, StyledRedMenuItem } from './StyledMenuItem'
-import { leaveGuild } from '../../lib/api/handler/guilds'
-import { userStore } from '../../lib/stores/userStore'
-import { useGetCurrentGuild } from '../../lib/utils/hooks/useGetCurrentGuild'
-import { GuildSettingsModal } from '../modals/GuildSettingsModal'
-import { EditMemberModal } from '../modals/EditMemberModal'
-import { gKey } from '../../lib/utils/querykeys'
-import { RouterProps } from '../../lib/models/routerProps'
-import { Guild } from '../../lib/models/guild'
+} from "@chakra-ui/react"
+import { FiChevronDown, FiX } from "react-icons/fi"
+import { FaUserEdit, FaUserPlus } from "react-icons/fa"
+import { MdAddCircle } from "react-icons/md"
+import { HiLogout } from "react-icons/hi"
+import { RiSettings5Fill } from "react-icons/ri"
+import { useHistory, useParams } from "react-router-dom"
+import { useQueryClient } from "react-query"
+import { StyledMenuList } from "./StyledMenuList"
+import { StyledMenuItem, StyledRedMenuItem } from "./StyledMenuItem"
+import { leaveGuild } from "../../lib/api/handler/guilds"
+import { userStore } from "../../lib/stores/userStore"
+import { useGetCurrentGuild } from "../../lib/utils/hooks/useGetCurrentGuild"
+import { GuildSettingsModal } from "../modals/GuildSettingsModal"
+import { EditMemberModal } from "../modals/EditMemberModal"
+import { gKey } from "../../lib/utils/querykeys"
+import { RouterProps } from "../../lib/models/routerProps"
+import { Guild } from "../../lib/models/guild"
 
 interface GuildMenuProps {
   channelOpen: () => void
@@ -58,7 +58,7 @@ export const GuildMenu: React.FC<GuildMenuProps> = ({
         cache.setQueryData<Guild[]>(gKey, (d) =>
           d!.filter((g) => g.id !== guild?.id),
         )
-        history.replace('/channels/me')
+        history.replace("/channels/me")
       }
     } catch (err) {}
   }

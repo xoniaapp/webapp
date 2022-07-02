@@ -1,18 +1,18 @@
-import { useEffect } from 'react'
-import { useQueryClient } from 'react-query'
-import { getSocket } from '../getSocket'
-import { userStore } from '../../stores/userStore'
-import { fKey } from '../../utils/querykeys'
-import { homeStore } from '../../stores/homeStore'
-import { Friend } from '../../models/friend'
+import { useEffect } from "react"
+import { useQueryClient } from "react-query"
+import { getSocket } from "../getSocket"
+import { userStore } from "../../stores/userStore"
+import { fKey } from "../../utils/querykeys"
+import { homeStore } from "../../stores/homeStore"
+import { Friend } from "../../models/friend"
 
 type WSMessage =
   | {
-      action: 'toggle_online' | 'toggle_offline' | 'remove_friend'
+      action: "toggle_online" | "toggle_offline" | "remove_friend"
       data: string
     }
-  | { action: 'requestCount'; data: number }
-  | { action: 'add_friend'; data: Friend }
+  | { action: "requestCount"; data: number }
+  | { action: "add_friend"; data: Friend }
 
 export function useFriendSocket(): void {
   const current = userStore((state) => state.current)
@@ -23,16 +23,16 @@ export function useFriendSocket(): void {
     const socket = getSocket()
     socket.send(
       JSON.stringify({
-        action: 'joinUser',
+        action: "joinUser",
         room: current?.id,
       }),
     )
-    socket.send(JSON.stringify({ action: 'getRequestCount' }))
+    socket.send(JSON.stringify({ action: "getRequestCount" }))
 
-    socket.addEventListener('message', (event) => {
+    socket.addEventListener("message", (event) => {
       const response: WSMessage = JSON.parse(event.data)
       switch (response.action) {
-        case 'toggle_online': {
+        case "toggle_online": {
           cache.setQueryData<Friend[]>(fKey, (d) => {
             const data = d ?? []
             const index = data.findIndex((m) => m.id === response.data)
@@ -42,7 +42,7 @@ export function useFriendSocket(): void {
           break
         }
 
-        case 'toggle_offline': {
+        case "toggle_offline": {
           cache.setQueryData<Friend[]>(fKey, (d) => {
             const data = d ?? []
             const index = data.findIndex((m) => m.id === response.data)
@@ -52,12 +52,12 @@ export function useFriendSocket(): void {
           break
         }
 
-        case 'requestCount': {
+        case "requestCount": {
           setRequests(response.data)
           break
         }
 
-        case 'add_friend': {
+        case "add_friend": {
           cache.setQueryData<Friend[]>(fKey, (data) =>
             [...data!, response.data].sort((a, b) =>
               a.username.localeCompare(b.username),
@@ -66,7 +66,7 @@ export function useFriendSocket(): void {
           break
         }
 
-        case 'remove_friend': {
+        case "remove_friend": {
           cache.setQueryData<Friend[]>(fKey, (data) => [
             ...data!.filter((m) => m.id !== response.data),
           ])
@@ -81,7 +81,7 @@ export function useFriendSocket(): void {
     return () => {
       socket.send(
         JSON.stringify({
-          action: 'leaveRoom',
+          action: "leaveRoom",
           room: current?.id,
         }),
       )

@@ -1,14 +1,14 @@
-import React from 'react'
-import { GridItem, Box, Text, UnorderedList } from '@chakra-ui/react'
-import { useQuery } from 'react-query'
-import { AccountBar } from '../AccountBar'
-import { FriendsListButton } from '../../sections/FriendsListButton'
-import { DMListItem } from '../../items/DMListItem'
-import { getUserDMs } from '../../../lib/api/handler/dm'
-import { dmKey } from '../../../lib/utils/querykeys'
-import { dmScrollerCss } from './css/dmScrollerCSS'
-import { useDMSocket } from '../../../lib/api/ws/useDMSocket'
-import { DMPlaceholder } from '../../sections/DMPlaceholder'
+import React from "react"
+import { GridItem, Box, Text, UnorderedList } from "@chakra-ui/react"
+import { useQuery } from "react-query"
+import { AccountBar } from "../AccountBar"
+import { FriendsListButton } from "../../sections/FriendsListButton"
+import { DMListItem } from "../../items/DMListItem"
+import { getUserDMs } from "../../../lib/api/handler/dm"
+import { dmKey } from "../../../lib/utils/querykeys"
+import { dmScrollerCss } from "./css/dmScrollerCSS"
+import { useDMSocket } from "../../../lib/api/ws/useDMSocket"
+import { DMPlaceholder } from "../../sections/DMPlaceholder"
 
 export const DMSidebar: React.FC = () => {
   const { data } = useQuery(dmKey, () =>
@@ -23,7 +23,7 @@ export const DMSidebar: React.FC = () => {
       gridRow="1 / 4"
       bg="brandGray.dark"
       overflowY="hidden"
-      _hover={{ overflowY: 'auto' }}
+      _hover={{ overflowY: "auto" }}
       css={dmScrollerCss}
     >
       <FriendsListButton />

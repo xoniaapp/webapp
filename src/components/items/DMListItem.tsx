@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState } from "react"
 import {
   Avatar,
   AvatarBadge,
@@ -6,13 +6,13 @@ import {
   Icon,
   ListItem,
   Text,
-} from '@chakra-ui/react'
-import { Link, useHistory, useLocation } from 'react-router-dom'
-import { IoMdClose } from 'react-icons/io'
-import { useQueryClient } from 'react-query'
-import { closeDirectMessage } from '../../lib/api/handler/dm'
-import { dmKey } from '../../lib/utils/querykeys'
-import { DMChannel } from '../../lib/models/dm'
+} from "@chakra-ui/react"
+import { Link, useHistory, useLocation } from "react-router-dom"
+import { IoMdClose } from "react-icons/io"
+import { useQueryClient } from "react-query"
+import { closeDirectMessage } from "../../lib/api/handler/dm"
+import { dmKey } from "../../lib/utils/querykeys"
+import { DMChannel } from "../../lib/models/dm"
 
 interface DMListItemProps {
   dm: DMChannel
@@ -33,7 +33,7 @@ export const DMListItem: React.FC<DMListItemProps> = ({ dm }) => {
         d!.filter((c) => c.id !== dm.id),
       )
       if (isActive) {
-        history.replace('/channels/me')
+        history.replace("/channels/me")
       }
     } catch (err) {}
   }
@@ -43,14 +43,14 @@ export const DMListItem: React.FC<DMListItemProps> = ({ dm }) => {
       <ListItem
         p="2"
         mx="2"
-        color={isActive ? '#fff' : 'brandGray.accent'}
+        color={isActive ? "#fff" : "brandGray.accent"}
         _hover={{
-          bg: 'brandGray.light',
-          borderRadius: '5px',
-          cursor: 'pointer',
-          color: '#fff',
+          bg: "brandGray.light",
+          borderRadius: "5px",
+          cursor: "pointer",
+          color: "#fff",
         }}
-        bg={isActive ? 'brandGray.active' : undefined}
+        bg={isActive ? "brandGray.active" : undefined}
         onMouseLeave={() => setShowButton(false)}
         onMouseEnter={() => setShowButton(true)}
       >
@@ -59,7 +59,7 @@ export const DMListItem: React.FC<DMListItemProps> = ({ dm }) => {
             <Avatar size="sm" src={dm.user.image}>
               <AvatarBadge
                 boxSize="1.25em"
-                bg={dm.user.isOnline ? 'green.500' : 'gray.500'}
+                bg={dm.user.isOnline ? "green.500" : "gray.500"}
               />
             </Avatar>
             <Text ml="2">{dm.user.username}</Text>

@@ -1,14 +1,14 @@
-import { useEffect } from 'react'
-import { useQueryClient } from 'react-query'
-import { getSocket } from '../getSocket'
-import { Member } from '../../models/member'
+import { useEffect } from "react"
+import { useQueryClient } from "react-query"
+import { getSocket } from "../getSocket"
+import { Member } from "../../models/member"
 
 type WSMessage =
   | {
-      action: 'remove_member' | 'toggle_online' | 'toggle_offline'
+      action: "remove_member" | "toggle_online" | "toggle_offline"
       data: string
     }
-  | { action: 'add_member'; data: Member }
+  | { action: "add_member"; data: Member }
 
 export function useMemberSocket(guildId: string, key: string): void {
   const cache = useQueryClient()
@@ -17,15 +17,15 @@ export function useMemberSocket(guildId: string, key: string): void {
 
     socket.send(
       JSON.stringify({
-        action: 'joinGuild',
+        action: "joinGuild",
         room: guildId,
       }),
     )
 
-    socket.addEventListener('message', (event) => {
+    socket.addEventListener("message", (event) => {
       const response: WSMessage = JSON.parse(event.data)
       switch (response.action) {
-        case 'add_member': {
+        case "add_member": {
           cache.setQueryData<Member[]>(key, (data) =>
             [...data!, response.data].sort((a, b) => {
               if (a.nickname && b.nickname) {
@@ -43,14 +43,14 @@ export function useMemberSocket(guildId: string, key: string): void {
           break
         }
 
-        case 'remove_member': {
+        case "remove_member": {
           cache.setQueryData<Member[]>(key, (data) => [
             ...data!.filter((m) => m.id !== response.data),
           ])
           break
         }
 
-        case 'toggle_online': {
+        case "toggle_online": {
           const memberId = response.data
           cache.setQueryData<Member[]>(key, (d) => {
             const data = d ?? []
@@ -61,7 +61,7 @@ export function useMemberSocket(guildId: string, key: string): void {
           break
         }
 
-        case 'toggle_offline': {
+        case "toggle_offline": {
           const memberId = response.data
           cache.setQueryData<Member[]>(key, (d) => {
             const data = d ?? []
@@ -80,7 +80,7 @@ export function useMemberSocket(guildId: string, key: string): void {
     return () => {
       socket.send(
         JSON.stringify({
-          action: 'leaveRoom',
+          action: "leaveRoom",
           room: guildId,
         }),
       )

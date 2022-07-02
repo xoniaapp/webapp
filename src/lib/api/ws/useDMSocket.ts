@@ -1,11 +1,11 @@
-import { useEffect } from 'react'
-import { useQueryClient } from 'react-query'
-import { getSocket } from '../getSocket'
-import { userStore } from '../../stores/userStore'
-import { dmKey } from '../../utils/querykeys'
-import { DMChannel } from '../../models/dm'
+import { useEffect } from "react"
+import { useQueryClient } from "react-query"
+import { getSocket } from "../getSocket"
+import { userStore } from "../../stores/userStore"
+import { dmKey } from "../../utils/querykeys"
+import { DMChannel } from "../../models/dm"
 
-type WSMessage = { action: 'push_to_top'; data: string }
+type WSMessage = { action: "push_to_top"; data: string }
 
 export function useDMSocket(): void {
   const current = userStore((state) => state.current)
@@ -16,16 +16,16 @@ export function useDMSocket(): void {
 
     socket.send(
       JSON.stringify({
-        action: 'joinUser',
+        action: "joinUser",
         room: current?.id,
       }),
     )
 
-    socket.addEventListener('message', (event) => {
+    socket.addEventListener("message", (event) => {
       const response: WSMessage = JSON.parse(event.data)
 
       switch (response.action) {
-        case 'push_to_top': {
+        case "push_to_top": {
           const dmId = response.data
           cache.setQueryData<DMChannel[]>(dmKey, (d) => {
             const data = d ?? []
@@ -45,7 +45,7 @@ export function useDMSocket(): void {
     return () => {
       socket.send(
         JSON.stringify({
-          action: 'leaveRoom',
+          action: "leaveRoom",
           room: current?.id,
         }),
       )

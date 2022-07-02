@@ -1,6 +1,4 @@
-import create from 'zustand'
-
-
+import create from "zustand"
 
 type ChannelState = {
   typing: string[]
@@ -8,8 +6,6 @@ type ChannelState = {
   removeTyping: (username: string) => void
   reset: () => void
 }
-
-
 
 export const channelStore = create<ChannelState>((set) => ({
   typing: [],

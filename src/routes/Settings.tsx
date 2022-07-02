@@ -10,21 +10,21 @@ import {
   Tooltip,
   useDisclosure,
   useToast,
-} from '@chakra-ui/react'
-import { Form, Formik } from 'formik'
-import React, { useRef, useState } from 'react'
-import { useQuery, useQueryClient } from 'react-query'
-import { useHistory } from 'react-router-dom'
-import { InputField } from '../components/common/InputField'
-import { ChangePasswordModal } from '../components/modals/ChangePasswordModal'
-import { toErrorMap } from '../lib/utils/toErrorMap'
-import { userStore } from '../lib/stores/userStore'
-import { UserSchema } from '../lib/utils/validation/auth.schema'
-import { getAccount, updateAccount } from '../lib/api/handler/account'
-import { logout } from '../lib/api/handler/auth'
-import { CropImageModal } from '../components/modals/CropImageModal'
-import { aKey } from '../lib/utils/querykeys'
-import { Account } from '../lib/models/account'
+} from "@chakra-ui/react"
+import { Form, Formik } from "formik"
+import React, { useRef, useState } from "react"
+import { useQuery, useQueryClient } from "react-query"
+import { useHistory } from "react-router-dom"
+import { InputField } from "../components/common/InputField"
+import { ChangePasswordModal } from "../components/modals/ChangePasswordModal"
+import { toErrorMap } from "../lib/utils/toErrorMap"
+import { userStore } from "../lib/stores/userStore"
+import { UserSchema } from "../lib/utils/validation/auth.schema"
+import { getAccount, updateAccount } from "../lib/api/handler/account"
+import { logout } from "../lib/api/handler/auth"
+import { CropImageModal } from "../components/modals/CropImageModal"
+import { aKey } from "../lib/utils/querykeys"
+import { Account } from "../lib/models/account"
 
 export const Settings = (): JSX.Element | null => {
   const history = useHistory()
@@ -46,7 +46,7 @@ export const Settings = (): JSX.Element | null => {
 
   const inputFile: any = useRef(null)
   const [imageUrl, setImageUrl] = useState<string | null>(user?.image ?? null)
-  const [cropImage, setCropImage] = useState('')
+  const [cropImage, setCropImage] = useState("")
   const [croppedImage, setCroppedImage] = useState<File | null>(null)
 
   const closeClicked = (): void => {
@@ -55,7 +55,7 @@ export const Settings = (): JSX.Element | null => {
 
   const applyCrop = (file: Blob): void => {
     setImageUrl(URL.createObjectURL(file))
-    setCroppedImage(new File([file], 'avatar', { type: 'image/jpeg' }))
+    setCroppedImage(new File([file], "avatar", { type: "image/jpeg" }))
     cropperOnClose()
   }
 
@@ -64,7 +64,7 @@ export const Settings = (): JSX.Element | null => {
     if (data) {
       cache.clear()
       logoutUser()
-      history.replace('/')
+      history.replace("/")
     }
   }
 
@@ -88,18 +88,18 @@ export const Settings = (): JSX.Element | null => {
               onSubmit={async (values, { setErrors }) => {
                 try {
                   const formData = new FormData()
-                  formData.append('email', values.email)
-                  formData.append('username', values.username)
+                  formData.append("email", values.email)
+                  formData.append("username", values.username)
 
                   if (croppedImage) {
-                    formData.append('image', croppedImage)
+                    formData.append("image", croppedImage)
                   }
                   const { data } = await updateAccount(formData)
                   if (data) {
                     setUser(data)
                     toast({
-                      title: 'Updated!',
-                      status: 'success',
+                      title: "Updated!",
+                      status: "success",
                       duration: 3000,
                       isClosable: true,
                     })
@@ -107,9 +107,9 @@ export const Settings = (): JSX.Element | null => {
                 } catch (err: any) {
                   if (err?.response?.status === 500) {
                     toast({
-                      title: 'Something went wrong!',
-                      description: 'Try again later!',
-                      status: 'error',
+                      title: "Something went wrong!",
+                      description: "Try again later!",
+                      status: "error",
                       duration: 3000,
                       isClosable: true,
                     })
@@ -130,7 +130,7 @@ export const Settings = (): JSX.Element | null => {
                         name={user?.username}
                         src={imageUrl || user?.image}
                         _hover={{
-                          cursor: 'pointer',
+                          cursor: "pointer",
                           opacity: 0.5,
                         }}
                         onClick={() => inputFile.current.click()}
@@ -205,9 +205,9 @@ export const Settings = (): JSX.Element | null => {
             <Button
               background="highlight.standard"
               color="white"
-              _hover={{ bg: 'highlight.hover' }}
-              _active={{ bg: 'highlight.active' }}
-              _focus={{ boxShadow: 'none' }}
+              _hover={{ bg: "highlight.hover" }}
+              _active={{ bg: "highlight.active" }}
+              _focus={{ boxShadow: "none" }}
               onClick={onOpen}
               fontSize="14px"
             >
@@ -225,8 +225,12 @@ export const Settings = (): JSX.Element | null => {
             </Button>
           </Flex>
           <p>Version</p>
-          <a href={`https://github.com/xoniaapp/webapp/commit/${import.meta.env.VITE_GIT_SHA}`}>
-          <code>main@{import.meta.env.VITE_GIT_SHA}</code>
+          <a
+            href={`https://github.com/xoniaapp/webapp/commit/${
+              import.meta.env.VITE_GIT_SHA
+            }`}
+          >
+            <code>main@{import.meta.env.VITE_GIT_SHA}</code>
           </a>
         </Box>
       </Box>
