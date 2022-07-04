@@ -25,6 +25,7 @@ import { logout } from "../lib/api/handler/auth"
 import { CropImageModal } from "../components/modals/CropImageModal"
 import { aKey } from "../lib/utils/querykeys"
 import { Account } from "../lib/models/account"
+import { ColorModeSwitcher } from "../components/common/ColorModeSwitcher"
 
 export const Settings = (): JSX.Element | null => {
   const history = useHistory()
@@ -223,6 +224,7 @@ export const Settings = (): JSX.Element | null => {
             >
               Logout
             </Button>
+            <ColorModeSwitcher />
           </Flex>
           <p>Version</p>
           <a
