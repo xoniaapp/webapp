@@ -91,10 +91,9 @@ export const FileUploadButton: React.FC = () => {
                 <ModalBody>
                   {/* @ts-ignore */}
                   <Text mb="2">
-                    Reason:
                     {errors}
                   </Text>
-                  <Text>Is you file above 80 megabytes?</Text>
+                  <Text>Make sure your file isn't above 80MB.</Text>
                 </ModalBody>
               </ModalContent>
             </Modal>
