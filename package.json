@@ -28,7 +28,7 @@
     "reconnecting-websocket": "^4.4.0",
     "remark-gfm": "^3.0.1",
     "vite": "^2.9.10",
-    "vite-plugin-svgr": "^2.1.0",
+    "vite-plugin-svgr": "^2.1.1",
     "yup": "^0.32.11",
     "zustand": "^4.0.0-rc.1"
   },

@@ -1057,7 +1057,7 @@
   resolved "https://registry.yarnpkg.com/@popperjs/core/-/core-2.11.5.tgz#db5a11bf66bdab39569719555b0f76e138d7bd64"
   integrity sha512-9X2obfABZuDVLCgPK9aX0a/x4jaOEweTTWE2+9sr0Qqqevj2Uv5XorvusThmc9XGYpS9yI+fhh8RTafBtGposw==
 
-"@rollup/pluginutils@^4.1.1":
+"@rollup/pluginutils@^4.1.1", "@rollup/pluginutils@^4.2.1":
   version "4.2.1"
   resolved "https://registry.yarnpkg.com/@rollup/pluginutils/-/pluginutils-4.2.1.tgz#e6c6c3aba0744edce3fb2074922d3776c0af2a6d"
   integrity sha512-iKnFXr7NkdZAIHiIWE+BX5ULi/ucVFYWD6TbAV+rZctiRTY2PL6tsIKhoIOaoskiWAkgu+VsbXgUVDNLHf+InQ==
@@ -5170,11 +5170,12 @@ vfile@^5.0.0:
     unist-util-stringify-position "^3.0.0"
     vfile-message "^3.0.0"
 
-vite-plugin-svgr@^2.1.0:
-  version "2.1.0"
-  resolved "https://registry.yarnpkg.com/vite-plugin-svgr/-/vite-plugin-svgr-2.1.0.tgz#cd66862da737949383e6d8f12d981958b9a65cc5"
-  integrity sha512-3J19p8pmGfRt297yvc8Fd36+0AC0sLgA/gZYQDjotNAhv3CmSTQyviXIrDbwiRFVrsZjSlHJH1vca7OGFmjDcA==
+vite-plugin-svgr@^2.1.1:
+  version "2.2.0"
+  resolved "https://registry.yarnpkg.com/vite-plugin-svgr/-/vite-plugin-svgr-2.2.0.tgz#1943e070b24d91c30dc247d0475fe04393f74b31"
+  integrity sha512-CRJgz92vf3SQbt3jwF6/BhyQIhbY0pwbXAPqUh1/EMG6a4eHsHCECcDNrKZMhlRBj3LyXQSfHXJLtM2ISP5rfg==
   dependencies:
+    "@rollup/pluginutils" "^4.2.1"
     "@svgr/core" "^6.2.1"
 
 vite@^2.9.10:
