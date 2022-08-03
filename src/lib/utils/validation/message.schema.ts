@@ -9,6 +9,7 @@ const SUPPORTED_FORMATS = [
   "audio/mp3",
   "audio/mpeg",
   "audio/opus",
+  "audio/wav",
   "video/mpeg",
   "video/mp4",
   "application/json",
