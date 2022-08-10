@@ -72,7 +72,9 @@ export const ChannelListItem: React.FC<ChannelListItemProps> = ({
               as={channel.isPublic ? FaHashtag : FaUserLock}
               color="brandGray.accent"
             />
-            <Text ml="2">{channel.name}</Text>
+            <Text ml="2">
+               {channel.name}
+            </Text>
           </Flex>
           {current?.id === guild?.ownerId && (showSettings || isOpen) && (
             <>
