@@ -28,11 +28,16 @@ export const Routes: React.FC = () => (
       <Route path="/reset-password/:token">
         <ResetPassword />
       </Route>
-      <AuthRoute path="/channels/me" component={Home} />
-      <AuthRoute path="/channels/me/:channelId" component={Home} />
-      <AuthRoute path="/channels/:guildId/:channelId" component={ViewGuild} />
-      <AuthRoute path="/account" component={Settings} />
-      <AuthRoute path="/:link" component={Invite} />
+      {/* @ts-ignore */}
+      <AuthRoute exact path="/channels/me" component={Home} />
+      {/* @ts-ignore */}
+      <AuthRoute exact path="/channels/me/:channelId" component={Home} />
+      {/* @ts-ignore */}
+      <AuthRoute exact path="/channels/:guildId/:channelId" component={ViewGuild} />
+      {/* @ts-ignore */}
+      <AuthRoute exact path="/account" component={Settings} />
+      {/* @ts-ignore */}
+      <AuthRoute exact path="/:link" component={Invite} />
     </Switch>
   </BrowserRouter>
 );
