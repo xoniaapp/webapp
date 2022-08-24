@@ -13,7 +13,7 @@ import { Invite } from "./Invite"
 export const Routes: React.FC = () => (
   <BrowserRouter>
     <Switch>
-      <Route exact path="/">
+      <Route path="/">
         <Login />
       </Route>
       <Route path="/login">
@@ -28,15 +28,14 @@ export const Routes: React.FC = () => (
       <Route path="/reset-password/:token">
         <ResetPassword />
       </Route>
-      <AuthRoute exact path="/channels/me" component={Home} />
-      <AuthRoute exact path="/channels/me/:channelId" component={Home} />
-      <AuthRoute
-        exact
+      <AuthRoute path="/channels/me" component={Home} />
+      <AuthRoute path="/channels/me/:channelId" component={Home} />
+      <AuthRoute 
         path="/channels/:guildId/:channelId"
         component={ViewGuild}
       />
-      <AuthRoute exact path="/account" component={Settings} />
-      <AuthRoute exact path="/:link" component={Invite} />
+      <AuthRoute path="/account" component={Settings} />
+      <AuthRoute path="/:link" component={Invite} />
     </Switch>
   </BrowserRouter>
 )

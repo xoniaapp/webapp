@@ -9,6 +9,7 @@ import {
 import { userStore } from "../lib/stores/userStore"
 
 interface IProps extends RouteProps {
+  // @ts-ignore
   component: React.ComponentType<RouteComponentProps<any>>
 }
 
@@ -21,6 +22,7 @@ export const AuthRoute: React.FC<IProps> = ({
   return (
     <Route
       {...rest}
+      // @ts-ignore
       render={(props) =>
         current || storage?.state?.current ? (
           <Component {...props} />
