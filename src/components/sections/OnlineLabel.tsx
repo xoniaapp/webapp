@@ -1,8 +1,8 @@
-import React from "react"
-import { Text } from "@chakra-ui/react"
+import React from "react";
+import { Text } from "@chakra-ui/react";
 
 interface LabelProps {
-  label: string
+  label: string;
 }
 
 export const OnlineLabel: React.FC<LabelProps> = ({ label }) => (
@@ -18,4 +18,4 @@ export const OnlineLabel: React.FC<LabelProps> = ({ label }) => (
   >
     {label}
   </Text>
-)
+);

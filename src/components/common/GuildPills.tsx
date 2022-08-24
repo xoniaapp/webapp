@@ -1,5 +1,5 @@
-import { Box } from "@chakra-ui/react"
-import React from "react"
+import { Box } from "@chakra-ui/react";
+import React from "react";
 
 export const NotificationIndicator: React.FC = () => (
   <Box
@@ -12,7 +12,7 @@ export const NotificationIndicator: React.FC = () => (
     mt="20px"
     left={0}
   />
-)
+);
 
 export const ChannelNotificationIndicator: React.FC = () => (
   <Box
@@ -25,7 +25,7 @@ export const ChannelNotificationIndicator: React.FC = () => (
     mt="8px"
     left="-10px"
   />
-)
+);
 
 export const ActiveGuildPill: React.FC = () => (
   <Box
@@ -38,7 +38,7 @@ export const ActiveGuildPill: React.FC = () => (
     left={0}
     mt="4px"
   />
-)
+);
 
 export const HoverGuildPill: React.FC = () => (
   <Box
@@ -51,4 +51,4 @@ export const HoverGuildPill: React.FC = () => (
     left={0}
     mt="12px"
   />
-)
+);

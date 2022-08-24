@@ -1,4 +1,4 @@
-import React from "react"
+import React from "react";
 import {
   Avatar,
   Flex,
@@ -6,14 +6,14 @@ import {
   Text,
   Tooltip,
   useClipboard,
-} from "@chakra-ui/react"
-import { RiSettings5Fill, RiMicFill, RiHome2Line } from "react-icons/ri"
-import { Link } from "react-router-dom"
-import { userStore } from "../../lib/stores/userStore"
+} from "@chakra-ui/react";
+import { RiSettings5Fill, RiMicFill, RiHome2Line } from "react-icons/ri";
+import { Link } from "react-router-dom";
+import { userStore } from "../../lib/stores/userStore";
 
 export const AccountBar: React.FC = () => {
-  const user = userStore((state) => state.current)
-  const { hasCopied, onCopy } = useClipboard(user?.id || "")
+  const user = userStore((state) => state.current);
+  const { hasCopied, onCopy } = useClipboard(user?.id || "");
 
   return (
     <Flex
@@ -99,5 +99,5 @@ export const AccountBar: React.FC = () => {
         </Tooltip>
       </Link>
     </Flex>
-  )
-}
+  );
+};

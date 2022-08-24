@@ -1,60 +1,60 @@
-import { useEffect } from "react"
-import { useQueryClient } from "react-query"
-import { getSocket } from "../getSocket"
-import { userStore } from "../../stores/userStore"
-import { fKey } from "../../utils/querykeys"
-import { homeStore } from "../../stores/homeStore"
-import { Friend } from "../../models/friend"
+import { useEffect } from "react";
+import { useQueryClient } from "react-query";
+import { getSocket } from "../getSocket";
+import { userStore } from "../../stores/userStore";
+import { fKey } from "../../utils/querykeys";
+import { homeStore } from "../../stores/homeStore";
+import { Friend } from "../../models/friend";
 
 type WSMessage =
   | {
-      action: "toggle_online" | "toggle_offline" | "remove_friend"
-      data: string
+      action: "toggle_online" | "toggle_offline" | "remove_friend";
+      data: string;
     }
   | { action: "requestCount"; data: number }
-  | { action: "add_friend"; data: Friend }
+  | { action: "add_friend"; data: Friend };
 
 export function useFriendSocket(): void {
-  const current = userStore((state) => state.current)
-  const setRequests = homeStore((state) => state.setRequests)
-  const cache = useQueryClient()
+  const current = userStore((state) => state.current);
+  const setRequests = homeStore((state) => state.setRequests);
+  const cache = useQueryClient();
 
   useEffect((): any => {
-    const socket = getSocket()
+    const socket = getSocket();
     socket.send(
       JSON.stringify({
         action: "joinUser",
         room: current?.id,
       }),
-    )
-    socket.send(JSON.stringify({ action: "getRequestCount" }))
+    );
+    socket.send(JSON.stringify({ action: "getRequestCount" }));
 
     socket.addEventListener("message", (event) => {
-      const response: WSMessage = JSON.parse(event.data)
+      const response: WSMessage = JSON.parse(event.data);
       switch (response.action) {
         case "toggle_online": {
           cache.setQueryData<Friend[]>(fKey, (d) => {
-            const data = d ?? []
-            const index = data.findIndex((m) => m.id === response.data)
-            if (index !== -1) data[index].isOnline = true
-            return data
-          })
-          break
+            const data = d ?? [];
+            const index = data.findIndex((m) => m.id === response.data);
+            if (index !== -1) data[index].isOnline = true;
+            return data;
+          });
+          break;
         }
 
         case "toggle_offline": {
           cache.setQueryData<Friend[]>(fKey, (d) => {
-            const data = d ?? []
-            const index = data.findIndex((m) => m.id === response.data)
-            if (index !== -1) data[index].isOnline = false
-            return data
-          })
-          break
+            const data = d ?? [];
+            const index = data.findIndex((m) => m.id === response.data);
+            if (index !== -1) data[index].isOnline = false;
+            return data;
+          });
+          break;
         }
 
         case "requestCount": {
-          setRequests(response.data)
-          break
+          setRequests(response.data);
+          break;
         }
 
         case "add_friend": {
@@ -62,21 +62,21 @@ export function useFriendSocket(): void {
             [...data!, response.data].sort((a, b) =>
               a.username.localeCompare(b.username),
             ),
-          )
-          break
+          );
+          break;
         }
 
         case "remove_friend": {
           cache.setQueryData<Friend[]>(fKey, (data) => [
             ...data!.filter((m) => m.id !== response.data),
-          ])
-          break
+          ]);
+          break;
         }
 
         default:
-          break
+          break;
       }
-    })
+    });
 
     return () => {
       socket.send(
@@ -84,9 +84,9 @@ export function useFriendSocket(): void {
           action: "leaveRoom",
           room: current?.id,
         }),
-      )
+      );
 
-      socket.close()
-    }
-  }, [cache, current, setRequests])
+      socket.close();
+    };
+  }, [cache, current, setRequests]);
 }

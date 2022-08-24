@@ -1,16 +1,16 @@
 export interface DMChannel {
-  id: string
-  user: DMMember
+  id: string;
+  user: DMMember;
 }
 
 export interface DMNotification extends DMChannel {
-  count: number
+  count: number;
 }
 
 export interface DMMember {
-  id: string
-  username: string
-  image: string
-  isOnline: boolean
-  isFriend: boolean
+  id: string;
+  username: string;
+  image: string;
+  isOnline: boolean;
+  isFriend: boolean;
 }

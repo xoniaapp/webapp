@@ -1,15 +1,15 @@
-import React from "react"
-import { Flex, Icon, Text } from "@chakra-ui/react"
-import { FiUsers } from "react-icons/fi"
-import { Link, useLocation } from "react-router-dom"
-import { PingIcon } from "../common/NotificationIcon"
-import { homeStore } from "../../lib/stores/homeStore"
+import React from "react";
+import { Flex, Icon, Text } from "@chakra-ui/react";
+import { FiUsers } from "react-icons/fi";
+import { Link, useLocation } from "react-router-dom";
+import { PingIcon } from "../common/NotificationIcon";
+import { homeStore } from "../../lib/stores/homeStore";
 
 export const FriendsListButton: React.FC = () => {
-  const currentPath = "/channels/me"
-  const location = useLocation()
-  const isActive = location.pathname === currentPath
-  const requests = homeStore((state) => state.requestCount)
+  const currentPath = "/channels/me";
+  const location = useLocation();
+  const isActive = location.pathname === currentPath;
+  const requests = homeStore((state) => state.requestCount);
 
   return (
     <Link to="/channels/me">
@@ -36,5 +36,5 @@ export const FriendsListButton: React.FC = () => {
         {requests > 0 && <PingIcon count={requests} />}
       </Flex>
     </Link>
-  )
-}
+  );
+};

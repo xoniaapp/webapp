@@ -1,32 +1,35 @@
-import React, { useState } from "react"
-import { Box, Flex, Spinner } from "@chakra-ui/react"
-import InfiniteScroll from "react-infinite-scroll-component"
-import { useInfiniteQuery } from "react-query"
-import { useParams } from "react-router-dom"
-import { Message } from "../../../items/message/Message"
-import { StartMessages } from "../../../sections/StartMessages"
-import { getMessages } from "../../../../lib/api/handler/messages"
-import { checkNewDay, getTimeDifference } from "../../../../lib/utils/dateUtils"
-import { guildScrollbarCss } from "../css/GuildScrollerCSS"
-import { useMessageSocket } from "../../../../lib/api/ws/useMessageSocket"
-import { DateDivider } from "../../../sections/DateDivider"
-import { ChatGrid } from "./ChatGrid"
-import { RouterProps } from "../../../../lib/models/routerProps"
-import { Message as MessageResponse } from "../../../../lib/models/message"
+import React, { useState } from "react";
+import { Box, Flex, Spinner } from "@chakra-ui/react";
+import InfiniteScroll from "react-infinite-scroll-component";
+import { useInfiniteQuery } from "react-query";
+import { useParams } from "react-router-dom";
+import { Message } from "../../../items/message/Message";
+import { StartMessages } from "../../../sections/StartMessages";
+import { getMessages } from "../../../../lib/api/handler/messages";
+import {
+  checkNewDay,
+  getTimeDifference,
+} from "../../../../lib/utils/dateUtils";
+import { guildScrollbarCss } from "../css/GuildScrollerCSS";
+import { useMessageSocket } from "../../../../lib/api/ws/useMessageSocket";
+import { DateDivider } from "../../../sections/DateDivider";
+import { ChatGrid } from "./ChatGrid";
+import { RouterProps } from "../../../../lib/models/routerProps";
+import { Message as MessageResponse } from "../../../../lib/models/message";
 
 export const ChatScreen: React.FC = () => {
-  const { channelId } = useParams<RouterProps>()
-  const [hasMore, setHasMore] = useState(true)
-  const qKey = `messages-${channelId}`
+  const { channelId } = useParams<RouterProps>();
+  const [hasMore, setHasMore] = useState(true);
+  const qKey = `messages-${channelId}`;
 
   const { data, isLoading, fetchNextPage } = useInfiniteQuery<
     MessageResponse[]
   >(
     qKey,
     async ({ pageParam = null }) => {
-      const { data: messageData } = await getMessages(channelId, pageParam)
-      if (messageData.length !== 35) setHasMore(false)
-      return messageData
+      const { data: messageData } = await getMessages(channelId, pageParam);
+      if (messageData.length !== 35) setHasMore(false);
+      return messageData;
     },
     {
       staleTime: 0,
@@ -36,9 +39,9 @@ export const ChatScreen: React.FC = () => {
           ? lastPage[lastPage.length - 1].createdAt
           : "",
     },
-  )
+  );
 
-  useMessageSocket(channelId, qKey)
+  useMessageSocket(channelId, qKey);
 
   if (isLoading) {
     return (
@@ -50,19 +53,19 @@ export const ChatScreen: React.FC = () => {
           </Flex>
         </ChatGrid>
       </>
-    )
+    );
   }
 
   const checkIfWithinTime = (
     message1: MessageResponse,
     message2: MessageResponse,
   ): boolean => {
-    if (message1.user.id !== message2.user.id) return false
-    if (message1.createdAt === message2.createdAt) return false
-    return getTimeDifference(message1.createdAt, message2.createdAt) <= 5
-  }
+    if (message1.user.id !== message2.user.id) return false;
+    if (message1.createdAt === message2.createdAt) return false;
+    return getTimeDifference(message1.createdAt, message2.createdAt) <= 5;
+  };
 
-  const messages = data ? data!.pages.map((p) => p.map((mr) => mr)).flat() : []
+  const messages = data ? data!.pages.map((p) => p.map((mr) => mr)).flat() : [];
 
   return (
     // @ts-ignore
@@ -106,5 +109,5 @@ export const ChatScreen: React.FC = () => {
       </Box>
       {!hasMore && <StartMessages />}
     </ChatGrid>
-  )
-}
+  );
+};

@@ -9,4 +9,4 @@ export const channelScrollbarCss = {
     background: "brandGray.darker",
     borderRadius: "18px",
   },
-}
+};

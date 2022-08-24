@@ -1,12 +1,12 @@
-import React, { useEffect } from "react"
-import { useQuery } from "react-query"
-import { Flex, UnorderedList, Text } from "@chakra-ui/react"
-import { rKey } from "../../../../lib/utils/querykeys"
-import { getPendingRequests } from "../../../../lib/api/handler/account"
-import { OnlineLabel } from "../../../sections/OnlineLabel"
-import { RequestListItem } from "../../../items/RequestListItem"
-import { homeStore } from "../../../../lib/stores/homeStore"
-import { useRequestSocket } from "../../../../lib/api/ws/useRequestSocket"
+import React, { useEffect } from "react";
+import { useQuery } from "react-query";
+import { Flex, UnorderedList, Text } from "@chakra-ui/react";
+import { rKey } from "../../../../lib/utils/querykeys";
+import { getPendingRequests } from "../../../../lib/api/handler/account";
+import { OnlineLabel } from "../../../sections/OnlineLabel";
+import { RequestListItem } from "../../../items/RequestListItem";
+import { homeStore } from "../../../../lib/stores/homeStore";
+import { useRequestSocket } from "../../../../lib/api/ws/useRequestSocket";
 
 export const PendingList: React.FC = () => {
   const { data } = useQuery(
@@ -15,24 +15,24 @@ export const PendingList: React.FC = () => {
     {
       staleTime: 0,
     },
-  )
+  );
 
-  useRequestSocket()
+  useRequestSocket();
 
-  const reset = homeStore((state) => state.resetRequest)
+  const reset = homeStore((state) => state.resetRequest);
 
   useEffect(() => {
-    reset()
-  })
+    reset();
+  });
 
-  if (!data) return null
+  if (!data) return null;
 
   if (data.length === 0) {
     return (
       <Flex justify="center" align="center" w="full">
         <Text textColor="brandGray.accent">No pending friends yet!</Text>
       </Flex>
-    )
+    );
   }
 
   return (
@@ -44,5 +44,5 @@ export const PendingList: React.FC = () => {
         ))}
       </UnorderedList>
     </>
-  )
-}
+  );
+};

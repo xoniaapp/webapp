@@ -1,4 +1,4 @@
-import React from "react"
+import React from "react";
 import {
   Button,
   Flex,
@@ -7,17 +7,17 @@ import {
   LightMode,
   Text,
   useDisclosure,
-} from "@chakra-ui/react"
-import { FiUsers } from "react-icons/fi"
-import { AddFriendModal } from "../../../modals/AddFriendModal"
-import { homeStore } from "../../../../lib/stores/homeStore"
-import { PingIcon } from "../../../common/NotificationIcon"
+} from "@chakra-ui/react";
+import { FiUsers } from "react-icons/fi";
+import { AddFriendModal } from "../../../modals/AddFriendModal";
+import { homeStore } from "../../../../lib/stores/homeStore";
+import { PingIcon } from "../../../common/NotificationIcon";
 
 export const FriendsListHeader: React.FC = () => {
-  const { isOpen, onOpen, onClose } = useDisclosure()
-  const toggle = homeStore((state) => state.toggleDisplay)
-  const isPending = homeStore((state) => state.isPending)
-  const requests = homeStore((state) => state.requestCount)
+  const { isOpen, onOpen, onClose } = useDisclosure();
+  const toggle = homeStore((state) => state.toggleDisplay);
+  const isPending = homeStore((state) => state.isPending);
+  const requests = homeStore((state) => state.requestCount);
 
   return (
     <GridItem
@@ -40,7 +40,7 @@ export const FriendsListHeader: React.FC = () => {
             size="xs"
             colorScheme="gray"
             onClick={() => {
-              if (isPending) toggle()
+              if (isPending) toggle();
             }}
             variant={!isPending ? "solid" : "ghost"}
             _focus={{ boxShadow: "none" }}
@@ -54,7 +54,7 @@ export const FriendsListHeader: React.FC = () => {
             colorScheme="gray"
             variant={isPending ? "solid" : "ghost"}
             onClick={() => {
-              if (!isPending) toggle()
+              if (!isPending) toggle();
             }}
             _focus={{ boxShadow: "none" }}
           >
@@ -77,5 +77,5 @@ export const FriendsListHeader: React.FC = () => {
       </Flex>
       {isOpen && <AddFriendModal isOpen={isOpen} onClose={onClose} />}
     </GridItem>
-  )
-}
+  );
+};

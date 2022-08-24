@@ -1,5 +1,5 @@
-import { Box, Image, Text } from "@chakra-ui/react"
-import React from "react"
+import { Box, Image, Text } from "@chakra-ui/react";
+import React from "react";
 
 export const Logo: React.FC = () => (
   <Box w="80px" color={["white", "white", "primary.500", "primary.500"]}>
@@ -9,4 +9,4 @@ export const Logo: React.FC = () => (
       />
     </Text>
   </Box>
-)
+);

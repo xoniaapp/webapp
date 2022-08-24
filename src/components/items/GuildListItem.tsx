@@ -1,41 +1,41 @@
-import React, { useEffect, useState } from "react"
-import { Avatar, Flex } from "@chakra-ui/react"
-import { Link, useLocation } from "react-router-dom"
-import { useQueryClient } from "react-query"
-import { StyledTooltip } from "../sections/StyledTooltip"
+import React, { useEffect, useState } from "react";
+import { Avatar, Flex } from "@chakra-ui/react";
+import { Link, useLocation } from "react-router-dom";
+import { useQueryClient } from "react-query";
+import { StyledTooltip } from "../sections/StyledTooltip";
 import {
   ActiveGuildPill,
   HoverGuildPill,
   NotificationIndicator,
-} from "../common/GuildPills"
-import { gKey } from "../../lib/utils/querykeys"
-import { Guild } from "../../lib/models/guild"
+} from "../common/GuildPills";
+import { gKey } from "../../lib/utils/querykeys";
+import { Guild } from "../../lib/models/guild";
 
 interface GuildListItemProps {
-  guild: Guild
+  guild: Guild;
 }
 
 export const GuildListItem: React.FC<GuildListItemProps> = ({ guild }) => {
-  const location = useLocation()
-  const isActive = location.pathname.includes(guild.id)
-  const [isHover, setHover] = useState(false)
-  const cache = useQueryClient()
+  const location = useLocation();
+  const isActive = location.pathname.includes(guild.id);
+  const [isHover, setHover] = useState(false);
+  const cache = useQueryClient();
 
   useEffect(() => {
     if (guild.hasNotification && isActive) {
       cache.setQueryData<Guild[]>(gKey, (d) => {
-        const data = d ?? []
-        const index = data.findIndex((g) => g.id === guild.id)
+        const data = d ?? [];
+        const index = data.findIndex((g) => g.id === guild.id);
         if (index !== -1) {
           data[index] = {
             ...data[index],
             hasNotification: false,
-          }
+          };
         }
-        return data
-      })
+        return data;
+      });
     }
-  })
+  });
 
   return (
     <Flex mb="2" justify="center" position="relative">
@@ -79,5 +79,5 @@ export const GuildListItem: React.FC<GuildListItemProps> = ({ guild }) => {
         </Link>
       </StyledTooltip>
     </Flex>
-  )
-}
+  );
+};

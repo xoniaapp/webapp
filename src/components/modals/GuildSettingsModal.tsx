@@ -16,32 +16,32 @@ import {
   Text,
   Tooltip,
   useDisclosure,
-} from "@chakra-ui/react"
-import { Form, Formik } from "formik"
-import React, { useRef, useState } from "react"
-import { FaRegTrashAlt } from "react-icons/fa"
-import { IoCheckmarkCircle, IoPersonRemove } from "react-icons/io5"
-import { ImHammer2 } from "react-icons/im"
-import { BiUnlink } from "react-icons/bi"
-import { useQuery, useQueryClient } from "react-query"
-import { InputField } from "../common/InputField"
-import { toErrorMap } from "../../lib/utils/toErrorMap"
-import { useGetCurrentGuild } from "../../lib/utils/hooks/useGetCurrentGuild"
-import { GuildSchema } from "../../lib/utils/validation/guild.schema"
+} from "@chakra-ui/react";
+import { Form, Formik } from "formik";
+import React, { useRef, useState } from "react";
+import { FaRegTrashAlt } from "react-icons/fa";
+import { IoCheckmarkCircle, IoPersonRemove } from "react-icons/io5";
+import { ImHammer2 } from "react-icons/im";
+import { BiUnlink } from "react-icons/bi";
+import { useQuery, useQueryClient } from "react-query";
+import { InputField } from "../common/InputField";
+import { toErrorMap } from "../../lib/utils/toErrorMap";
+import { useGetCurrentGuild } from "../../lib/utils/hooks/useGetCurrentGuild";
+import { GuildSchema } from "../../lib/utils/validation/guild.schema";
 import {
   deleteGuild,
   editGuild,
   invalidateInviteLinks,
-} from "../../lib/api/handler/guilds"
-import { CropImageModal } from "./CropImageModal"
-import { channelScrollbarCss } from "../layouts/guild/css/ChannelScrollerCSS"
-import { getBanList, unbanMember } from "../../lib/api/handler/members"
-import { Member } from "../../lib/models/member"
+} from "../../lib/api/handler/guilds";
+import { CropImageModal } from "./CropImageModal";
+import { channelScrollbarCss } from "../layouts/guild/css/ChannelScrollerCSS";
+import { getBanList, unbanMember } from "../../lib/api/handler/members";
+import { Member } from "../../lib/models/member";
 
 interface IProps {
-  guildId: string
-  isOpen: boolean
-  onClose: () => void
+  guildId: string;
+  isOpen: boolean;
+  onClose: () => void;
 }
 
 enum SettingsScreen {
@@ -55,45 +55,45 @@ export const GuildSettingsModal: React.FC<IProps> = ({
   isOpen,
   onClose,
 }) => {
-  const guild = useGetCurrentGuild(guildId)
+  const guild = useGetCurrentGuild(guildId);
 
-  const [screen, setScreen] = useState(SettingsScreen.START)
-  const [isReset, setIsReset] = useState(false)
-  const [showError, toggleShow] = useState(false)
+  const [screen, setScreen] = useState(SettingsScreen.START);
+  const [isReset, setIsReset] = useState(false);
+  const [showError, toggleShow] = useState(false);
 
-  const goBack = (): void => setScreen(SettingsScreen.START)
+  const goBack = (): void => setScreen(SettingsScreen.START);
   const submitClose = (): void => {
-    setScreen(SettingsScreen.START)
-    onClose()
-  }
+    setScreen(SettingsScreen.START);
+    onClose();
+  };
 
   const {
     isOpen: cropperIsOpen,
     onOpen: cropperOnOpen,
     onClose: cropperOnClose,
-  } = useDisclosure()
+  } = useDisclosure();
 
-  const inputFile: any = useRef(null)
-  const [imageUrl, setImageUrl] = useState<string | null>(guild?.icon || "")
-  const [cropImage, setCropImage] = useState("")
-  const [croppedImage, setCroppedImage] = useState<any>(null)
+  const inputFile: any = useRef(null);
+  const [imageUrl, setImageUrl] = useState<string | null>(guild?.icon || "");
+  const [cropImage, setCropImage] = useState("");
+  const [croppedImage, setCroppedImage] = useState<any>(null);
 
   const applyCrop = (file: Blob): void => {
-    setImageUrl(URL.createObjectURL(file))
-    setCroppedImage(new File([file], "icon", { type: "image/jpeg" }))
-    cropperOnClose()
-  }
+    setImageUrl(URL.createObjectURL(file));
+    setCroppedImage(new File([file], "icon", { type: "image/jpeg" }));
+    cropperOnClose();
+  };
 
-  if (!guild) return null
+  if (!guild) return null;
 
   const invalidateInvites = async (): Promise<void> => {
     try {
-      const { data } = await invalidateInviteLinks(guild!.id)
+      const { data } = await invalidateInviteLinks(guild!.id);
       if (data) {
-        setIsReset(true)
+        setIsReset(true);
       }
     } catch (err) {}
-  }
+  };
 
   return (
     <Modal isOpen={isOpen} onClose={onClose} isCentered>
@@ -107,26 +107,26 @@ export const GuildSettingsModal: React.FC<IProps> = ({
             validationSchema={GuildSchema}
             onSubmit={async (values, { setErrors, resetForm }) => {
               try {
-                const formData = new FormData()
-                formData.append("name", values.name)
+                const formData = new FormData();
+                formData.append("name", values.name);
                 if (cropImage) {
-                  formData.append("image", croppedImage)
+                  formData.append("image", croppedImage);
                 } else if (imageUrl) {
-                  formData.append("icon", imageUrl)
+                  formData.append("icon", imageUrl);
                 }
 
-                const { data } = await editGuild(guildId, formData)
+                const { data } = await editGuild(guildId, formData);
                 if (data) {
-                  resetForm()
-                  onClose()
+                  resetForm();
+                  onClose();
                 }
               } catch (err: any) {
                 if (err?.response?.status === 500) {
-                  toggleShow(true)
+                  toggleShow(true);
                 }
                 if (err?.response?.data?.errors) {
-                  const errors = err?.response?.data?.errors
-                  setErrors(toErrorMap(errors))
+                  const errors = err?.response?.data?.errors;
+                  setErrors(toErrorMap(errors));
                 }
               }
             }}
@@ -161,8 +161,8 @@ export const GuildSettingsModal: React.FC<IProps> = ({
                           color: "brandGray.accent",
                         }}
                         onClick={() => {
-                          setCroppedImage(null)
-                          setImageUrl(null)
+                          setCroppedImage(null);
+                          setImageUrl(null);
                         }}
                       >
                         Remove
@@ -175,11 +175,11 @@ export const GuildSettingsModal: React.FC<IProps> = ({
                       ref={inputFile}
                       hidden
                       onChange={async (e) => {
-                        if (!e.currentTarget.files) return
+                        if (!e.currentTarget.files) return;
                         setCropImage(
                           URL.createObjectURL(e.currentTarget.files[0]),
-                        )
-                        cropperOnOpen()
+                        );
+                        cropperOnOpen();
                       }}
                     />
                   </Flex>
@@ -277,14 +277,14 @@ export const GuildSettingsModal: React.FC<IProps> = ({
         <BanListModal goBack={goBack} guildId={guildId} />
       )}
     </Modal>
-  )
-}
+  );
+};
 
 interface IScreenProps {
-  goBack: () => void
-  submitClose: () => void
-  name: string
-  guildId: string
+  goBack: () => void;
+  submitClose: () => void;
+  name: string;
+  guildId: string;
 }
 
 const DeleteGuildModal: React.FC<IScreenProps> = ({
@@ -293,20 +293,20 @@ const DeleteGuildModal: React.FC<IScreenProps> = ({
   name,
   guildId,
 }) => {
-  const [showError, toggleShow] = useState(false)
+  const [showError, toggleShow] = useState(false);
 
   const handleDelete = async (): Promise<void> => {
     try {
-      const { data } = await deleteGuild(guildId)
+      const { data } = await deleteGuild(guildId);
       if (data) {
-        submitClose()
+        submitClose();
       }
     } catch (err: any) {
       if (err?.response?.status === 500) {
-        toggleShow(true)
+        toggleShow(true);
       }
     }
-  }
+  };
 
   return (
     <ModalContent bg="brandGray.light">
@@ -346,29 +346,29 @@ const DeleteGuildModal: React.FC<IScreenProps> = ({
         </LightMode>
       </ModalFooter>
     </ModalContent>
-  )
-}
+  );
+};
 
 interface IBanScreenProps {
-  goBack: () => void
-  guildId: string
+  goBack: () => void;
+  guildId: string;
 }
 
 const BanListModal: React.FC<IBanScreenProps> = ({ goBack, guildId }) => {
-  const key = `bans-${guildId}`
+  const key = `bans-${guildId}`;
   const { data } = useQuery(key, () =>
     getBanList(guildId).then((response) => response.data),
-  )
-  const cache = useQueryClient()
+  );
+  const cache = useQueryClient();
 
   const unbanUser = async (id: string): Promise<void> => {
     try {
-      const { data: responseData } = await unbanMember(guildId, id)
+      const { data: responseData } = await unbanMember(guildId, id);
       if (responseData) {
-        cache.setQueryData<Member[]>(key, (d) => d!.filter((b) => b.id !== id))
+        cache.setQueryData<Member[]>(key, (d) => d!.filter((b) => b.id !== id));
       }
     } catch (err) {}
-  }
+  };
 
   return (
     <ModalContent bg="brandGray.light" maxH="500px">
@@ -397,8 +397,8 @@ const BanListModal: React.FC<IBanScreenProps> = ({ goBack, guildId }) => {
               borderRadius="50%"
               aria-label="unban user"
               onClick={async (e) => {
-                e.preventDefault()
-                await unbanUser(m.id)
+                e.preventDefault();
+                await unbanUser(m.id);
               }}
             />
           </Flex>
@@ -418,5 +418,5 @@ const BanListModal: React.FC<IBanScreenProps> = ({ goBack, guildId }) => {
         </Button>
       </ModalFooter>
     </ModalContent>
-  )
-}
+  );
+};

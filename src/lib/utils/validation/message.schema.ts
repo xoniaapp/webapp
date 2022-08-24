@@ -1,4 +1,4 @@
-import * as yup from "yup"
+import * as yup from "yup";
 
 const SUPPORTED_FORMATS = [
   "image/jpg",
@@ -27,7 +27,7 @@ const SUPPORTED_FORMATS = [
   "application/x-7z-compressed",
   "application/octet-stream",
   "application/java-archive",
-]
+];
 
 export const FileSchema = yup.object().shape({
   file: yup
@@ -39,4 +39,4 @@ export const FileSchema = yup.object().shape({
       "Max Upload size is 80MB",
       (value) => value && SUPPORTED_FORMATS.includes(value.type),
     ),
-})
+});

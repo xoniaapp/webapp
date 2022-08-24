@@ -1,8 +1,8 @@
-import { Grid } from "@chakra-ui/react"
-import React from "react"
+import { Grid } from "@chakra-ui/react";
+import React from "react";
 
 interface AppLayoutProps {
-  showLastColumn?: boolean | null
+  showLastColumn?: boolean | null;
 }
 
 export const AppLayout: React.FC<AppLayoutProps> = ({
@@ -18,4 +18,4 @@ export const AppLayout: React.FC<AppLayoutProps> = ({
   >
     {children}
   </Grid>
-)
+);

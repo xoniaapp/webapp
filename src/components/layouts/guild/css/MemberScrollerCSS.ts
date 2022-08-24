@@ -9,4 +9,4 @@ export const memberScrollbarCss = {
     background: "brandGray.darker",
     borderRadius: "18px",
   },
-}
+};

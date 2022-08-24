@@ -1,12 +1,12 @@
-import React from "react"
-import { Tooltip } from "@chakra-ui/react"
+import React from "react";
+import { Tooltip } from "@chakra-ui/react";
 
-type Placement = "top" | "right"
+type Placement = "top" | "right";
 
 interface StyledTooltipProps {
-  label: string
-  position: Placement
-  disabled?: boolean
+  label: string;
+  position: Placement;
+  disabled?: boolean;
 }
 
 export const StyledTooltip: React.FC<StyledTooltipProps> = ({
@@ -29,4 +29,4 @@ export const StyledTooltip: React.FC<StyledTooltipProps> = ({
   >
     {children}
   </Tooltip>
-)
+);

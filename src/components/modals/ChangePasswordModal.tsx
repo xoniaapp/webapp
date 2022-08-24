@@ -9,21 +9,21 @@ import {
   ModalOverlay,
   Text,
   useToast,
-} from "@chakra-ui/react"
-import { Form, Formik } from "formik"
-import React from "react"
-import { toErrorMap } from "../../lib/utils/toErrorMap"
-import { ChangePasswordSchema } from "../../lib/utils/validation/auth.schema"
-import { InputField } from "../common/InputField"
-import { changePassword } from "../../lib/api/handler/auth"
+} from "@chakra-ui/react";
+import { Form, Formik } from "formik";
+import React from "react";
+import { toErrorMap } from "../../lib/utils/toErrorMap";
+import { ChangePasswordSchema } from "../../lib/utils/validation/auth.schema";
+import { InputField } from "../common/InputField";
+import { changePassword } from "../../lib/api/handler/auth";
 
 interface IProps {
-  isOpen: boolean
-  onClose: () => void
+  isOpen: boolean;
+  onClose: () => void;
 }
 
 export const ChangePasswordModal: React.FC<IProps> = ({ isOpen, onClose }) => {
-  const toast = useToast()
+  const toast = useToast();
 
   return (
     <Modal isOpen={isOpen} onClose={onClose} isCentered>
@@ -39,15 +39,15 @@ export const ChangePasswordModal: React.FC<IProps> = ({ isOpen, onClose }) => {
           validationSchema={ChangePasswordSchema}
           onSubmit={async (values, { setErrors }) => {
             try {
-              const { data } = await changePassword(values)
+              const { data } = await changePassword(values);
               if (data) {
                 toast({
                   title: "Changed Password",
                   status: "success",
                   duration: 5000,
                   isClosable: true,
-                })
-                onClose()
+                });
+                onClose();
               }
             } catch (err: any) {
               if (err?.response?.status === 500) {
@@ -57,11 +57,11 @@ export const ChangePasswordModal: React.FC<IProps> = ({ isOpen, onClose }) => {
                   status: "error",
                   duration: 3000,
                   isClosable: true,
-                })
+                });
               }
               if (err?.response?.data?.errors) {
-                const errors = err?.response?.data?.errors
-                setErrors(toErrorMap(errors))
+                const errors = err?.response?.data?.errors;
+                setErrors(toErrorMap(errors));
               }
             }
           }}
@@ -124,5 +124,5 @@ export const ChangePasswordModal: React.FC<IProps> = ({ isOpen, onClose }) => {
         </Formik>
       </ModalContent>
     </Modal>
-  )
-}
+  );
+};

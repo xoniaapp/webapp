@@ -1,13 +1,13 @@
-import React from "react"
-import { Box, Flex, GridItem, Icon, Text } from "@chakra-ui/react"
-import { FaAt } from "react-icons/fa"
-import { useParams } from "react-router-dom"
-import { useGetCurrentDM } from "../../../lib/utils/hooks/useGetCurrentDM"
-import { RouterProps } from "../../../lib/models/routerProps"
+import React from "react";
+import { Box, Flex, GridItem, Icon, Text } from "@chakra-ui/react";
+import { FaAt } from "react-icons/fa";
+import { useParams } from "react-router-dom";
+import { useGetCurrentDM } from "../../../lib/utils/hooks/useGetCurrentDM";
+import { RouterProps } from "../../../lib/models/routerProps";
 
 export const DMHeader: React.FC = () => {
-  const { channelId } = useParams<RouterProps>()
-  const channel = useGetCurrentDM(channelId)
+  const { channelId } = useParams<RouterProps>();
+  const channel = useGetCurrentDM(channelId);
 
   return (
     <GridItem
@@ -32,5 +32,5 @@ export const DMHeader: React.FC = () => {
         />
       </Flex>
     </GridItem>
-  )
-}
+  );
+};

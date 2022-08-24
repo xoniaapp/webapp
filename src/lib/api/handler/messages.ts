@@ -1,12 +1,12 @@
-import { AxiosResponse } from "axios"
-import { request } from "../setupAxios"
-import { Message } from "../../models/message"
+import { AxiosResponse } from "axios";
+import { request } from "../setupAxios";
+import { Message } from "../../models/message";
 
 export const getMessages = (
   id: string,
   cursor?: string,
 ): Promise<AxiosResponse<Message[]>> =>
-  request.get(`messages/${id}${cursor ? `?cursor=${cursor}` : ""}`)
+  request.get(`messages/${id}${cursor ? `?cursor=${cursor}` : ""}`);
 
 export const sendMessage = (
   channelId: string,
@@ -18,12 +18,12 @@ export const sendMessage = (
       "Content-Type": "multipart/form-data",
     },
     onUploadProgress,
-  })
+  });
 
 export const deleteMessage = (id: string): Promise<AxiosResponse<boolean>> =>
-  request.delete(`messages/${id}`)
+  request.delete(`messages/${id}`);
 
 export const editMessage = (
   id: string,
   text: string,
-): Promise<AxiosResponse<boolean>> => request.put(`messages/${id}`, { text })
+): Promise<AxiosResponse<boolean>> => request.put(`messages/${id}`, { text });

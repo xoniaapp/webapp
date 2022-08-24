@@ -1,35 +1,35 @@
-import React, { useRef, useState } from "react"
-import { Flex, GridItem, InputGroup, Text, Textarea } from "@chakra-ui/react"
-import ResizeTextarea from "react-textarea-autosize"
-import { useParams } from "react-router-dom"
-import { useQuery } from "react-query"
-import { FileUploadButton } from "./FileUploadButton"
-import { sendMessage } from "../../../../lib/api/handler/messages"
-import { getSameSocket } from "../../../../lib/api/getSocket"
-import { userStore } from "../../../../lib/stores/userStore"
-import { channelStore } from "../../../../lib/stores/channelStore"
-import { cKey, dmKey } from "../../../../lib/utils/querykeys"
-import "../css/MessageInput.css"
-import { RouterProps } from "../../../../lib/models/routerProps"
+import React, { useRef, useState } from "react";
+import { Flex, GridItem, InputGroup, Text, Textarea } from "@chakra-ui/react";
+import ResizeTextarea from "react-textarea-autosize";
+import { useParams } from "react-router-dom";
+import { useQuery } from "react-query";
+import { FileUploadButton } from "./FileUploadButton";
+import { sendMessage } from "../../../../lib/api/handler/messages";
+import { getSameSocket } from "../../../../lib/api/getSocket";
+import { userStore } from "../../../../lib/stores/userStore";
+import { channelStore } from "../../../../lib/stores/channelStore";
+import { cKey, dmKey } from "../../../../lib/utils/querykeys";
+import "../css/MessageInput.css";
+import { RouterProps } from "../../../../lib/models/routerProps";
 
 export const MessageInput: React.FC = () => {
-  const [text, setText] = useState("")
-  const [isSubmitting, setSubmitting] = useState(false)
-  const [currentlyTyping, setCurrentlyTyping] = useState(false)
-  const inputRef: any = useRef()
+  const [text, setText] = useState("");
+  const [isSubmitting, setSubmitting] = useState(false);
+  const [currentlyTyping, setCurrentlyTyping] = useState(false);
+  const inputRef: any = useRef();
 
-  const { guildId, channelId } = useParams<RouterProps>()
-  const qKey = guildId === undefined ? dmKey : cKey(guildId)
-  const { data } = useQuery<any[]>(qKey)
-  const channel = data?.find((c) => c.id === channelId)
+  const { guildId, channelId } = useParams<RouterProps>();
+  const qKey = guildId === undefined ? dmKey : cKey(guildId);
+  const { data } = useQuery<any[]>(qKey);
+  const channel = data?.find((c) => c.id === channelId);
 
-  const socket = getSameSocket()
-  const current = userStore((state) => state.current)
-  const isTyping = channelStore((state) => state.typing)
+  const socket = getSameSocket();
+  const current = userStore((state) => state.current);
+  const isTyping = channelStore((state) => state.typing);
 
   const handleSubmit = async (): Promise<void> => {
     if (!text || !text.trim()) {
-      return
+      return;
     }
 
     socket.send(
@@ -38,38 +38,38 @@ export const MessageInput: React.FC = () => {
         room: channelId,
         message: current?.username,
       }),
-    )
+    );
 
     try {
-      setSubmitting(true)
-      setCurrentlyTyping(false)
-      const formData = new FormData()
-      formData.append("text", text.trim())
-      await sendMessage(channelId, formData)
+      setSubmitting(true);
+      setCurrentlyTyping(false);
+      const formData = new FormData();
+      formData.append("text", text.trim());
+      await sendMessage(channelId, formData);
     } catch (err) {}
-  }
+  };
 
   const getTypingString = (members: string[]): string => {
     switch (members.length) {
       case 1:
-        return members[0]
+        return members[0];
       case 2:
-        return `${members[0]} and ${members[1]}`
+        return `${members[0]} and ${members[1]}`;
       case 3:
-        return `${members[0]}, ${members[1]} and ${members[2]}`
+        return `${members[0]}, ${members[1]} and ${members[2]}`;
       default:
-        return "Several people"
+        return "Several people";
     }
-  }
+  };
 
   const getPlaceholder = (): string => {
-    if (!channel) return ""
+    if (!channel) return "";
 
     if (channel?.user) {
-      return `Message @${channel?.user.username}`
+      return `Message @${channel?.user.username}`;
     }
-    return `Message #${channel?.name}`
-  }
+    return `Message #${channel?.name}`;
+  };
 
   return (
     <GridItem
@@ -104,7 +104,7 @@ export const MessageInput: React.FC = () => {
           isDisabled={isSubmitting}
           value={text}
           onChange={(e) => {
-            const { value } = e.target
+            const { value } = e.target;
             if (value.trim().length === 1 && !currentlyTyping) {
               socket.send(
                 JSON.stringify({
@@ -112,8 +112,8 @@ export const MessageInput: React.FC = () => {
                   room: channelId,
                   message: current?.username,
                 }),
-              )
-              setCurrentlyTyping(true)
+              );
+              setCurrentlyTyping(true);
             } else if (value.length === 0) {
               socket.send(
                 JSON.stringify({
@@ -121,18 +121,18 @@ export const MessageInput: React.FC = () => {
                   room: channelId,
                   message: current?.username,
                 }),
-              )
-              setCurrentlyTyping(false)
+              );
+              setCurrentlyTyping(false);
             }
-            if (value.length <= 2000) setText(value)
+            if (value.length <= 2000) setText(value);
           }}
           onKeyDown={(e) => {
             if (e.key === "Enter") {
               handleSubmit().then(() => {
-                setText("")
-                setSubmitting(false)
-                inputRef?.current?.focus()
-              })
+                setText("");
+                setSubmitting(false);
+                inputRef?.current?.focus();
+              });
             }
           }}
         />
@@ -152,5 +152,5 @@ export const MessageInput: React.FC = () => {
         </Flex>
       )}
     </GridItem>
-  )
-}
+  );
+};

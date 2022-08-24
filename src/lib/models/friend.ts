@@ -1,8 +1,8 @@
 export interface Friend {
-  id: string
-  username: string
-  image: string
-  isOnline: boolean
+  id: string;
+  username: string;
+  image: string;
+  isOnline: boolean;
 }
 
 export enum RequestType {
@@ -11,8 +11,8 @@ export enum RequestType {
 }
 
 export interface FriendRequest {
-  id: string
-  username: string
-  image: string
-  type: RequestType
+  id: string;
+  username: string;
+  image: string;
+  type: RequestType;
 }

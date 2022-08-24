@@ -9,12 +9,12 @@ import {
   PopoverHeader,
   PopoverTrigger,
   Text,
-} from "@chakra-ui/react"
-import React from "react"
-import { Member } from "../../lib/models/member"
+} from "@chakra-ui/react";
+import React from "react";
+import { Member } from "../../lib/models/member";
 
 interface UserPopoverProps {
-  member: Member
+  member: Member;
 }
 
 // @ts-ignore
@@ -51,4 +51,4 @@ export const UserPopover: React.FC<UserPopoverProps> = ({
       </PopoverFooter>
     </PopoverContent>
   </Popover>
-)
+);

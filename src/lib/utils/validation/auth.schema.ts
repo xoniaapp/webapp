@@ -1,9 +1,9 @@
-import * as yup from "yup"
+import * as yup from "yup";
 
 export const LoginSchema = yup.object().shape({
   email: yup.string().required("Email is required").defined(),
   password: yup.string().required("Password is required").defined(),
-})
+});
 
 export const RegisterSchema = yup.object().shape({
   username: yup
@@ -25,7 +25,7 @@ export const RegisterSchema = yup.object().shape({
     .max(150)
     .required("Password is required")
     .defined(),
-})
+});
 
 export const UserSchema = yup.object().shape({
   email: yup
@@ -41,7 +41,7 @@ export const UserSchema = yup.object().shape({
     .trim()
     .required("Username is required")
     .defined(),
-})
+});
 
 export const ResetPasswordSchema = yup.object().shape({
   newPassword: yup
@@ -55,7 +55,7 @@ export const ResetPasswordSchema = yup.object().shape({
     .oneOf([yup.ref("newPassword"), undefined], "Passwords do not match")
     .required("Confirm New Password is required")
     .defined(),
-})
+});
 
 export const ChangePasswordSchema = yup.object().shape({
   currentPassword: yup.string().required("Old Password is required").defined(),
@@ -70,7 +70,7 @@ export const ChangePasswordSchema = yup.object().shape({
     .oneOf([yup.ref("newPassword"), undefined], "Passwords do not match")
     .required("Confirm New Password is required")
     .defined(),
-})
+});
 
 export const ForgotPasswordSchema = yup.object().shape({
   email: yup
@@ -79,4 +79,4 @@ export const ForgotPasswordSchema = yup.object().shape({
     .lowercase()
     .required("Email is required")
     .defined(),
-})
+});

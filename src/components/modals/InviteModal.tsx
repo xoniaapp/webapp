@@ -13,37 +13,37 @@ import {
   ModalOverlay,
   Text,
   useClipboard,
-} from "@chakra-ui/react"
-import React, { useEffect, useState } from "react"
-import { useParams } from "react-router-dom"
-import { getInviteLink } from "../../lib/api/handler/guilds"
-import { RouterProps } from "../../lib/models/routerProps"
+} from "@chakra-ui/react";
+import React, { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
+import { getInviteLink } from "../../lib/api/handler/guilds";
+import { RouterProps } from "../../lib/models/routerProps";
 
 interface InviteModalProps {
-  isOpen: boolean
-  onClose: () => void
+  isOpen: boolean;
+  onClose: () => void;
 }
 
 export const InviteModal: React.FC<InviteModalProps> = ({
   isOpen,
   onClose,
 }) => {
-  const { guildId } = useParams<RouterProps>()
-  const [inviteLink, setInviteLink] = useState("")
-  const { hasCopied, onCopy } = useClipboard(inviteLink)
-  const [isPermanent, setPermanent] = useState(false)
+  const { guildId } = useParams<RouterProps>();
+  const [inviteLink, setInviteLink] = useState("");
+  const { hasCopied, onCopy } = useClipboard(inviteLink);
+  const [isPermanent, setPermanent] = useState(false);
 
   useEffect(() => {
     if (isOpen) {
       const fetchLink = async (): Promise<void> => {
         try {
-          const { data } = await getInviteLink(guildId, isPermanent)
-          if (data) setInviteLink(data)
+          const { data } = await getInviteLink(guildId, isPermanent);
+          if (data) setInviteLink(data);
         } catch (err) {}
-      }
-      fetchLink()
+      };
+      fetchLink();
     }
-  }, [isOpen, setInviteLink, guildId, isPermanent])
+  }, [isOpen, setInviteLink, guildId, isPermanent]);
 
   return (
     <Modal isOpen={isOpen} onClose={onClose} isCentered>
@@ -100,5 +100,5 @@ export const InviteModal: React.FC<InviteModalProps> = ({
         <ModalFooter bg="brandGray.dark" />
       </ModalContent>
     </Modal>
-  )
-}
+  );
+};

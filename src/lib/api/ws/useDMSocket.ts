@@ -1,46 +1,46 @@
-import { useEffect } from "react"
-import { useQueryClient } from "react-query"
-import { getSocket } from "../getSocket"
-import { userStore } from "../../stores/userStore"
-import { dmKey } from "../../utils/querykeys"
-import { DMChannel } from "../../models/dm"
+import { useEffect } from "react";
+import { useQueryClient } from "react-query";
+import { getSocket } from "../getSocket";
+import { userStore } from "../../stores/userStore";
+import { dmKey } from "../../utils/querykeys";
+import { DMChannel } from "../../models/dm";
 
-type WSMessage = { action: "push_to_top"; data: string }
+type WSMessage = { action: "push_to_top"; data: string };
 
 export function useDMSocket(): void {
-  const current = userStore((state) => state.current)
-  const cache = useQueryClient()
+  const current = userStore((state) => state.current);
+  const cache = useQueryClient();
 
   useEffect(() => {
-    const socket = getSocket()
+    const socket = getSocket();
 
     socket.send(
       JSON.stringify({
         action: "joinUser",
         room: current?.id,
       }),
-    )
+    );
 
     socket.addEventListener("message", (event) => {
-      const response: WSMessage = JSON.parse(event.data)
+      const response: WSMessage = JSON.parse(event.data);
 
       switch (response.action) {
         case "push_to_top": {
-          const dmId = response.data
+          const dmId = response.data;
           cache.setQueryData<DMChannel[]>(dmKey, (d) => {
-            const data = d ?? []
-            const index = data.findIndex((dm) => dm.id === dmId)
-            if (index === 0 || index === -1) return [...data]
-            const dm = data[index]
-            return [dm, ...data.filter((dc) => dc.id !== dmId)]
-          })
-          break
+            const data = d ?? [];
+            const index = data.findIndex((dm) => dm.id === dmId);
+            if (index === 0 || index === -1) return [...data];
+            const dm = data[index];
+            return [dm, ...data.filter((dc) => dc.id !== dmId)];
+          });
+          break;
         }
 
         default:
-          break
+          break;
       }
-    })
+    });
 
     return () => {
       socket.send(
@@ -48,8 +48,8 @@ export function useDMSocket(): void {
           action: "leaveRoom",
           room: current?.id,
         }),
-      )
-      socket.close()
-    }
-  }, [current, cache])
+      );
+      socket.close();
+    };
+  }, [current, cache]);
 }

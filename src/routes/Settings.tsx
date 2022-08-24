@@ -10,66 +10,66 @@ import {
   Tooltip,
   useDisclosure,
   useToast,
-} from "@chakra-ui/react"
-import { Form, Formik } from "formik"
-import React, { useRef, useState } from "react"
-import { useQuery, useQueryClient } from "react-query"
-import { useHistory } from "react-router-dom"
-import { InputField } from "../components/common/InputField"
-import { ChangePasswordModal } from "../components/modals/ChangePasswordModal"
-import { toErrorMap } from "../lib/utils/toErrorMap"
-import { userStore } from "../lib/stores/userStore"
-import { UserSchema } from "../lib/utils/validation/auth.schema"
-import { getAccount, updateAccount } from "../lib/api/handler/account"
-import { logout } from "../lib/api/handler/auth"
-import { CropImageModal } from "../components/modals/CropImageModal"
-import { aKey } from "../lib/utils/querykeys"
-import { Account } from "../lib/models/account"
-import { ColorModeSwitcher } from "../components/common/ColorModeSwitcher"
+} from "@chakra-ui/react";
+import { Form, Formik } from "formik";
+import React, { useRef, useState } from "react";
+import { useQuery, useQueryClient } from "react-query";
+import { useHistory } from "react-router-dom";
+import { InputField } from "../components/common/InputField";
+import { ChangePasswordModal } from "../components/modals/ChangePasswordModal";
+import { toErrorMap } from "../lib/utils/toErrorMap";
+import { userStore } from "../lib/stores/userStore";
+import { UserSchema } from "../lib/utils/validation/auth.schema";
+import { getAccount, updateAccount } from "../lib/api/handler/account";
+import { logout } from "../lib/api/handler/auth";
+import { CropImageModal } from "../components/modals/CropImageModal";
+import { aKey } from "../lib/utils/querykeys";
+import { Account } from "../lib/models/account";
+import { ColorModeSwitcher } from "../components/common/ColorModeSwitcher";
 
 export const Settings = (): JSX.Element | null => {
-  const history = useHistory()
-  const toast = useToast()
-  const { isOpen, onOpen, onClose } = useDisclosure()
+  const history = useHistory();
+  const toast = useToast();
+  const { isOpen, onOpen, onClose } = useDisclosure();
   const {
     isOpen: cropperIsOpen,
     onOpen: cropperOnOpen,
     onClose: cropperOnClose,
-  } = useDisclosure()
+  } = useDisclosure();
 
   const { data: user } = useQuery<Account>(aKey, () =>
     getAccount().then((response) => response.data),
-  )
-  const cache = useQueryClient()
+  );
+  const cache = useQueryClient();
 
-  const logoutUser = userStore((state) => state.logout)
-  const setUser = userStore((state) => state.setUser)
+  const logoutUser = userStore((state) => state.logout);
+  const setUser = userStore((state) => state.setUser);
 
-  const inputFile: any = useRef(null)
-  const [imageUrl, setImageUrl] = useState<string | null>(user?.image ?? null)
-  const [cropImage, setCropImage] = useState("")
-  const [croppedImage, setCroppedImage] = useState<File | null>(null)
+  const inputFile: any = useRef(null);
+  const [imageUrl, setImageUrl] = useState<string | null>(user?.image ?? null);
+  const [cropImage, setCropImage] = useState("");
+  const [croppedImage, setCroppedImage] = useState<File | null>(null);
 
   const closeClicked = (): void => {
-    history.goBack()
-  }
+    history.goBack();
+  };
 
   const applyCrop = (file: Blob): void => {
-    setImageUrl(URL.createObjectURL(file))
-    setCroppedImage(new File([file], "avatar", { type: "image/jpeg" }))
-    cropperOnClose()
-  }
+    setImageUrl(URL.createObjectURL(file));
+    setCroppedImage(new File([file], "avatar", { type: "image/jpeg" }));
+    cropperOnClose();
+  };
 
   const logoutClicked = async (): Promise<void> => {
-    const { data } = await logout()
+    const { data } = await logout();
     if (data) {
-      cache.clear()
-      logoutUser()
-      history.replace("/")
+      cache.clear();
+      logoutUser();
+      history.replace("/");
     }
-  }
+  };
 
-  if (!user) return null
+  if (!user) return null;
 
   return (
     <Flex minHeight="100vh" width="full" align="center" justifyContent="center">
@@ -88,22 +88,22 @@ export const Settings = (): JSX.Element | null => {
               validationSchema={UserSchema}
               onSubmit={async (values, { setErrors }) => {
                 try {
-                  const formData = new FormData()
-                  formData.append("email", values.email)
-                  formData.append("username", values.username)
+                  const formData = new FormData();
+                  formData.append("email", values.email);
+                  formData.append("username", values.username);
 
                   if (croppedImage) {
-                    formData.append("image", croppedImage)
+                    formData.append("image", croppedImage);
                   }
-                  const { data } = await updateAccount(formData)
+                  const { data } = await updateAccount(formData);
                   if (data) {
-                    setUser(data)
+                    setUser(data);
                     toast({
                       title: "Updated!",
                       status: "success",
                       duration: 3000,
                       isClosable: true,
-                    })
+                    });
                   }
                 } catch (err: any) {
                   if (err?.response?.status === 500) {
@@ -113,11 +113,11 @@ export const Settings = (): JSX.Element | null => {
                       status: "error",
                       duration: 3000,
                       isClosable: true,
-                    })
+                    });
                   }
                   if (err?.response?.data?.errors) {
-                    const errors = err?.response?.data?.errors
-                    setErrors(toErrorMap(errors))
+                    const errors = err?.response?.data?.errors;
+                    setErrors(toErrorMap(errors));
                   }
                 }
               }}
@@ -144,11 +144,11 @@ export const Settings = (): JSX.Element | null => {
                       ref={inputFile}
                       hidden
                       onChange={async (e) => {
-                        if (!e.currentTarget.files) return
+                        if (!e.currentTarget.files) return;
                         setCropImage(
                           URL.createObjectURL(e.currentTarget.files[0]),
-                        )
-                        cropperOnOpen()
+                        );
+                        cropperOnOpen();
                       }}
                     />
                   </Flex>
@@ -246,5 +246,5 @@ export const Settings = (): JSX.Element | null => {
         />
       )}
     </Flex>
-  )
-}
+  );
+};

@@ -1,23 +1,31 @@
-import { Box, Button, Flex, Heading, Image, Link, Text } from "@chakra-ui/react"
-import { Form, Formik } from "formik"
-import React, { useState } from "react"
-import { Link as RLink, useHistory, useParams } from "react-router-dom"
-import { InputField } from "../components/common/InputField"
-import { toErrorMap } from "../lib/utils/toErrorMap"
-import { userStore } from "../lib/stores/userStore"
-import { ResetPasswordSchema } from "../lib/utils/validation/auth.schema"
-import { resetPassword } from "../lib/api/handler/auth"
+import {
+  Box,
+  Button,
+  Flex,
+  Heading,
+  Image,
+  Link,
+  Text,
+} from "@chakra-ui/react";
+import { Form, Formik } from "formik";
+import React, { useState } from "react";
+import { Link as RLink, useHistory, useParams } from "react-router-dom";
+import { InputField } from "../components/common/InputField";
+import { toErrorMap } from "../lib/utils/toErrorMap";
+import { userStore } from "../lib/stores/userStore";
+import { ResetPasswordSchema } from "../lib/utils/validation/auth.schema";
+import { resetPassword } from "../lib/api/handler/auth";
 
 interface TokenProps {
-  token: string
+  token: string;
 }
 
 export const ResetPassword: React.FC = () => {
-  const history = useHistory()
-  const { token } = useParams<TokenProps>()
-  const [showError, setShowError] = useState(false)
-  const [tokenError, setTokenError] = useState("")
-  const setUser = userStore((state) => state.setUser)
+  const history = useHistory();
+  const { token } = useParams<TokenProps>();
+  const [showError, setShowError] = useState(false);
+  const [tokenError, setTokenError] = useState("");
+  const setUser = userStore((state) => state.setUser);
 
   return (
     <Flex minHeight="100vh" width="full" align="center" justifyContent="center">
@@ -44,22 +52,22 @@ export const ResetPassword: React.FC = () => {
                   const { data } = await resetPassword({
                     ...values,
                     token,
-                  })
+                  });
                   if (data) {
-                    setUser(data)
-                    history.push("/channels/me")
+                    setUser(data);
+                    history.push("/channels/me");
                   }
                 } catch (err: any) {
                   if (err?.response?.status === 500) {
-                    setShowError(true)
+                    setShowError(true);
                   } else {
-                    const errors = err?.response?.data?.errors
-                    const errorMap = toErrorMap(errors)
+                    const errors = err?.response?.data?.errors;
+                    const errorMap = toErrorMap(errors);
 
                     if ("token" in errorMap) {
-                      setTokenError(errorMap.token)
+                      setTokenError(errorMap.token);
                     }
-                    setErrors(errorMap)
+                    setErrors(errorMap);
                   }
                 }
               }}
@@ -116,5 +124,5 @@ export const ResetPassword: React.FC = () => {
         </Box>
       </Box>
     </Flex>
-  )
-}
+  );
+};

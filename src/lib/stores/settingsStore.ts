@@ -1,10 +1,10 @@
-import create from "zustand"
-import { persist } from "zustand/middleware"
+import create from "zustand";
+import { persist } from "zustand/middleware";
 
 type SettingsState = {
-  showMembers: boolean
-  toggleShowMembers: () => void
-}
+  showMembers: boolean;
+  toggleShowMembers: () => void;
+};
 
 export const settingsStore = create<SettingsState>(
   /* @ts-ignore */
@@ -17,4 +17,4 @@ export const settingsStore = create<SettingsState>(
       name: "settings-storage",
     },
   ),
-)
+);

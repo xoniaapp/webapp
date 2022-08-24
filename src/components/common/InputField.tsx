@@ -1,21 +1,21 @@
 /* eslint-disable react/jsx-props-no-spreading */
-import React, { InputHTMLAttributes } from "react"
-import { useField } from "formik"
+import React, { InputHTMLAttributes } from "react";
+import { useField } from "formik";
 import {
   FormControl,
   FormErrorMessage,
   FormLabel,
   Input,
   Text,
-} from "@chakra-ui/react"
+} from "@chakra-ui/react";
 
 type InputFieldProps = InputHTMLAttributes<HTMLInputElement> & {
-  label: string
-  name: string
-}
+  label: string;
+  name: string;
+};
 
 export const InputField: React.FC<InputFieldProps> = ({ label, ...props }) => {
-  const [field, { error, touched }] = useField(props)
+  const [field, { error, touched }] = useField(props);
   return (
     <FormControl mt={4} isInvalid={error != null && touched}>
       <FormLabel htmlFor={field.name}>
@@ -34,5 +34,5 @@ export const InputField: React.FC<InputFieldProps> = ({ label, ...props }) => {
       />
       <FormErrorMessage>{error}</FormErrorMessage>
     </FormControl>
-  )
-}
+  );
+};

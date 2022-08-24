@@ -1,9 +1,9 @@
-import { extendTheme } from "@chakra-ui/react"
-import { mode } from "@chakra-ui/theme-tools"
+import { extendTheme } from "@chakra-ui/react";
+import { mode } from "@chakra-ui/theme-tools";
 
 const config: any = {
   initialColorMode: "dark",
-}
+};
 
 const styles = {
   global: (props: any) => ({
@@ -11,7 +11,7 @@ const styles = {
       bg: mode("gray.100", "#1b1c1d")(props),
     },
   }),
-}
+};
 
 const colors = {
   highlight: {
@@ -36,15 +36,15 @@ const colors = {
   memberList: "#121112",
   iconColor: "#6e6e6e",
   messageInput: "black",
-}
+};
 
 const customTheme = extendTheme({
   colors,
   config,
   styles,
-})
+});
 
-export default customTheme
+export default customTheme;
 
 export const scrollbarCss = {
   "&::-webkit-scrollbar": {
@@ -58,4 +58,4 @@ export const scrollbarCss = {
     background: "brandGray.darker",
     borderRadius: "18px",
   },
-}
+};

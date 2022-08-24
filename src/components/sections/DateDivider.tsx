@@ -1,9 +1,9 @@
-import { Divider, Flex, Text } from "@chakra-ui/react"
-import React from "react"
-import { formatDivider } from "../../lib/utils/dateUtils"
+import { Divider, Flex, Text } from "@chakra-ui/react";
+import React from "react";
+import { formatDivider } from "../../lib/utils/dateUtils";
 
 interface DateDividerProps {
-  date: string
+  date: string;
 }
 
 export const DateDivider: React.FC<DateDividerProps> = ({ date }) => (
@@ -18,4 +18,4 @@ export const DateDivider: React.FC<DateDividerProps> = ({ date }) => (
     </Text>
     <Divider />
   </Flex>
-)
+);

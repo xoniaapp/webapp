@@ -1,4 +1,4 @@
-import React from "react"
+import React from "react";
 import {
   Button,
   Input,
@@ -14,26 +14,26 @@ import {
   ModalOverlay,
   Text,
   useClipboard,
-} from "@chakra-ui/react"
-import { Form, Formik } from "formik"
-import { useQueryClient } from "react-query"
-import { userStore } from "../../lib/stores/userStore"
-import { InputField } from "../common/InputField"
-import { sendFriendRequest } from "../../lib/api/handler/account"
-import { rKey } from "../../lib/utils/querykeys"
+} from "@chakra-ui/react";
+import { Form, Formik } from "formik";
+import { useQueryClient } from "react-query";
+import { userStore } from "../../lib/stores/userStore";
+import { InputField } from "../common/InputField";
+import { sendFriendRequest } from "../../lib/api/handler/account";
+import { rKey } from "../../lib/utils/querykeys";
 
 interface AddFriendModalProps {
-  isOpen: boolean
-  onClose: () => void
+  isOpen: boolean;
+  onClose: () => void;
 }
 
 export const AddFriendModal: React.FC<AddFriendModalProps> = ({
   isOpen,
   onClose,
 }) => {
-  const current = userStore((state) => state.current)
-  const cache = useQueryClient()
-  const { hasCopied, onCopy } = useClipboard(current?.id || "")
+  const current = userStore((state) => state.current);
+  const cache = useQueryClient();
+  const { hasCopied, onCopy } = useClipboard(current?.id || "");
 
   return (
     <Modal isOpen={isOpen} onClose={onClose} isCentered>
@@ -45,18 +45,18 @@ export const AddFriendModal: React.FC<AddFriendModalProps> = ({
           }}
           onSubmit={async (values, { setErrors }) => {
             if (values.id === "" && values.id.length !== 20) {
-              setErrors({ id: "Enter a valid ID" })
+              setErrors({ id: "Enter a valid ID" });
             } else {
               try {
-                const { data } = await sendFriendRequest(values.id)
+                const { data } = await sendFriendRequest(values.id);
                 if (data) {
-                  onClose()
-                  await cache.invalidateQueries(rKey)
+                  onClose();
+                  await cache.invalidateQueries(rKey);
                 }
               } catch (err: any) {
                 if (err?.response?.data?.error) {
-                  const error = err?.response?.data?.error?.message
-                  setErrors({ id: error })
+                  const error = err?.response?.data?.error?.message;
+                  setErrors({ id: error });
                 }
               }
             }
@@ -128,5 +128,5 @@ export const AddFriendModal: React.FC<AddFriendModalProps> = ({
         </Formik>
       </ModalContent>
     </Modal>
-  )
-}
+  );
+};

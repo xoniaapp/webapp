@@ -1,17 +1,25 @@
-import React, { useState } from "react"
-import { Box, Button, Flex, Heading, Image, Link, Text } from "@chakra-ui/react"
-import { Form, Formik } from "formik"
-import { Link as RLink, useHistory } from "react-router-dom"
-import { InputField } from "../components/common/InputField"
-import { toErrorMap } from "../lib/utils/toErrorMap"
-import { userStore } from "../lib/stores/userStore"
-import { RegisterSchema } from "../lib/utils/validation/auth.schema"
-import { register } from "../lib/api/handler/auth"
+import React, { useState } from "react";
+import {
+  Box,
+  Button,
+  Flex,
+  Heading,
+  Image,
+  Link,
+  Text,
+} from "@chakra-ui/react";
+import { Form, Formik } from "formik";
+import { Link as RLink, useHistory } from "react-router-dom";
+import { InputField } from "../components/common/InputField";
+import { toErrorMap } from "../lib/utils/toErrorMap";
+import { userStore } from "../lib/stores/userStore";
+import { RegisterSchema } from "../lib/utils/validation/auth.schema";
+import { register } from "../lib/api/handler/auth";
 
 export const Register = (): JSX.Element => {
-  const history = useHistory()
-  const setUser = userStore((state) => state.setUser)
-  const [error, showError] = useState(false)
+  const history = useHistory();
+  const setUser = userStore((state) => state.setUser);
+  const [error, showError] = useState(false);
 
   return (
     <Flex minHeight="100vh" width="full" align="center" justifyContent="center">
@@ -36,18 +44,18 @@ export const Register = (): JSX.Element => {
               validationSchema={RegisterSchema}
               onSubmit={async (values, { setErrors }) => {
                 try {
-                  const { data } = await register(values)
+                  const { data } = await register(values);
                   if (data) {
-                    setUser(data)
-                    history.push("/channels/me")
+                    setUser(data);
+                    history.push("/channels/me");
                   }
                 } catch (err: any) {
                   if (err?.response?.status === 500) {
-                    showError(true)
+                    showError(true);
                   }
                   if (err?.response?.data?.errors) {
-                    const errors = err?.response?.data?.errors
-                    setErrors(toErrorMap(errors))
+                    const errors = err?.response?.data?.errors;
+                    setErrors(toErrorMap(errors));
                   }
                 }
               }}
@@ -106,5 +114,5 @@ export const Register = (): JSX.Element => {
         </Box>
       </Box>
     </Flex>
-  )
-}
+  );
+};

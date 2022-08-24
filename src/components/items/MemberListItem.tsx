@@ -1,26 +1,26 @@
-import React from "react"
-import { Avatar, AvatarBadge, Flex, ListItem, Text } from "@chakra-ui/react"
-import { useContextMenu } from "react-contexify"
-import { useParams } from "react-router-dom"
-import { useGetCurrentGuild } from "../../lib/utils/hooks/useGetCurrentGuild"
-import { userStore } from "../../lib/stores/userStore"
-import { MemberContextMenu } from "../menus/MemberContextMenu"
-import { RouterProps } from "../../lib/models/routerProps"
-import { Member } from "../../lib/models/member"
+import React from "react";
+import { Avatar, AvatarBadge, Flex, ListItem, Text } from "@chakra-ui/react";
+import { useContextMenu } from "react-contexify";
+import { useParams } from "react-router-dom";
+import { useGetCurrentGuild } from "../../lib/utils/hooks/useGetCurrentGuild";
+import { userStore } from "../../lib/stores/userStore";
+import { MemberContextMenu } from "../menus/MemberContextMenu";
+import { RouterProps } from "../../lib/models/routerProps";
+import { Member } from "../../lib/models/member";
 
 interface MemberListItemProps {
-  member: Member
+  member: Member;
 }
 
 export const MemberListItem: React.FC<MemberListItemProps> = ({ member }) => {
-  const current = userStore((state) => state.current)
-  const { guildId } = useParams<RouterProps>()
-  const guild = useGetCurrentGuild(guildId)
-  const isOwner = guild !== undefined && guild.ownerId === current?.id
+  const current = userStore((state) => state.current);
+  const { guildId } = useParams<RouterProps>();
+  const guild = useGetCurrentGuild(guildId);
+  const isOwner = guild !== undefined && guild.ownerId === current?.id;
 
   const { show } = useContextMenu({
     id: member.id,
-  })
+  });
 
   return (
     <>
@@ -52,5 +52,5 @@ export const MemberListItem: React.FC<MemberListItemProps> = ({ member }) => {
         <MemberContextMenu member={member} isOwner={isOwner} id={member.id} />
       )}
     </>
-  )
-}
+  );
+};

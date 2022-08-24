@@ -1,38 +1,38 @@
-import React from "react"
-import { Box, GridItem, UnorderedList, useDisclosure } from "@chakra-ui/react"
-import { useParams } from "react-router-dom"
-import { useQuery } from "react-query"
-import { AccountBar } from "../AccountBar"
-import { CreateChannelModal } from "../../modals/CreateChannelModal"
-import { GuildMenu } from "../../menus/GuildMenu"
-import { InviteModal } from "../../modals/InviteModal"
-import { ChannelListItem } from "../../items/ChannelListItem"
-import { cKey } from "../../../lib/utils/querykeys"
-import { channelScrollbarCss } from "./css/ChannelScrollerCSS"
-import { useChannelSocket } from "../../../lib/api/ws/useChannelSocket"
-import { getChannels } from "../../../lib/api/handler/channel"
-import { RouterProps } from "../../../lib/models/routerProps"
+import React from "react";
+import { Box, GridItem, UnorderedList, useDisclosure } from "@chakra-ui/react";
+import { useParams } from "react-router-dom";
+import { useQuery } from "react-query";
+import { AccountBar } from "../AccountBar";
+import { CreateChannelModal } from "../../modals/CreateChannelModal";
+import { GuildMenu } from "../../menus/GuildMenu";
+import { InviteModal } from "../../modals/InviteModal";
+import { ChannelListItem } from "../../items/ChannelListItem";
+import { cKey } from "../../../lib/utils/querykeys";
+import { channelScrollbarCss } from "./css/ChannelScrollerCSS";
+import { useChannelSocket } from "../../../lib/api/ws/useChannelSocket";
+import { getChannels } from "../../../lib/api/handler/channel";
+import { RouterProps } from "../../../lib/models/routerProps";
 
 export const Channels: React.FC = () => {
   const {
     isOpen: inviteIsOpen,
     onOpen: inviteOpen,
     onClose: inviteClose,
-  } = useDisclosure()
+  } = useDisclosure();
   const {
     isOpen: channelIsOpen,
     onOpen: channelOpen,
     onClose: channelClose,
-  } = useDisclosure()
+  } = useDisclosure();
 
-  const { guildId } = useParams<RouterProps>()
-  const key = cKey(guildId)
+  const { guildId } = useParams<RouterProps>();
+  const key = cKey(guildId);
 
   const { data } = useQuery(key, () =>
     getChannels(guildId).then((response) => response.data),
-  )
+  );
 
-  useChannelSocket(guildId, key)
+  useChannelSocket(guildId, key);
 
   return (
     <>
@@ -64,5 +64,5 @@ export const Channels: React.FC = () => {
         <AccountBar />
       </GridItem>
     </>
-  )
-}
+  );
+};

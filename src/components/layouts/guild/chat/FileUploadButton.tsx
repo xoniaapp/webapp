@@ -10,51 +10,51 @@ import {
   Progress,
   Text,
   useDisclosure,
-} from "@chakra-ui/react"
-import React, { useRef, useState } from "react"
-import { MdAddCircle } from "react-icons/md"
-import { useParams } from "react-router-dom"
-import { sendMessage } from "../../../../lib/api/handler/messages"
-import { FileSchema } from "../../../../lib/utils/validation/message.schema"
-import { StyledTooltip } from "../../../sections/StyledTooltip"
-import { RouterProps } from "../../../../lib/models/routerProps"
+} from "@chakra-ui/react";
+import React, { useRef, useState } from "react";
+import { MdAddCircle } from "react-icons/md";
+import { useParams } from "react-router-dom";
+import { sendMessage } from "../../../../lib/api/handler/messages";
+import { FileSchema } from "../../../../lib/utils/validation/message.schema";
+import { StyledTooltip } from "../../../sections/StyledTooltip";
+import { RouterProps } from "../../../../lib/models/routerProps";
 
 export const FileUploadButton: React.FC = () => {
-  const { channelId } = useParams<RouterProps>()
-  const { isOpen, onOpen, onClose } = useDisclosure()
+  const { channelId } = useParams<RouterProps>();
+  const { isOpen, onOpen, onClose } = useDisclosure();
 
-  const inputFile: any = useRef(null)
-  const [isSubmitting, setSubmitting] = useState(false)
-  const [progress, setProgress] = useState(0)
-  const [errors, setErrors] = useState({})
-  const disable = false
+  const inputFile: any = useRef(null);
+  const [isSubmitting, setSubmitting] = useState(false);
+  const [progress, setProgress] = useState(0);
+  const [errors, setErrors] = useState({});
+  const disable = false;
 
   const closeModal = (): void => {
-    setErrors({})
-    setProgress(0)
-    onClose()
-  }
+    setErrors({});
+    setProgress(0);
+    onClose();
+  };
 
   const handleSubmit = async (file: File): Promise<void> => {
-    if (!file) return
-    setSubmitting(true)
+    if (!file) return;
+    setSubmitting(true);
 
     try {
-      await FileSchema.validate({ file })
+      await FileSchema.validate({ file });
     } catch (err: any) {
-      setErrors(err.errors)
-      onOpen()
-      return
+      setErrors(err.errors);
+      onOpen();
+      return;
     }
 
-    const data = new FormData()
-    data.append("file", file)
+    const data = new FormData();
+    data.append("file", file);
     await sendMessage(channelId, data, (event: any) => {
-      const loaded = Math.round((100 * event.loaded) / event.total)
-      setProgress(loaded)
-      if (loaded >= 100) setProgress(0)
-    })
-  }
+      const loaded = Math.round((100 * event.loaded) / event.total);
+      setProgress(loaded);
+      if (loaded >= 100) setProgress(0);
+    });
+  };
 
   return (
     <>
@@ -75,11 +75,11 @@ export const FileUploadButton: React.FC = () => {
             hidden
             disabled={isSubmitting || disable}
             onChange={async (e) => {
-              if (!e.currentTarget.files) return
+              if (!e.currentTarget.files) return;
               handleSubmit(e.currentTarget.files[0]).then(() => {
-                setSubmitting(false)
-                e.target.value = ""
-              })
+                setSubmitting(false);
+                e.target.value = "";
+              });
             }}
           />
           {errors && (
@@ -90,9 +90,7 @@ export const FileUploadButton: React.FC = () => {
                 <ModalCloseButton _focus={{ outline: "none" }} />
                 <ModalBody>
                   {/* @ts-ignore */}
-                  <Text mb="2">
-                    Error: {errors}
-                  </Text>
+                  <Text mb="2">Error: {errors}</Text>
                   <Text>Make sure your file isn't above 80MB.</Text>
                 </ModalBody>
               </ModalContent>
@@ -117,5 +115,5 @@ export const FileUploadButton: React.FC = () => {
         </InputLeftElement>
       </StyledTooltip>
     </>
-  )
-}
+  );
+};

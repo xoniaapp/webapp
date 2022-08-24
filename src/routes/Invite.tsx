@@ -1,33 +1,33 @@
-import React, { useEffect, useState } from "react"
-import { Link as RLink, useHistory, useParams } from "react-router-dom"
-import { Box, Flex, Image, Link, Text } from "@chakra-ui/react"
-import { joinGuild } from "../lib/api/handler/guilds"
+import React, { useEffect, useState } from "react";
+import { Link as RLink, useHistory, useParams } from "react-router-dom";
+import { Box, Flex, Image, Link, Text } from "@chakra-ui/react";
+import { joinGuild } from "../lib/api/handler/guilds";
 
 interface InviteRouter {
-  link: string
+  link: string;
 }
 
 export const Invite: React.FC = () => {
-  const { link } = useParams<InviteRouter>()
-  const [errors, setErrors] = useState<string | null>(null)
-  const history = useHistory()
+  const { link } = useParams<InviteRouter>();
+  const [errors, setErrors] = useState<string | null>(null);
+  const history = useHistory();
 
   useEffect(() => {
     const handleJoin = async (): Promise<void> => {
       try {
-        const { data } = await joinGuild({ link })
+        const { data } = await joinGuild({ link });
         if (data) {
-          history.replace(`/channels/${data.id}/${data.default_channel_id}`)
+          history.replace(`/channels/${data.id}/${data.default_channel_id}`);
         }
       } catch (err: any) {
-        const status = err?.response?.status
+        const status = err?.response?.status;
         if (status === 400 || status === 404 || status === 500) {
-          setErrors(err?.response?.data?.error?.message)
+          setErrors(err?.response?.data?.error?.message);
         }
       }
-    }
-    handleJoin()
-  }, [link, history])
+    };
+    handleJoin();
+  }, [link, history]);
 
   return (
     <Flex minHeight="100vh" align="center" justify="center" h="full">
@@ -61,5 +61,5 @@ export const Invite: React.FC = () => {
         )}
       </Box>
     </Flex>
-  )
-}
+  );
+};
