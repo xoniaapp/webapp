@@ -2,7 +2,7 @@
 package-lock.json
 
 /build
-
+/public/_redirects
 # Logs
 logs
 *.log
