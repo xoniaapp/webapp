@@ -26,7 +26,7 @@ export const Register: React.FC = () => {
 			<Box px={4} width="full" maxWidth="500px" textAlign="center">
 				<Flex mb="4" justify="center">
 					<Image
-						src={`https://raw.githubusercontent.com/xoniaapp/app/main/logo.png`}
+						src={`/logo.png`}
 						w="80px"
 					/>
 				</Flex>
