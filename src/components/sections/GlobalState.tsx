@@ -10,13 +10,15 @@ type WSMessage =
 	| { action: "new_dm_notification"; data: DMChannel }
 	| { action: "send_request" };
 
-/* @ts-ignore */
-export const GlobalState: React.FC = ({ children }) => {
+interface IProps {
+	children: React.ReactNode;
+}
+
+export const GlobalState: React.FC<IProps> = ({ children }) => {
 	const current = userStore((state) => state.current);
 	const inc = homeStore((state) => state.increment);
 	const cache = useQueryClient();
 
-	// eslint-disable-next-line consistent-return
 	useEffect(() => {
 		if (current) {
 			const disconnect = (): void => {

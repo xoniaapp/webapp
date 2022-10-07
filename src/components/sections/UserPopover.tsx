@@ -15,12 +15,11 @@ import { Member } from "../../lib/models/member";
 
 interface UserPopoverProps {
 	member: Member;
+	children: React.ReactNode;
 }
 
-// @ts-ignore
 export const UserPopover: React.FC<UserPopoverProps> = ({
 	member,
-	// @ts-ignore
 	children,
 }) => (
 	<Popover isLazy placement="right-start">
@@ -46,7 +45,7 @@ export const UserPopover: React.FC<UserPopoverProps> = ({
 			</PopoverHeader>
 			<PopoverFooter bg="brandGray.dark">
 				<Text textColor="brandGray.accent" fontSize="12px" textAlign="center">
-					Right click for more!
+					Right click user for more actions
 				</Text>
 			</PopoverFooter>
 		</PopoverContent>

@@ -6,9 +6,8 @@ type SettingsState = {
 	toggleShowMembers: () => void;
 };
 
-export const settingsStore = create<SettingsState>(
-	/* @ts-ignore */
-	persist(
+export const settingsStore = create(
+	persist<SettingsState>(
 		(set, get) => ({
 			showMembers: true,
 			toggleShowMembers: () => set({ showMembers: !get().showMembers }),

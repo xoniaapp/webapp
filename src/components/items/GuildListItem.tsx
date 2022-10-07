@@ -43,7 +43,7 @@ export const GuildListItem: React.FC<GuildListItemProps> = ({ guild }) => {
 			{isHover && <HoverGuildPill />}
 			{guild.hasNotification && <NotificationIndicator />}
 			{/* @ts-ignore */}
-			<StyledTooltip label={guild.name} position="right">
+			<StyledTooltip disabled={false} label={guild.name} position="right">
 				<Link to={`/channels/${guild.id}/${guild.default_channel_id}`}>
 					{guild.icon ? (
 						<Avatar

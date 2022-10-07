@@ -6,7 +6,8 @@
     "dev": "vite --host",
     "build": "export VITE_GIT_SHA=$(git rev-parse --short HEAD) && vite build",
     "preview": "vite preview",
-    "format": "prettier --write **/*"
+    "format": "prettier --write **/*",
+    "clean": "rm -rf node_modules build"
   },
   "dependencies": {
     "@chakra-ui/react": "^2.3.5",
