@@ -24,8 +24,5 @@ jobs:
     - name: Install dependencies
       run: yarn
 
-    - name: Format using Prettier
-      run: yarn format
-
     - name: Build
       run: yarn build
