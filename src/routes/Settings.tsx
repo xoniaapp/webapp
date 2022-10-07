@@ -226,6 +226,8 @@ export const Settings: React.FC = () => {
 					</Flex>
 					<p>Version</p>
 					<a
+						rel="noreferrer noopener"
+						target={"blank"}
 						href={`https://github.com/xoniaapp/webapp/commit/${
 							import.meta.env.VITE_GIT_SHA
 						}`}
