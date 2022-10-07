@@ -4,29 +4,29 @@ import { Tooltip } from "@chakra-ui/react";
 type Placement = "top" | "right";
 
 interface StyledTooltipProps {
-  label: string;
-  position: Placement;
-  disabled?: boolean;
+	label: string;
+	position: Placement;
+	disabled?: boolean;
 }
 
 export const StyledTooltip: React.FC<StyledTooltipProps> = ({
-  label,
-  position,
-  disabled = false,
-  // @ts-ignore
-  children,
+	label,
+	position,
+	disabled = false,
+	// @ts-ignore
+	children,
 }) => (
-  <Tooltip
-    hasArrow
-    label={label}
-    placement={position}
-    isDisabled={disabled}
-    bg="brandGray.darkest"
-    color="white"
-    fontWeight="semibold"
-    py={1}
-    px={3}
-  >
-    {children}
-  </Tooltip>
+	<Tooltip
+		hasArrow
+		label={label}
+		placement={position}
+		isDisabled={disabled}
+		bg="brandGray.darkest"
+		color="white"
+		fontWeight="semibold"
+		py={1}
+		px={3}
+	>
+		{children}
+	</Tooltip>
 );

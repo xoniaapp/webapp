@@ -1,5 +1,5 @@
 export type ChannelInput = {
-  name: string;
-  isPublic: boolean;
-  members?: string[];
+	name: string;
+	isPublic: boolean;
+	members?: string[];
 };

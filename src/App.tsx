@@ -1,23 +1,23 @@
 import * as React from "react";
 import { QueryClient, QueryClientProvider } from "react-query";
-import { Routes } from "./routes/Routes";
+import { AppRoutes } from "./routes/Routes";
 import { GlobalState } from "./components/sections/GlobalState";
 
 const client = new QueryClient({
-  defaultOptions: {
-    queries: {
-      refetchOnWindowFocus: false,
-      staleTime: Infinity,
-      cacheTime: 0,
-    },
-  },
+	defaultOptions: {
+		queries: {
+			refetchOnWindowFocus: false,
+			staleTime: Infinity,
+			cacheTime: 0,
+		},
+	},
 });
 
 export const App: React.FC = () => (
-  <QueryClientProvider client={client}>
-    {/* @ts-ignore */}
-    <GlobalState>
-      <Routes />
-    </GlobalState>
-  </QueryClientProvider>
+	<QueryClientProvider client={client}>
+		{/* @ts-ignore */}
+		<GlobalState>
+			<AppRoutes />
+		</GlobalState>
+	</QueryClientProvider>
 );
