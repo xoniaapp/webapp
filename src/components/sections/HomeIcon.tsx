@@ -57,7 +57,7 @@ const Logo = (): JSX.Element => {
 	const fill = useColorModeValue("#2D3748", "#fff");
 	return (
 		<img
-			src={`https://raw.githubusercontent.com/xoniaapp/app/main/logo.png`}
+			src={`/logo.png`}
 			alt={fill}
 			width="50px"
 			height="50px"
