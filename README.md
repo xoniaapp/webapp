@@ -1,16 +1,13 @@
 # `@xoniaapp/webapp`
 
-Welcome to `xoniaapp/webapp`, the frontend for Xonia - a real-time chat application. This repository contains the code for the web-based client for Xonia, built using modern web technologies such as React, TypeScript, Vite, and Zustand.
-
-With `xoniaapp/webapp`, you can access the full range of features offered by Xonia from your web browser, including channels, direct messages, and more. Whether you're using Xonia to chat with friends or to build a community around a shared interest, xoniaapp/webapp provides a fast, reliable, and user-friendly interface for staying connected. Join the conversation with xoniaapp/webapp today!
+The frontend for Xonia. This repository contains the code for the web-based client for Xonia, built using modern web technologies.
 
 ## Building it
 
-To build xoniaapp/webapp, you will need to have the following tools and dependencies installed on your system:
+To build `xoniaapp/webapp`, you will need to have the following tools and dependencies installed on your system:
 
-- Node.js: xoniaapp/webapp is built using Node.js, so you will need to have it installed to build the project. You can download and install Node.js from the official website at https://nodejs.org/.
-
-- Yarn: xoniaapp/webapp uses Yarn as its package manager, so you will need to have it installed to install the project dependencies. You can install Yarn by following the instructions at https://yarnpkg.com/getting-started/install.
+- Node.js
+- Yarn
 
 Once you have Node.js and Yarn installed, you can clone the xoniaapp/webapp repository and install the dependencies by running the following commands:
 
@@ -21,7 +18,7 @@ yarn
 ```
 This will clone the repository and install the dependencies specified in the package.json file.
 
-To build xoniaapp/webapp, you can run the following command:
+To build the frontend, you can run the following command:
 
 ```sh
 yarn build
@@ -34,7 +31,6 @@ You can also run the following command to start a development server that will a
 ```
 yarn dev
 ```
-This is a useful way to test and debug xoniaapp/webapp while you are developing it.
 
 ## License
 [GNU AGPL License](./LICENSE)
