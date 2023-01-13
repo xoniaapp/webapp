@@ -37,4 +37,4 @@ yarn dev
 This is a useful way to test and debug xoniaapp/webapp while you are developing it.
 
 ## License
-[GNU AGPL License](./LICENSE)
+[AGPL-3.0](./LICENSE)
