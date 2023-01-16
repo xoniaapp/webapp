@@ -2,8 +2,6 @@
 
 Welcome to `xoniaapp/webapp`, the frontend for Xonia - a real-time chat application. This repository contains the code for the web-based client for Xonia, built using modern web technologies such as React, TypeScript, Vite, and Zustand.
 
-With `xoniaapp/webapp`, you can access the full range of features offered by Xonia from your web browser, including channels, direct messages, and more. Whether you're using Xonia to chat with friends or to build a community around a shared interest, xoniaapp/webapp provides a fast, reliable, and user-friendly interface for staying connected. Join the conversation with xoniaapp/webapp today!
-
 ## Building it
 
 To build xoniaapp/webapp, you will need to have the following tools and dependencies installed on your system:
