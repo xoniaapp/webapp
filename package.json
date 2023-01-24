@@ -5,7 +5,7 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "export VITE_GIT_SHA=$(git rev-parse --short HEAD) && tsc && vite build",
+    "build": "tsc && vite build",
     "preview": "vite preview",
     "format": "prettier --write **/*",
     "clean": "rm -rf node_modules build"
@@ -14,10 +14,12 @@
     "@chakra-ui/react": "^2.4.9",
     "@emotion/react": "^11.10.5",
     "@emotion/styled": "^11.10.5",
-    "@fontsource/inter": "^4.5.14",
+    "@fontsource/pt-sans": "^4.5.11",
+    "@types/node": "^18.11.18",
     "formik": "^2.2.9",
     "framer-motion": "^8.4.3",
     "preact": "^10.11.3",
+    "react-contexify": "^6.0.0",
     "react-icons": "^4.7.1",
     "react-router-dom": "^6.6.2"
   },

@@ -18,7 +18,7 @@ import { Link as RLink } from "react-router-dom";
 const Reset = () => {
   return (
     <Flex
-      bg={useColorModeValue("whiteAlpha.600", "blackAlpha.700")}
+      bg={useColorModeValue("gray.100", "gray.900")}
       minHeight="100vh"
       width="full"
       align="center"
@@ -34,9 +34,6 @@ const Reset = () => {
             <Flex mb="4" justify="center">
               <Image src={`/logo.png`} w="60px" />
             </Flex>
-            <Stack spacing={{ base: "2", md: "3" }} textAlign="center">
-              <Heading fontSize={"2xl"}>🔒 Forgot password</Heading>
-            </Stack>
           </Stack>
 
           <Box
@@ -47,6 +44,9 @@ const Reset = () => {
             borderRadius={{ base: "none", sm: "xl" }}
           >
             <Stack spacing="6">
+              <Stack spacing={{ base: "2", md: "3" }} textAlign="center">
+                <Heading fontSize={"2xl"}>🔒 Forgot password</Heading>
+              </Stack>
               <Stack spacing="5">
                 <FormControl>
                   <FormLabel
