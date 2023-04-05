@@ -10,13 +10,12 @@ import {
   Text,
   Image,
   Flex,
-  FormErrorMessage,
   Link,
   useColorModeValue,
 } from "@chakra-ui/react";
 import { Link as RLink } from "react-router-dom";
 
-const Register = () => {
+const Reset = () => {
   return (
     <Flex
       bg={useColorModeValue("gray.100", "gray.900")}
@@ -46,24 +45,9 @@ const Register = () => {
           >
             <Stack spacing="6">
               <Stack spacing={{ base: "2", md: "3" }} textAlign="center">
-                <Heading fontSize={"2xl"}>Let's create a new account!</Heading>
+                <Heading fontSize={"2xl"}>🔒 Forgot password</Heading>
               </Stack>
               <Stack spacing="5">
-                <FormControl>
-                  <FormLabel
-                    htmlFor="email"
-                    fontSize="12px"
-                    textTransform="uppercase"
-                  >
-                    USERNAME
-                  </FormLabel>
-                  <Input
-                    focusBorderColor="red.500"
-                    id="username"
-                    type="username"
-                    placeholder="Enter your username."
-                  />
-                </FormControl>
                 <FormControl>
                   <FormLabel
                     htmlFor="email"
@@ -79,22 +63,6 @@ const Register = () => {
                     placeholder="Enter your email."
                   />
                 </FormControl>
-                <FormControl>
-                  <FormLabel
-                    htmlFor="password"
-                    fontSize="12px"
-                    textTransform="uppercase"
-                  >
-                    PASSWORD
-                  </FormLabel>
-                  <Input
-                    focusBorderColor="red.500"
-                    id="password"
-                    type="password"
-                    placeholder="Enter your password."
-                  />
-                  <FormErrorMessage>Test</FormErrorMessage>
-                </FormControl>
               </Stack>
               <Button
                 background="red.600"
@@ -106,17 +74,16 @@ const Register = () => {
                 _active={{ bg: "red.800" }}
                 _focus={{ boxShadow: "none" }}
               >
-                Register
+                Reset password
               </Button>
               <Text mt={4}>
-                Already have an account?{" "}
                 <Link
                   as={RLink}
-                  to="/login"
+                  to="/register"
                   textColor="red.500"
                   _focus={{ outline: "none" }}
                 >
-                  Log in
+                  Go back login
                 </Link>
               </Text>
             </Stack>
@@ -127,4 +94,4 @@ const Register = () => {
   );
 };
 
-export default Register;
+export default Reset;
